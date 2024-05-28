@@ -13,7 +13,7 @@ int	check_spaces(char c)
 	return (0);
 }
 
-int	handle_quotes(char *s, int *index)
+int	handle_quotes(char *s)
 {
 	int	i;
 
@@ -34,20 +34,22 @@ int	handle_quotes(char *s, int *index)
 	}
 	if (!s[i])
 		return (-1);
-	*index += i;
-	return (0);
+	return (++i);
 }
 
 static int	handle_not_spaces(char *s, int *word_num)
 {
 	int	i;
+	int	tmp;
 
+	tmp = 0;
 	i = 0;
 	if (check_spaces(s[i]) == D_QUOTE || check_spaces(s[i]) == S_QUOTE)
 	{
-		if (handle_quotes(&s[i], &i) == -1)
+		tmp = handle_quotes(&s[i]);
+		if (tmp == -1)
 			return (-1);
-		i++;
+		i += tmp;
 	}
 	while (s[i] && (!check_spaces(s[i]) || check_spaces(s[i]) == PIPE))
 	{
@@ -80,7 +82,7 @@ int	count_words(char *s)
 			i++;
 		if (s[i])
 			word_num++;
-		if (s[i] && (!check_spaces(s[i]) || check_spaces(s[i]) == PIPE))
+		if (s[i] && (check_spaces(s[i]) != 1))
 			tmp = handle_not_spaces(&s[i], &word_num);
 		if (tmp == -1)
 			return (-1);
@@ -101,7 +103,7 @@ static int	word_len(char *s)
 		return (1);
 	}
 	if (s[i] && (check_spaces(s[i]) == 7 || check_spaces(s[i]) == 8))
-		return (handle_quotes(s, &i));
+		return (handle_quotes(s));
 	while (s[i] && !check_spaces(s[i]))
 		i++;
 	return (i);

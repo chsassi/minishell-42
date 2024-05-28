@@ -67,7 +67,7 @@ typedef struct	s_all
 int	count_words(char *s);
 
 // Parsing
-void	parse_input(char *input);
+//void	parse_input(char *input);
 
 // Parse_utils
 int			check_spaces(char c);

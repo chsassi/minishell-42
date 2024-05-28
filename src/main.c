@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	main()
+/* int	main()
 {
 	t_parsing	parsing;
 
@@ -13,17 +13,19 @@ int	main()
 			perror("Error on readline");
 			continue ;
 		}
-		// parse_input(parsing.input);
+		parsing = parse_input(parsing.input);
 	}
-}
+} */
 
-/* int main()
+int main()
 {
-	char *s = "012345|7 0<<0 89\" a \'b\' c d \" has";
+	t_parsing parsing = (t_parsing){0};
+	char *s = "012345|7 0<<0 89\' a \"b\" c d \' has";
 	char **mtx;
 	int i = 0;
 
-	mtx = create_mtx_from_input(s);
+	parsing.input = s;
+	mtx = create_mtx_from_input(parsing);
 	printf("%s\n", s);
 	while (mtx && mtx[i])
 	{
@@ -32,4 +34,4 @@ int	main()
 	}
 	free_mtx(mtx);
 	return (0);
-} */
+}
