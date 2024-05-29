@@ -34,12 +34,15 @@ typedef enum	e_token
 	D_RED_OUTPUT,
 	D_QUOTE,
 	S_QUOTE,
+	BRACES_OPEN,
+	BRACES_CLOSE,
 }	t_token;
 
 typedef struct	s_dll_input
 {
 	char				*content;
 	char				*path;
+	char				*env;
 	int					token;
 	int					index;
 	struct s_dll_input	*next;	
@@ -69,10 +72,17 @@ int	count_words(char *s);
 // Parsing
 //void	parse_input(char *input);
 
-// Parse_utils
-int			check_spaces(char c);
-char		**new_string(char **mtx, char *s);
-char		**create_mtx_from_input(t_parsing parsing);
+// Char_handling
+int		check_spaces(char c);
+int		handle_quotes(char *s);
+int		handle_operators(char *s);
+int		handle_not_spaces(char *s);
+
+// Create_mtx
+int		count_words(char *s);
+int		word_len(char *s);
+char	**new_string(char **mtx, char *s);
+char	**create_mtx_from_input(t_parsing parsing);
 
 
 // Built-ins

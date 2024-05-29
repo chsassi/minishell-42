@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-/* int	main()
+int	main()
 {
 	t_parsing	parsing;
 
@@ -15,12 +15,12 @@
 		}
 		parsing = parse_input(parsing.input);
 	}
-} */
+}
 
-int main()
+/* int main()
 {
 	t_parsing parsing = (t_parsing){0};
-	char *s = "012345|7 0<<0 89\' a \"b\" c d \' has";
+	char *s = "012345  o{<>||<7}o 0<<0 89\' a \"b\" c d \' has";
 	char **mtx;
 	int i = 0;
 
@@ -34,4 +34,4 @@ int main()
 	}
 	free_mtx(mtx);
 	return (0);
-}
+} */
