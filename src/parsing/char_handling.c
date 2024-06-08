@@ -11,15 +11,11 @@ int	check_spaces(char c)
 	else if (c == '|')
 		return (PIPE);
 	else if (c == '<')
-		return (REDIRECT_INPUT);
+		return (R_INPUT);
 	else if (c == '>')
-		return (REDIRECT_OUTPUT);
+		return (R_OUTPUT);
 	else if (c == '$')
 		return (DOLLAR_SIGN);
-	else if (c == '{')
-		return (BRACES_OPEN);
-	else if (c == '}')
-		return (BRACES_CLOSE);
 	return (0);
 }
 
@@ -30,11 +26,6 @@ int	handle_quotes(char *s)
 	i = 1;
 	if (!s || !s[i])
 		return (0);
-	if (check_spaces(s[i - 1]) == BRACES_OPEN)
-	{
-		while (s[i] && check_spaces(s[i]) != BRACES_CLOSE)
-			i++;
-	}
 	if (check_spaces(s[i - 1]) == D_QUOTE)
 	{
 		while (s[i] && check_spaces(s[i]) != D_QUOTE)
@@ -59,15 +50,15 @@ int	handle_operators(char *s)
 		return (0);
 	if (check_spaces(s[i]) == PIPE)
 		return(++i);
-	else if (check_spaces(s[i]) == REDIRECT_INPUT)
+	else if (check_spaces(s[i]) == R_INPUT)
 	{
-		if (s[i + 1] && check_spaces(s[i + 1]) == REDIRECT_INPUT)
+		if (s[i + 1] && check_spaces(s[i + 1]) == R_INPUT)
 			return (2);
 		return (++i);
 	}
-	else if (check_spaces(s[i]) == REDIRECT_OUTPUT)
+	else if (check_spaces(s[i]) == R_OUTPUT)
 	{
-		if (s[i + 1] && check_spaces(s[i + 1]) == REDIRECT_OUTPUT)
+		if (s[i + 1] && check_spaces(s[i + 1]) == R_OUTPUT)
 			return (2);
 		return (++i);
 	}
@@ -88,11 +79,10 @@ int	handle_not_spaces(char *s)
 	i = 0;
 	if (!s || !s[i])
 		return (0);
-	if (check_spaces(s[i]) == D_QUOTE || check_spaces(s[i]) == S_QUOTE
-	|| check_spaces(s[i]) == BRACES_OPEN)
+	if (check_spaces(s[i]) == D_QUOTE || check_spaces(s[i]) == S_QUOTE)
 		tmp = handle_quotes(&s[i]);
-	if (check_spaces(s[i]) == PIPE || check_spaces(s[i]) == REDIRECT_INPUT
-	|| check_spaces(s[i]) == REDIRECT_OUTPUT || check_spaces(s[i]) == DOLLAR_SIGN)
+	if (check_spaces(s[i]) == PIPE || check_spaces(s[i]) == R_INPUT
+	|| check_spaces(s[i]) == R_OUTPUT || check_spaces(s[i]) == DOLLAR_SIGN)
 		tmp = handle_operators(&s[i]);
 	while (s[i] && !check_spaces(s[i]))
 		i++;

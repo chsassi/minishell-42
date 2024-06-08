@@ -31,12 +31,11 @@ int	word_len(char *s)
 	i = 0;
 	if (!s || !s[i])
 		return (0);
-	if (check_spaces(s[i]) == PIPE || check_spaces(s[i]) == REDIRECT_INPUT
-	|| check_spaces(s[i]) == REDIRECT_OUTPUT
+	if (check_spaces(s[i]) == PIPE || check_spaces(s[i]) == R_INPUT
+	|| check_spaces(s[i]) == R_OUTPUT
 	|| check_spaces(s[i]) == DOLLAR_SIGN)
 		return (handle_operators(&s[i]));
-	if (s[i] && (check_spaces(s[i]) == D_QUOTE
-	|| check_spaces(s[i]) == S_QUOTE || check_spaces(s[i]) == BRACES_OPEN))
+	if (s[i] && (check_spaces(s[i]) == D_QUOTE || check_spaces(s[i]) == S_QUOTE))
 		return (handle_quotes(s));
 	while (s[i] && !check_spaces(s[i]))
 		i++;
@@ -71,7 +70,7 @@ char	**new_string(char **mtx, char *s)
 	return (mtx);
 }
 
-char	**create_mtx_from_input(t_parsing parsing)
+char	**get_mtx_from_input(t_parsing parsing)
 {
 	char	**res;
 

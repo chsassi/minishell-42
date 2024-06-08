@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-t_dll_input	*dll_input_new(char *content)
+t_input	*dll_input_new(char *content)
 {
-	t_dll_input	*new;
+	t_input	*new;
 
-	new = ft_calloc(1, sizeof(t_dll_input));
+	new = ft_calloc(1, sizeof(t_input));
 	if (!new)
 		return (NULL);
 	new->content = content;
