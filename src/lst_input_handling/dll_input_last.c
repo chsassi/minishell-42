@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-t_dll_input	*dll_input_last(t_dll_input *lst)
+t_input	*dll_input_last(t_input *lst)
 {
-	t_dll_input	*new;
+	t_input	*new;
 
 	if (!lst)
 		return (NULL);

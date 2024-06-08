@@ -1,14 +1,13 @@
 #include "minishell.h"
 
-void	dll_input_clear(t_dll_input **lst)
+void	dll_input_clear(t_input **lst)
 {
-	t_dll_input	*ptr;
+	t_input	*ptr;
 
 	while (lst && *lst)
 	{
 		ptr = (*lst)->next;
-        free((*lst)->content);
-        free((*lst)->path);
+		free((*lst)->content);
 		free(*lst);
 		*lst = ptr;
 	}

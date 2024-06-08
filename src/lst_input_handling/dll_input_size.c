@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	dll_input_size(t_dll_input *lst)
+int	dll_input_size(t_input *lst)
 {
 	int		len;
 

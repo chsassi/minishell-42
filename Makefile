@@ -26,11 +26,12 @@ SRC =	./src/main.c \
 		./src/lst_input_handling/dll_input_clear.c \
 		./src/lst_input_handling/dll_input_last.c \
 		./src/lst_input_handling/dll_input_new.c \
-		./src/lst_input_handling/dll_input_set_index.c \
 		./src/lst_input_handling/dll_input_size.c \
-		./src/parsing/parsing.c \
-		./src/parsing/create_mtx.c \
-		./src/parsing/char_handling.c
+		./src/parsing/char_handling.c \
+		./src/parsing/get_all_info.c \
+		./src/parsing/get_arr_token.c \
+		./src/parsing/get_mtx_input.c \
+		./src/parsing/quotes_handling.c 
 
 all: $(NAME)
 
