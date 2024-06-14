@@ -40,17 +40,20 @@ int	first_token_check(t_parsing parsing)
 	int	i;
 
 	i = 0;
-	if (parsing.arr_token[i] != WORDS)
+	if (!parsing.arr_token || !parsing.arr_token[i])
 		return (0);
-	while (i < parsing.size)
+	else if (parsing.arr_token[i] == PIPE)
+		return (0);
+	while (i < parsing.size && parsing.arr_token[i])
 	{
-		while (i < parsing.size && parsing.arr_token[i] == WORDS)
+		while (i < parsing.size && (parsing.arr_token[i] && parsing.arr_token[i] == WORDS))
 			i++;
-		if (parsing.arr_token[i] == PIPE || parsing.arr_token[i] == R_INPUT || 
+		if (i < parsing.size && (parsing.arr_token[i] == PIPE 
+		|| parsing.arr_token[i] == R_INPUT || 
 		parsing.arr_token[i] == R_OUTPUT || parsing.arr_token[i] == D_RED_INPUT
-		|| parsing.arr_token[i] == D_RED_OUTPUT)
+		|| parsing.arr_token[i] == D_RED_OUTPUT))
 		{
-			if (!parsing.arr_token[i++] || parsing.arr_token[i++] != WORDS)
+			if (i++ > parsing.size || parsing.arr_token[i++] != WORDS)
 				return (0);
 		}
 		i++;
@@ -63,9 +66,13 @@ int	*analyse_words_token(t_parsing parsing)
 	int	i;
 
 	i = 0;
-	while (i < parsing.size)
+	if (!parsing.arr_token)
+		return (0);
+	while (i < parsing.size && parsing.arr_token[i])
 	{
-		if (parsing.arr_token[i] == WORDS)
+		if (i == 0 && parsing.arr_token[i] == WORDS)
+			parsing.arr_token[i] = get_word_token(0);
+		if ((i != 0 && i < parsing.size) && parsing.arr_token[i] == WORDS)
 			parsing.arr_token[i] = get_word_token(parsing.arr_token[i - 1]);
 		i++;
 	}

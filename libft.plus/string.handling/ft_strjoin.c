@@ -11,27 +11,41 @@
 /* ************************************************************************** */
 #include "libft.h"
 
+static void	ft_strcat(char *s, char *s2, char *fin)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s[i])
+	{
+		fin[i] = s[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		fin[i + j] = s2[j];
+		j++;
+	}
+	fin[i + j] = '\0';
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*res;
-	size_t			s1_len;
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	len;
+	char	*t1;
+	char	*t2;
+	char	*fin;
 
-	s1_len = ft_strlen(s1);
-	len = s1_len + ft_strlen(s2) + 1;
-	res = malloc(sizeof(char) * len);
-	if (!res)
+	t1 = (char *)s1;
+	t2 = (char *)s2;
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (i < s1_len)
-		res[i++] = s1[j++];
-	j = 0;
-	while (i < len)
-		res[i++] = s2[j++];
-	return (res);
+	fin = ft_calloc((ft_strlen(s1) + ft_strlen(s2)) + 1, sizeof(char));
+	if (!fin)
+		return (NULL);
+	ft_strcat(t1, t2, fin);
+	return (fin);
 }
 
 /*int		main(void)

@@ -1,0 +1,63 @@
+{
+
+   IgnoreReadlineLeak
+
+   Memcheck:Leak
+
+   match-leak-kinds: reachable
+
+   ...
+
+   fun:add_history
+
+   ...
+
+}
+
+{
+
+   IgnoreReadlineLeak
+
+   Memcheck:Leak
+
+   match-leak-kinds: reachable
+
+   ...
+
+   fun:readline
+
+   ...
+
+}
+
+#TODO check definitely lost
+
+{
+
+   IgnoreReadlineLeak
+
+   Memcheck:Leak
+
+   ...
+
+   fun:readline
+
+   ...
+
+}
+
+{
+
+   IgnoreDefinitelyLost
+
+   Memcheck:Leak
+
+   match-leak-kinds: definite
+
+   ...
+
+   fun:readline
+
+   ...
+
+}

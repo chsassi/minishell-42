@@ -8,6 +8,7 @@ t_input	*dll_input_new(char *content)
 	if (!new)
 		return (NULL);
 	new->content = content;
+	new->args = NULL;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
