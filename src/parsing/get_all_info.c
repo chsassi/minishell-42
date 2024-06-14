@@ -35,7 +35,7 @@ t_input	*create_list_from_input(t_parsing parsing)
 		i++;
 	}
 	cmd_line = check_if_need_merge(parsing, cmd_line);
-	//free parsing? char *input puo ancora servire?
+	//free_parsing(&parsing);
 	return (cmd_line);
 }
 
@@ -43,19 +43,22 @@ t_list	*create_list_from_envp(char **envp)
 {
 	t_list	*envp_list;
 	t_list	*node;
+	char	**envp_cpy;
 	int		i;
 
 	envp_list = NULL;
 	node = NULL;
 	i = 0;
-	while (envp && envp[i])
+	envp_cpy = copy_mtx(envp);
+	while (envp_cpy && envp_cpy[i])
 	{
-		node = ft_lstnew(envp[i]);
+		node = ft_lstnew(envp_cpy[i]);
 		if (!node)
 			return (ft_lstclear(&envp_list, free), NULL);
 		ft_lstadd_back(&envp_list, node); 
 		i++;
 	}
+	free(envp_cpy);
 	return(envp_list);
 }
 
@@ -67,9 +70,10 @@ t_all	get_all_info(t_all all_info, char *line, char **envp)
 	parsing.input = line;
 	parsing = parse_input(parsing);
 	if (!parsing.size)
-		return ((t_all){0});
+		return (free_parsing(&parsing), (t_all){0});
 	all_info.cmd_line = create_list_from_input(parsing);
-	all_info.envp = create_list_from_envp(envp);
+	if (!all_info.envp)
+		all_info.envp = create_list_from_envp(envp);
 	if (!all_info.cmd_line || !all_info.envp)
 		return ((t_all){0});
 	return (all_info);

@@ -9,6 +9,8 @@ int	count_words(char *s)
 	i = 0;
 	word_num = 0;
 	tmp = 0;
+	if (!s || !s[i])
+		return (0);
 	while (s && s[i])
 	{
 		while (s[i] && check_spaces(s[i]) == 1)

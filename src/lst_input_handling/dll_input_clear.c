@@ -8,6 +8,7 @@ void	dll_input_clear(t_input **lst)
 	{
 		ptr = (*lst)->next;
 		free((*lst)->content);
+		free_mtx((*lst)->args);
 		free(*lst);
 		*lst = ptr;
 	}

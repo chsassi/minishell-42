@@ -13,22 +13,18 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	size_t	i;
 
 	i = 0;
-	ptr1 = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
-	if (n == 0)
-		return (0);
-	while ((ptr1[i] || ptr2[i]) && i < n)
+	if (n == 0 || !s1 || !s2)
+		return (1);
+	while (s1[i] && s2[i] && i < n - 1)
 	{
-		if (ptr1[i] != ptr2[i])
-			return (ptr1[i] - ptr2[i]);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (0);
+	return (s1[i] - s2[i]);
 }
 /* int		main()
 {

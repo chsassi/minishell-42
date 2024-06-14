@@ -21,17 +21,26 @@ SRC =	./src/main.c \
 		./src/builtins/export.c \
 		./src/builtins/pwd.c \
 		./src/builtins/unset.c \
+		./src/free_exit_handling/free_parsing.c \
 		./src/lst_input_handling/dll_input_addback.c \
 		./src/lst_input_handling/dll_input_addfront.c \
 		./src/lst_input_handling/dll_input_clear.c \
 		./src/lst_input_handling/dll_input_last.c \
 		./src/lst_input_handling/dll_input_new.c \
 		./src/lst_input_handling/dll_input_size.c \
-		./src/parsing/char_handling.c \
+		./src/parsing/expansion/expand_with_quotes.c \
+		./src/parsing/expansion/expand.c \
+		./src/parsing/expansion/get_env.c \
+		./src/parsing/expansion/handling_env.c \
 		./src/parsing/get_all_info.c \
 		./src/parsing/get_arr_token.c \
+		./src/parsing/get_input_complete.c \
+		./src/parsing/get_merged_cmd_line.c \
 		./src/parsing/get_mtx_input.c \
-		./src/parsing/quotes_handling.c 
+		./src/parsing/handling_char.c \
+		./src/parsing/handling_merge_flag.c \
+		./src/parsing/handling_token.c \
+		./src/parsing/trim_quotes.c
 
 all: $(NAME)
 
@@ -44,6 +53,9 @@ $(NAME): libft $(SRC)
 	@echo "$(BLUE)	MINISHELL COMPILED!$(RESET)"
 
 RM = rm -f
+
+valgrind: $(NAME)
+	valgrind --leak-check=full --show-reachable=yes --suppressions=readline.supp ./$(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)
