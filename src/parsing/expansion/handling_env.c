@@ -5,16 +5,19 @@ int	find_len_env(t_list *envp, char *name_env)
 	t_list	*tmp;
 	char	*content;
 	int		len;
+	int		lst_size;
 
 	tmp = envp;
 	content = NULL;
 	len = ft_strlen(name_env);
-	while (tmp)
+	lst_size = ft_lstsize(envp);
+	while (tmp && lst_size > 0)
 	{
 		content = (char *)tmp->content;
-		if (!ft_strncmp(content, name_env, len))
+		if (lst_size > 0 && !ft_strncmp(content, name_env, len))
 			return (ft_strlen(content) - (len + 1));
 		tmp = tmp->next;
+		lst_size--;
 	}
 	return (-1);
 }
