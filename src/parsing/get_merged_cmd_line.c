@@ -32,7 +32,8 @@ char	*get_new_content(t_input **cmd_line)
 	new_content = ft_strdup((*tmp)->content);
 	if (check_if_operator((*tmp)->token))
 		return (ft_strdup((*tmp)->content));
-	if ((*tmp)->next && (*tmp)->next->merge)
+	if ((*tmp)->next && ((*tmp)->next->merge == MERGE_BOTH 
+		|| (*tmp)->next->merge == MERGE_PREV))
 		(*tmp) = (*tmp)->next;
 	while ((*tmp) && (*tmp)->merge)
 	{
@@ -58,6 +59,11 @@ t_input	*get_merged_cmd_line(t_input *cmd_line)
 	while ((*head))
 	{
 		new_content = get_new_content(head);
+		if (!ft_strncmp(new_content, "", 1))
+		{
+			(*head) = (*head)->next;
+			continue ;
+		}
 		token = WORDS;
 		if ((*head) && check_if_operator((*head)->token))
 			token = (*head)->token;
