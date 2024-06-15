@@ -27,7 +27,6 @@
 } */
 
 
-
 char *enum_to_str(int enume)
 {
 	if (enume == CMD)
