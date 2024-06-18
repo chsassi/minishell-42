@@ -32,15 +32,16 @@ SRC =	./src/main.c \
 		./src/parsing/expansion/expand.c \
 		./src/parsing/expansion/get_env.c \
 		./src/parsing/expansion/handling_env.c \
-		./src/parsing/get_all_info.c \
-		./src/parsing/get_arr_token.c \
-		./src/parsing/get_input_complete.c \
-		./src/parsing/get_merged_cmd_line.c \
-		./src/parsing/get_mtx_input.c \
-		./src/parsing/handling_char.c \
-		./src/parsing/handling_merge_flag.c \
-		./src/parsing/handling_token.c \
-		./src/parsing/trim_quotes.c
+		./src/parsing/get_info/get_all_info.c \
+		./src/parsing/get_info/get_arr_token.c \
+		./src/parsing/get_info/get_final_cmd_line.c \
+		./src/parsing/get_info/get_input_complete.c \
+		./src/parsing/get_info/get_merged_cmdline.c \
+		./src/parsing/get_info/get_mtx_input.c \
+		./src/parsing/handlers/handling_char.c \
+		./src/parsing/handlers/handling_merge_flag.c \
+		./src/parsing/handlers/handling_token.c \
+		./src/parsing/handlers/trim_quotes.c
 
 all: $(NAME)
 
@@ -49,7 +50,6 @@ libft:
 
 $(NAME): libft $(SRC)
 	$(CC) $(CFLAGS) -I. -I$(INCLUDES) $(SRC) -L$(LIBFT_DIR) -lft -lreadline -o $(NAME)
-
 	@echo "$(BLUE)	MINISHELL COMPILED!$(RESET)"
 
 RM = rm -f

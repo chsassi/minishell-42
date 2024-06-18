@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-/* int	main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_all		all_info;
 	char		*line;
@@ -14,19 +14,23 @@
 		line = readline("minishello > ");
 		if (line == NULL)
 		{
-			perror("Error on readline");
+			// perror("Error on readline");
+			//error for ctrl-D
 			continue ;
 		}
 		all_info = get_input_complete(all_info, line, envp);
 		//gestione errori durante la get_input_complete da fare
 		if (!all_info.cmd_line)
 			continue ;
-		//set_clear_all(&all_info);
+		// esecuzione
+		set_clear_all(&all_info);
 	}
 	return (0);
-} */
+}
 
 
+/* 
+// testing parsing
 char *enum_to_str(int enume)
 {
 	if (enume == CMD)
@@ -62,8 +66,10 @@ int	main(int ac, char **av, char **envp)
 {
 	t_all		all_info;
 	char		*line;
+	int			i;
 
 	line = NULL;
+	i = 0;
 	all_info = (t_all){0};
 	(void)ac;
 	(void)av;
@@ -78,10 +84,15 @@ int	main(int ac, char **av, char **envp)
 		all_info = get_input_complete(all_info, line, envp);
 		while (all_info.cmd_line)
 		{
-			printf("[%s] is a %s\n --> merge: %d\n", all_info.cmd_line->content, enum_to_str(all_info.cmd_line->token), 
-			all_info.cmd_line->merge);
+			printf("[%s] is a %s\n", all_info.cmd_line->content, enum_to_str(all_info.cmd_line->token));
+			i = 0;
+			while (all_info.cmd_line->args && all_info.cmd_line->args[i])
+			{
+				printf("arg[%d]: %s\n", i, all_info.cmd_line->args[i]);
+				i++;
+			}
 			all_info.cmd_line = all_info.cmd_line->next;
 		}
 	}
 	return (0);
-}
+} */

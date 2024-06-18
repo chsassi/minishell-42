@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/18 14:33:51 by mgalmari          #+#    #+#             */
+/*   Updated: 2024/06/18 14:33:54 by mgalmari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -46,6 +58,7 @@ typedef enum	e_token
 	D_RED_OUTPUT,
 	D_QUOTE,
 	S_QUOTE,
+	OPERATORS,
 }	t_token;
 
 typedef struct	s_input
@@ -76,7 +89,6 @@ typedef struct	s_all
 {
 	t_list		*envp;
 	t_input		*cmd_line;
-	t_builtin	ptr;
 }	t_all;
 
 // --- Parsing --- //
@@ -109,13 +121,16 @@ int			find_token(char *str);
 int			first_token_check(t_parsing parsing);
 int			*analyse_words_token(t_parsing parsing);
 int			*get_arr_token(t_parsing parsing);
+// Get_final_cmd_line
+t_input		*create_cmdline_with_cmds(t_input *cmd_line);
+char		**create_args_mtx_from_lst(t_input **head);
+t_input		*get_args_mtx(t_input *new_cmdline, t_input *cmd_line);
 // Get_input_complete
-t_all		trim_quotes_and_merge(t_all all_info);
+t_input		*get_final_cmd_line(t_input *cmd_line);
+t_all		get_final_input(char *line, t_all all_info);
 t_all		get_input_complete(t_all all_info, char *line, char **envp);
-// Get_merged_cmd_line
-char		*get_new_content(t_input **cmd_line);
-char		*merge_content(t_input *cmd_line, char *new_content);
-t_input		*get_merged_cmd_line(t_input *cmd_line);
+// Get_mergedcmd_line
+char		*get_merged_cmdline(t_input *cmd_line);
 // Get_mtx_input
 int			count_words(char *s);
 int			word_len(char *s);
@@ -137,8 +152,9 @@ t_input		*handle_merge_flag(char *input, t_input *cmd_line, int token_nbr, int i
 t_input		*check_if_need_merge(t_parsing parsing, t_input *cmd_line);
 // Handling_token
 int			check_if_operator(int token);
+int			count_nbr_args(t_input *tmp);
 // Trim_quotes
-t_input		*handle_trim_quotes(t_input *cmd_line);
+t_all		handle_trim_quotes(t_all all_info);
 char		*trim_quotes(char *content);
 
 // --- Execution --- //
@@ -149,9 +165,10 @@ char		*trim_quotes(char *content);
 
 
 // Free_exit_handling
-void	free_parsing(t_parsing *parsing);
-void	free_all(t_all *all);
-void	close_all(t_all *all);
+void		free_parsing(t_parsing *parsing);
+void		set_clear_all(t_all *all);
+void		free_all(t_all *all);
+void		close_all(t_all *all);
 
 // Lst_input_handling
 void		dll_input_addback(t_input **lst, t_input *new);

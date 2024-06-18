@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:31:43 by chsassi           #+#    #+#             */
-/*   Updated: 2024/04/28 18:01:33 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/06/18 14:33:10 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -17,13 +17,13 @@ static void	ft_strcat(char *s, char *s2, char *fin)
 	size_t	j;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		fin[i] = s[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		fin[i + j] = s2[j];
 		j++;
@@ -39,8 +39,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	t1 = (char *)s1;
 	t2 = (char *)s2;
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+/* 	if (s1 == NULL || s2 == NULL)
+		return (NULL); */
 	fin = ft_calloc((ft_strlen(s1) + ft_strlen(s2)) + 1, sizeof(char));
 	if (!fin)
 		return (NULL);
