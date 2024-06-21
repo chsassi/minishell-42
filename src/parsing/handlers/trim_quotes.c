@@ -38,8 +38,9 @@ t_all	handle_trim_quotes(t_all all_info)
 		if (tmp->token == D_QUOTE || tmp->token == S_QUOTE)
 			tmp->content = trim_quotes(tmp->content);
 		if (!tmp->content)
-			return ((t_all){0});
+			return (set_clear(&all_info), (t_all){0});
 		tmp = tmp->next;
 	}
+	all_info = assign_quote_as_words_token(all_info);
 	return (all_info);
 }

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-/* int	main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_all		all_info;
 	char		*line;
@@ -26,10 +26,10 @@
 		set_clear_all(&all_info);
 	}
 	return (0);
-} */
+}
 
 
- 
+/* 
 // testing parsing
 char *enum_to_str(int enume)
 {
@@ -95,4 +95,4 @@ int	main(int ac, char **av, char **envp)
 		}
 	}
 	return (0);
-}
+} */

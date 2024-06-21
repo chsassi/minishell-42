@@ -47,25 +47,25 @@ int	find_token(char *str)
 	return (WORDS);
 }
 
-int	first_token_check(t_parsing parsing)
+int	first_token_check(int *arr_token, int size)
 {
 	int	i;
 
 	i = 0;
-	if (!parsing.arr_token || !parsing.arr_token[i])
+	if (!arr_token || !arr_token[i])
 		return (0);
-	else if (parsing.arr_token[i] == PIPE)
+	else if (arr_token[i] == PIPE)
 		return (0);
-	while (i < parsing.size && parsing.arr_token[i])
+	while (i < size && arr_token[i])
 	{
-		while (i < parsing.size && (parsing.arr_token[i] && parsing.arr_token[i] == WORDS))
+		while (i < size && (arr_token[i] && arr_token[i] == WORDS))
 			i++;
-		if (i < parsing.size && (parsing.arr_token[i] == PIPE 
-		|| parsing.arr_token[i] == R_INPUT || 
-		parsing.arr_token[i] == R_OUTPUT || parsing.arr_token[i] == D_RED_INPUT
-		|| parsing.arr_token[i] == D_RED_OUTPUT))
+		if (i < size && (arr_token[i] == PIPE 
+		|| arr_token[i] == R_INPUT || 
+		arr_token[i] == R_OUTPUT || arr_token[i] == D_RED_INPUT
+		|| arr_token[i] == D_RED_OUTPUT))
 		{
-			if (i++ > parsing.size || parsing.arr_token[i++] != WORDS)
+			if (i++ > size || arr_token[i++] != WORDS)
 				return (0);
 		}
 		i++;
@@ -73,39 +73,39 @@ int	first_token_check(t_parsing parsing)
 	return (1);
 }
 
-int	*analyse_words_token(t_parsing parsing)
+int	*analyse_words_token(int *arr_token, int size)
 {
 	int	i;
 
 	i = 0;
-	if (!parsing.arr_token)
+	if (!arr_token)
 		return (0);
-	while (i < parsing.size && parsing.arr_token[i])
+	while (i < size && arr_token[i])
 	{
-		if (i == 0 && parsing.arr_token[i] == WORDS)
-			parsing.arr_token[i] = get_word_token(0);
-		if ((i != 0 && i < parsing.size) && parsing.arr_token[i] == WORDS)
-			parsing.arr_token[i] = get_word_token(parsing.arr_token[i - 1]);
+		if (i == 0 && arr_token[i] == WORDS)
+			arr_token[i] = get_word_token(0);
+		if ((i != 0 && i < size) && arr_token[i] == WORDS)
+			arr_token[i] = get_word_token(arr_token[i - 1]);
 		i++;
 	}
-	return (parsing.arr_token);
+	return (arr_token);
 }
 
-int	*get_arr_token(t_parsing parsing)
+int	*get_arr_token(char **mtx, int size)
 {
 	int	i;
 
 	i = 0;
-	parsing.arr_token = ft_calloc(parsing.size, sizeof(int));
-	if (!parsing.arr_token)
+	arr_token = ft_calloc(size, sizeof(int));
+	if (!arr_token)
 		return (NULL);
-	while (parsing.mtx_from_input && parsing.mtx_from_input[i])
+	while (mtx && mtx[i])
 	{
-		parsing.arr_token[i] = find_token(parsing.mtx_from_input[i]);
+		arr_token[i] = find_token(mtx[i]);
 		i++;
 	}
-	if (!first_token_check(parsing))
+	if (!first_token_check(arr_token, size))
 		return (NULL);
-	parsing.arr_token = analyse_words_token(parsing);
-	return (parsing.arr_token);
+	arr_token = analyse_words_token(arr_token, size);
+	return (arr_token);
 }

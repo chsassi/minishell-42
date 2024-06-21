@@ -12,29 +12,22 @@
 
 #include "minishell.h"
 
-t_input	*get_final_cmd_line(t_input *cmd_line)
-{
-	t_input	*new_cmdline;
-
-	new_cmdline = create_cmdline_with_cmds(cmd_line);
-	if (!new_cmdline)
-		return (NULL);
-	new_cmdline = get_args_mtx(new_cmdline, cmd_line);
-	if (!new_cmdline)
-		return (NULL);
-	return (new_cmdline);
-}
-
 t_all	get_final_input(char *line, t_all all_info)
 {
-	line = get_merged_cmdline(all_info.cmd_line);
+	int	*merge_arr;
+
+	merge_arr = ft_calloc(dll_input_size(all_info.cmd_line), sizeof(int));
+	line = get_merged_line(all_info.cmd_line, merge_arr);
 	if (!line)
 		return ((t_all){0});
 	set_clear_all(&all_info);
 	all_info = get_all_info(all_info, line, NULL);
 	if (!all_info.cmd_line)
 		return ((t_all){0});
-	all_info.cmd_line = get_final_cmd_line(all_info.cmd_line);
+	all_info = handle_trim_quotes(all_info);
+	if (!all_info.cmd_line)
+		return ((t_all){0});
+	all_info.cmd_line = get_args_mtx(all_info.cmd_line);
 	if (!all_info.cmd_line)
 		return ((t_all){0});
 	return (all_info);
