@@ -12,6 +12,20 @@
 
 #include "minishell.h"
 
+int	check_if_merge_flags_on(t_input *cmdline)
+{
+	t_input	*tmp;
+
+	tmp = cmdline;
+	while (tmp)
+	{
+		if (tmp->merge)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int	find_merge_flag_quote(char *input, int i)
 {
 	int	flag;

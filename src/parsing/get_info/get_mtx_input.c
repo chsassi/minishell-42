@@ -87,8 +87,12 @@ char	**new_string(char **mtx, char *s)
 char	**get_mtx_from_input(t_parsing parsing)
 {
 	char	**res;
+	int		words;
 
-	res = ft_calloc((count_words(parsing.input) + 1), sizeof(char *));
+	words = count_words(parsing.input);
+	if (words == -1)
+		return (NULL);
+	res = ft_calloc((words + 1), sizeof(char *));
 	if (!res || !parsing.input)
 		return (NULL);
 	res = new_string (res, parsing.input);

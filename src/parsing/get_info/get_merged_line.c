@@ -35,12 +35,12 @@ int	*organize_merge_arr(int *merge_arr, int size)
 	i = 0;
 	while (i < size)
 	{
-		if ((merge_arr[i] == MERGE_PREV || merge[i] == MERGE_BOTH) && i != 0)
+		if ((merge_arr[i] == MERGE_PREV || merge_arr[i] == MERGE_BOTH) && i != 0)
 		{
 			merge_arr[i - 1] = MERGE_NEXT;
 			if (merge_arr[i] == MERGE_PREV)
 				merge_arr[i] = STAY;
-			else if (merge[i] == MERGE_BOTH)
+			else if (merge_arr[i] == MERGE_BOTH)
 				merge_arr[i] = MERGE_NEXT;
 		}
 		i++;
@@ -48,21 +48,31 @@ int	*organize_merge_arr(int *merge_arr, int size)
 	return (merge_arr);
 }
 
+int	count_merge_next(int *merge_arr, int i, int size)
+{
+	int	res;
+
+	res = 1;
+	while (i < size && merge_arr[i++] == MERGE_NEXT)
+		res++;
+	return (res - 1);	
+}
+
 char	*handle_merge_next(char	**mtx_cmdline, int *merge_arr, int *index)
 {
 	int		i;
+	int		size;
 	char	*content;
 
 	i = *index;
+	size = count_rows(mtx_cmdline); 
 	content = NULL;
 	while (mtx_cmdline && mtx_cmdline[i])
 	{
-		if (mtx_cmdline[i + 1] && (i < size && merge_arr[i] == MERGE_NEXT))
-		{
+		if (i == *index)
 			content = ft_strjoin("\"", mtx_cmdline[i]);
+		if (mtx_cmdline[i + 1] && (i < size && merge_arr[i] == MERGE_NEXT))
 			content = ft_strjoin(content, mtx_cmdline[i + 1]);
-			
-		}
 		if (i + 1 < size && merge_arr[i + 1] == STAY)
 		{
 			content = ft_strjoin(content, "\"");
@@ -71,6 +81,7 @@ char	*handle_merge_next(char	**mtx_cmdline, int *merge_arr, int *index)
 		i++;
 	}
 	index = &i;
+	return (content);
 }
 
 char	*get_new_input(char	**mtx_cmdline, int *merge_arr, int size)
@@ -85,16 +96,21 @@ char	*get_new_input(char	**mtx_cmdline, int *merge_arr, int size)
 	while ((mtx_cmdline && mtx_cmdline[i]) && i < size)
 	{
 		new_input = ft_strjoin(new_input, " ");
+		if (content)
+			free(content);
 		if (merge_arr[i] == STAY)
-			content = ft_strjoin(content, cmd_line->content);
+			content = ft_strjoin(content, mtx_cmdline[i]);
 		if (merge_arr[i] == MERGE_NEXT)
+		{
 			content = handle_merge_next(mtx_cmdline, merge_arr, &i);
+			i += count_merge_next(merge_arr, i, size);
+		}
 		if (!content)
 			return (NULL);
 		new_input = ft_strjoin(new_input, content);
-		free(content);
 		i++;
 	}
+	return (new_input);
 }
 
 char	*get_merged_line(t_input *cmd_line, int *merge_arr)
@@ -111,6 +127,7 @@ char	*get_merged_line(t_input *cmd_line, int *merge_arr)
 	merge_arr = get_merge_arr(cmd_line, merge_arr, size);
 	merge_arr = organize_merge_arr(merge_arr, size);
 	new_input = get_new_input(mtx_cmdline, merge_arr, size);
+	printf("%s\n", new_input);
 	free(merge_arr);
 	free_mtx(mtx_cmdline);
 	return (new_input);

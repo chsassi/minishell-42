@@ -23,15 +23,16 @@ int	check_if_operator(int token)
 	return (0);
 }
 
-int	count_nbr_args(t_input *tmp)
+int	count_rows_args(char **mtx_cmdline, int *arr_token)
 {
 	int	i;
+	int	size;
+	int	res;
 
 	i = 0;
-	while (tmp && tmp->token == ARG)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return (i);
+	res = 1;
+	size = count_rows(mtx_cmdline);
+	while (i++ < size && arr_token[i] == ARG)
+		res++;
+	return (res);
 }

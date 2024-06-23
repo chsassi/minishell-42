@@ -94,6 +94,7 @@ int	*analyse_words_token(int *arr_token, int size)
 int	*get_arr_token(char **mtx, int size)
 {
 	int	i;
+	int	*arr_token;
 
 	i = 0;
 	arr_token = ft_calloc(size, sizeof(int));

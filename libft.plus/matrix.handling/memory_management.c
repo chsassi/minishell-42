@@ -61,7 +61,7 @@ void	free_mtx(char **mtx)
 		return ;
 	len = count_rows(mtx);
 	i = 0;
-	while (i < len)
+	while ((mtx && mtx[i]) && i < len)
 	{
 		free(mtx[i]);
 		mtx[i] = NULL;
