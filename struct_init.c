@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:18:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 16:25:01 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:07:10 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_all	*init_all(void)
 {
 	t_all	*all;
-	
+
 	all = (t_all *)malloc(sizeof(t_all));
-	if(!all)
+	if (!all)
 		return (NULL);
 	all->head = NULL;
 	all->tail = NULL;
@@ -27,8 +27,8 @@ t_all	*init_all(void)
 
 t_elem	*create_elem(char *content, int len, enum e_token type)
 {
-	t_elem *new_elem;
-	
+	t_elem	*new_elem;
+
 	new_elem = malloc(sizeof(t_elem));
 	if (!new_elem)
 		return (NULL);

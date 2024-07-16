@@ -6,15 +6,15 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:26:06 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 11:42:06 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:02:29 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-enum e_state update_state(enum e_state state, enum e_token token)
+enum e_state	update_state(enum e_state state, enum e_token token)
 {
-	enum e_state new_state;
+	enum e_state	new_state;
 
 	new_state = state;
 	if (state == GENERAL)
@@ -27,7 +27,7 @@ enum e_state update_state(enum e_state state, enum e_token token)
 	else if (state == IN_DQUOTE)
 	{
 		if (token == DOUBLE_QUOTE)
-			 new_state = GENERAL;
+			new_state = GENERAL;
 	}
 	else if (state == IN_QUOTE)
 	{
@@ -52,8 +52,8 @@ t_all	*assign_tokens(char *input)
 	while (input[i] != '\0')
 	{
 		token = token_type(input, &i);
-		//printf("Character: '%c', Token: %s\n", input[i], token_to_string(token));
-        i++;
+		state = update_state(state, token);
+		i++;
 	}
-    return (all);
+	return (all);
 }
