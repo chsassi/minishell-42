@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 11:21:29 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/15 15:57:05 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:26:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ enum e_token	output_red_token(const char *input, int *index)
 	return (REDIR_OUT);
 }
 
-enum e_token	token_type(const char *input, int *index)
+enum e_token	find_token_type(const char *input, int *index)
 {
 	if (input[*index] == '\0' || input[*index] == '\n')
 		return (NEW_LINE);

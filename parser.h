@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 10:10:58 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:26:53 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ enum e_token	get_quote_token(char c);
 enum e_token	get_special_token(const char *input, int *index);
 enum e_token	input_red_token(const char *input, int *index);
 enum e_token	output_red_token(const char *input, int *index);
-enum e_token	token_type(const char *input, int *index);
+enum e_token	find_token_type(const char *input, int *index);
 
 //Structure initialization
 
