@@ -14,23 +14,26 @@ NAME = minishell
 
 CC = cc
 HEADERS = ./Libft/Headers
-CFLAGS = -Wextra -Werror -Wall -g -I$(HEADERS)
+INCLUDES = ./includes
+CFLAGS = -Wextra -Werror -Wall -g -I$(HEADERS) -I$(INCLUDES)
 RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC = 	main.c			\
-		token_utils.c 	\
-		token_utils_2.c	\
-		struct_init.c	\
-		lexer.c			
-		
+SRC =	./main.c \
+		./src/builtins/pwd.c \
+		./src/exec/signals.c \
+		./src/parsing/lexer_utils.c \
+		./src/parsing/lexer.c \
+		./src/parsing/process_input.c \
+		./src/parsing/struct_init.c \
+		./src/parsing/token_utils.c \
 
 all: $(NAME)
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
-	$(CC) $(FLAGS) -I. -I$(HEADERS) $(SRC) -L$(LIBFT_MAKE) -lft -lreadline -o $(NAME)
+	$(CC) $(FLAGS) -I$(INCLUDES) -I$(HEADERS) $(SRC) -L$(LIBFT_MAKE) -lft -lreadline -o $(NAME)
 
 clean:
 	@make clean -s -C $(LIBFT_MAKE)

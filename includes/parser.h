@@ -13,7 +13,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "Libft/Headers/libft.h"
+# include "libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 
