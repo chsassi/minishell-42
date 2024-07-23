@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:40:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/23 09:29:27 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:21:13 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,21 @@ void	process_words(t_all *all, char *input, int *index, enum e_state state)
 	(*index)--;
 }
 
-void	proc
+void	proc_qoute(t_all *all, char *input, int *index, enum e_state state)
+{
+	int	start;
+	int	len;
+	char quote;
+
+	start = *index;
+	len = 0;
+	quote = input[*index];
+	(*index)++;
+	while (input[*index] != '\0' && input[*index] != quote)
+	{
+		if (state == IN_DQUOTE && input[*index] == '$')
+		{
+			add_
+		}
+	}
+}
