@@ -4,7 +4,6 @@
 # include "minishell.h"
 # include "parser.h"
 
-void	pwd(void)
-
+void	pwd(void);
 
 #endif
