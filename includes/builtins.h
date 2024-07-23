@@ -3,6 +3,7 @@
 
 # include "minishell.h"
 # include "parser.h"
+# include <signal.h>
 
 void	pwd(void);
 
