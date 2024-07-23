@@ -1,43 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils.c                                      :+:      :+:    :+:   */
+/*   token_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 14:02:16 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 17:06:36 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/07/13 11:21:29 by brulutaj          #+#    #+#             */
+/*   Updated: 2024/07/16 16:26:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	is_whitespace(char c)
+enum e_token	get_quote_token(char c)
 {
-	if (c == ' ')
-		return (1);
-	return (0);
+	if (c == '\'')
+		return (QUOTE);
+	return (DOUBLE_QUOTE);
 }
 
-int	is_qoute(char c)
+enum e_token	get_special_token(const char *input, int *index)
 {
-	if (c == '\'' || c == '\"')
-		return (1);
-	return (0);
+	if (input[*index] == '$')
+		return (ENV);
+	if (input[*index] == '|')
+		return (PIPE_LINE);
+	if (input[*index] == '<')
+		return (input_red_token(input, index));
+	if (input[*index] == '>')
+		return (output_red_token(input, index));
+	return (WORD);
 }
 
-int	is_special_char(char c)
+enum e_token	input_red_token(const char *input, int *index)
 {
-	if (c == '$' || c == '|' || c == '<' || c == '>')
-		return (1);
-	return (0);
+	if (input[*index + 1] == '<')
+	{
+		(*index)++;
+		return (HERE_DOC);
+	}
+	return (REDIR_IN);
 }
 
-int	is_operator(enum e_token token)
+enum e_token	output_red_token(const char *input, int *index)
 {
-	if (token == PIPE_LINE || token == REDIR_IN
-		|| token == REDIR_OUT || token == HERE_DOC
-		|| token == DREDIR_OUT)
-		return (1);
-	return (0);
+	if (input[*index + 1] == '>')
+	{
+		(*index)++;
+		return (DREDIR_OUT);
+	}
+	return (REDIR_OUT);
+}
+
+enum e_token	find_token_type(const char *input, int *index)
+{
+	if (input[*index] == '\0' || input[*index] == '\n')
+		return (NEW_LINE);
+	if (is_whitespace(input[*index]))
+		return (WHITE_SPACE);
+	if (is_qoute(input[*index]))
+		return (get_quote_token(input[*index]));
+	if (is_special_char(input[*index]))
+		return (get_special_token(input, index));
+	return (WORD);
 }

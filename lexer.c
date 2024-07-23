@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 12:26:06 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 17:02:29 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:23:02 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_all	*assign_tokens(char *input)
 	state = GENERAL;
 	while (input[i] != '\0')
 	{
-		token = token_type(input, &i);
+		token = token_type(input, &i, );
 		state = update_state(state, token);
 		i++;
 	}

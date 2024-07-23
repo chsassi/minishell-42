@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 17:03:49 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:21:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ typedef struct s_all
 	int		size;
 }	t_all;
 
-// Token utils
+// Lexer utils
 
 int				is_whitespace(char c);
 int				is_qoute(char c);
 int				is_special_char(char c);
 
-// Token utils 2
+// Token utils
 
 enum e_token	get_quote_token(char c);
 enum e_token	get_special_token(const char *input, int *index);
@@ -70,9 +70,13 @@ enum e_token	input_red_token(const char *input, int *index);
 enum e_token	output_red_token(const char *input, int *index);
 enum e_token	find_token_type(const char *input, int *index);
 
-// Token utils 3
+// Process input
 
 void			process_words(t_all *all, char *input, int *index,
+					enum e_state state);
+void			proc_op_qout(t_all *all, char *input, int *index,
+					enum e_state state);
+void			process_op(t_all *all, char *input, int *index,
 					enum e_state state);
 
 //Structure initialization
