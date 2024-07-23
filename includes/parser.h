@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/22 18:21:22 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:40:35 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ enum e_token	find_token_type(const char *input, int *index);
 
 void			process_words(t_all *all, char *input, int *index,
 					enum e_state state);
-void			proc_op_qout(t_all *all, char *input, int *index,
-					enum e_state state);
-void			process_op(t_all *all, char *input, int *index,
+void			process_quote(t_all *all, char *input, int *index,
 					enum e_state state);
 
 //Structure initialization
