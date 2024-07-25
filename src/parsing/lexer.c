@@ -37,9 +37,9 @@ enum e_state	update_state(enum e_state state, enum e_token token)
 	return (new_state);
 }
 
-t_all	*assign_tokens(char *input)
+/* t_parsing	*assign_tokens(char *input)
 {
-	t_all			*all;
+	t_parsing		*all;
 	int				i;
 	enum e_token	token;
 	enum e_state	state;
@@ -56,4 +56,4 @@ t_all	*assign_tokens(char *input)
 		i++;
 	}
 	return (all);
-}
+} */

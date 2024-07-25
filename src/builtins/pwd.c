@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-void	pwd(void)
+void	pwd(t_all *pAll)
 {
-	char *directory;
+	char	*directory;
 
 	directory = getcwd(NULL, 0);
 	if (!directory)

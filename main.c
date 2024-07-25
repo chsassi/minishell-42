@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "minishell.h"
 
 int	main(void)
 {
@@ -22,10 +22,10 @@ int	main(void)
 		input = readline("Minishell~> ");
 		if (!input)
 			break ;
-		printf("Input: %s\n", input);
+		// printf("Input: %s\n", input);
 		add_history(input);
-		token = assign_tokens(input);
-		free(input);
+		// token = assign_tokens(input);
+		// free(input);
 	}
 	return (0);
 }

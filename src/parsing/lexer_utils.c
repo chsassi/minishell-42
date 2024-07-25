@@ -33,7 +33,7 @@ int	is_special_char(char c)
 	return (0);
 }
 
-void add_word_token(t_all *all, char *content, int len, enum e_state state)
+void add_word_token(t_parsing *all, char *content, int len, enum e_state state)
 {
 	t_elem *new_elem;
 

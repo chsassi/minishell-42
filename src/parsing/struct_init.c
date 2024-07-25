@@ -12,11 +12,11 @@
 
 #include "parser.h"
 
-t_all	*init_all(void)
+t_parsing	*init_all(void)
 {
-	t_all	*all;
+	t_parsing	*all;
 
-	all = (t_all *)malloc(sizeof(t_all));
+	all = (t_parsing *)malloc(sizeof(t_parsing));
 	if (!all)
 		return (NULL);
 	all->head = NULL;
@@ -46,7 +46,7 @@ t_elem	*create_elem(char *content, int len, enum e_token type)
 	return (new_elem);
 }
 
-void	add_token(t_all *all, t_elem *new_elem)
+void	add_token(t_parsing *all, t_elem *new_elem)
 {
 	if (!all || !new_elem)
 		return ;
