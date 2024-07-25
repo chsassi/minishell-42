@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 14:02:16 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/23 15:01:29 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:10:09 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_whitespace(char c)
 	return (0);
 }
 
-int	is_qoute(char c)
+int	is_quote(char c)
 {
 	if (c == '\'' || c == '\"')
 		return (1);

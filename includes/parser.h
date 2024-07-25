@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/25 14:02:02 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/07/25 15:29:32 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_elem
 {
 	char			*content;
 	int				len;
+	int				pipe[2];
 	enum e_token	type;
 	enum e_state	state;
 	struct s_elem	*next;
@@ -62,7 +63,7 @@ typedef struct s_parsing
 // Lexer utils
 
 int				is_whitespace(char c);
-int				is_qoute(char c);
+int				is_quote(char c);
 int				is_special_char(char c);
 
 // Token utils

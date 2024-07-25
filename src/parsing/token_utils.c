@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils_2.c                                    :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 11:21:29 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/16 16:26:42 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:13:31 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ enum e_token	find_token_type(const char *input, int *index)
 		return (NEW_LINE);
 	if (is_whitespace(input[*index]))
 		return (WHITE_SPACE);
-	if (is_qoute(input[*index]))
+	if (is_quote(input[*index]))
 		return (get_quote_token(input[*index]));
 	if (is_special_char(input[*index]))
 		return (get_special_token(input, index));
