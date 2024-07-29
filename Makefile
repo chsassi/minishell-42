@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/07/15 15:54:43 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/07/29 11:22:20 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ LIBFT_MAKE = ./Libft
 SRC =	./main.c \
 		./src/builtins/pwd.c \
 		./src/exec/signals.c \
-		./src/parsing/lexer_utils.c \
-		./src/parsing/lexer.c \
-		./src/parsing/process_input.c \
-		./src/parsing/struct_init.c \
-		./src/parsing/token_utils.c \
+		# ./src/parsing/lexer_utils.c \
+		# ./src/parsing/lexer.c \
+		# ./src/parsing/process_input.c \
+		# ./src/parsing/struct_init.c \
+		# ./src/parsing/token_utils.c \
 
 all: $(NAME)
 
