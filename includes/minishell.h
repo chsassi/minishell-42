@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/25 14:02:02 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/07/25 15:07:23 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@
 
 typedef struct s_elem	t_elem;
 
+typedef struct s_envp
+{
+	char 			*str;
+	struct s_envp	*next;
+}	t_envp;
+
 typedef struct s_all
 {
 	t_elem	*node;
-	char	**envp;
+	t_envp	*envp;
 	char	*path;
 	int		size;
 }	t_all;

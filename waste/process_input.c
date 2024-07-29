@@ -6,11 +6,11 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:40:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/24 10:58:28 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:22:49 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+// #include "parser.h"
 /* 
 void	process_words(t_parsing *all, char *input, int *index, enum e_state state)
 {
