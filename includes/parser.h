@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/29 11:21:34 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:02:15 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ enum e_state
 	GENERAL,
 };
 
+// Helper functions
+
+int				is_whitespace(char c);
+int				is_quote(char c);
+int				is_special_char(char c);
+
+// Matrix functions
+
+int				find_number_of_tokens(char *input, enum e_state *state);
+
 // typedef struct s_elem
 // {
 // 	char			*content;
@@ -59,12 +69,6 @@ enum e_state
 // 	t_elem			*tail;
 // 	int				size;
 // }	t_parsing;
-
-// // Lexer utils
-
-// int				is_whitespace(char c);
-// int				is_quote(char c);
-// int				is_special_char(char c);
 
 // // Token utils
 

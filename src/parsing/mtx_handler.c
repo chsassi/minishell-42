@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mtx_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 08:50:03 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/30 07:20:14 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/07/29 16:33:54 by brulutaj          #+#    #+#             */
+/*   Updated: 2024/07/30 15:54:51 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/parser.h"
 
-int	main(void)
+int	find_number_of_tokens(char *input, enum e_state *state, int *i)
 {
-	char	*input;
-	t_all	*token;
+	int	tokens;
 
-	while (1)
+	tokens = 0;
+	while (input[*i])
 	{
-		input = readline("Minishell~> ");
-		if (!input)
-			break ;
-		add_history(input);
+
 	}
-	return (0);
+	return (tokens);
+}
+
+int	token_len(char *input, enum e_state *state)
+{
+	int	i;
+
+	i = 0;
+	
 }
