@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/30 08:57:34 by chsassi           #+#    #+#             */
+/*   Updated: 2024/07/30 08:57:36 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXEC_H
 # define EXEC_H
 
@@ -10,10 +22,9 @@ typedef struct s_all	t_all;
 
 // Builtins
 
-void	run_pwd(t_all *pAll);
 void	run_echo(t_all *pAll);
 void	run_cd(t_all *pAll);
-void	run_pwd(t_all *pAll);
+void	run_pwd(void);
 void	run_export(t_all *pAll);
 void	run_unset(t_all *pAll);
 void	run_env(t_all *pAll);
