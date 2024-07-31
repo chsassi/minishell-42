@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/30 17:43:40 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:32:38 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ enum e_token
 {
 	WORD = -1,
 	WHITE_SPACE = ' ',
-	NEW_LINE = '\n',
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '\"',
 	ENV = '$',
@@ -50,7 +49,7 @@ int				is_special_char(char c);
 
 // Matrix functions
 
-int				find_number_of_tokens(char *input, enum e_state *state);
+int				find_number_of_tokens(char *input);
 
 // typedef struct s_elem
 // {
