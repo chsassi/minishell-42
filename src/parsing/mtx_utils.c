@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mtx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 08:50:03 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/07/30 07:20:14 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/07/29 11:49:01 by brulutaj          #+#    #+#             */
+/*   Updated: 2024/07/29 16:20:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/parser.h"
 
-int	main(void)
+int	is_whitespace(char c)
 {
-	char	*input;
-	t_all	*token;
+	if (c == ' ')
+		return (1);
+	return (0);
+}
 
-	while (1)
-	{
-		input = readline("Minishell~> ");
-		if (!input)
-			break ;
-		add_history(input);
-	}
+int	is_quote(char c)
+{
+	if (c == '\'' || c == '\"')
+		return (1);
+	return (0);
+}
+
+int	is_special_char(char c)
+{
+	if (c == '|' || c == '<' || c == '>')
+		return (1);
 	return (0);
 }
