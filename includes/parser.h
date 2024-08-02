@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/01 11:52:48 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:03:30 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ enum e_state
 int				is_quote(char c);
 int				is_special_char(char c);
 int				is_normal_letter(char *input, int i);
-void			len_normal_token(char *input, int *i, int *token);
-int				len_quote_token(char *input, int *i, int *token);
-void			len_env_token(char *input, int *i, int *token);
+void			normal_token_length(char *input, int *i, int *token);
+int				quote_token_length(char *input, int *i, int *token);
+int				single_quote_token_length(char *input, int *i, int *token);
+int				double_quote_token_length(char *input, int *i, int *token);
+void			env_token_length(char *input, int *i, int *token);
 
 // Matrix functions
 
