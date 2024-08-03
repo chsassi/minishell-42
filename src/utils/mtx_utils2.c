@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:25:57 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/02 16:41:43 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/03 14:27:40 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	single_quote_token_length(char *input, int *i, int *token)
 {
 	if (input[(*i) + 1] == '\'')
 	{
+		(*i)++;
 		(*token)++;
 		return (0);
 	}
@@ -61,6 +62,7 @@ int	double_quote_token_length(char *input, int *i, int *token)
 {
 	if (input[(*i) + 1] == '\"')
 	{	
+		(*i)++;
 		(*token)++;
 		return (0);
 	}
@@ -71,4 +73,30 @@ int	double_quote_token_length(char *input, int *i, int *token)
 		return (-1);
 	(*token)++;
 	return(1);
+}
+
+void	operator_token_length(char *input, int *i, int *token)
+{
+	if (input[*i] == '>')
+	{
+		if (input[(*i) + 1] == '>')
+		{
+			(*i)++;
+			(*token)++;
+			return ;
+		}
+		(*token)++;
+	}
+	else if (input[*i] == '<')
+	{
+		if (input[(*i) + 1] == '<')
+		{
+			(*i)++;
+			(*token)++;
+			return;
+		}
+		(*token)++;
+	}
+	else
+		(*token)++;
 }

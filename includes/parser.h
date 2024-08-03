@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/02 16:03:30 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/03 14:08:31 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				quote_token_length(char *input, int *i, int *token);
 int				single_quote_token_length(char *input, int *i, int *token);
 int				double_quote_token_length(char *input, int *i, int *token);
 void			env_token_length(char *input, int *i, int *token);
+void			operator_token_length(char *input, int *i, int *token);
 
 // Matrix functions
 

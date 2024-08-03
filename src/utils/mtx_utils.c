@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:49:01 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/02 16:09:01 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:28:14 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ int	quote_token_length(char *input, int *i, int *token)
 		if (check_1 == -1)
 			return (-1);
 	}
-	(*i)--;
 	return (1);
 }
