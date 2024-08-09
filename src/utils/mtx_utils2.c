@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:25:57 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/03 14:27:40 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:12:46 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 void	env_token_length(char *input, int *i, int *token)
 {
 	if (input[(*i) + 1] == '\0')
-	{
-		(*token)++;
-		return ;	
-	}
+		return ((void)(*token)++);
 	(*i)++;
 	if (input[*i] == '?')
 	{
@@ -35,6 +32,7 @@ void	env_token_length(char *input, int *i, int *token)
 		(*i)++;
 		while (input[*i] == '_' || ft_isalnum(input[*i]))
 			(*i)++;
+		(*i)--;
 		(*token)++;
 	}
 	else
