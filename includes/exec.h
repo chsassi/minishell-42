@@ -22,7 +22,7 @@ typedef struct s_all	t_all;
 
 typedef struct s_exec
 {
-    char    **prompt;
+    char    **full_cmd;
     char    *abs_path;
     int     infile;
     int     outfile;
