@@ -20,6 +20,14 @@
 
 typedef struct s_all	t_all;
 
+typedef struct s_exec
+{
+    char    **prompt;
+    char    *abs_path;
+    int     infile;
+    int     outfile;
+}   t_exec;
+
 // Builtins
 
 void	run_echo(t_all *pAll);
