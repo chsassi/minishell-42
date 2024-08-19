@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:25:57 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/19 09:08:14 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:14:09 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	count_env_token(char *input, int *i, int *token)
 		(*token)++;
 	}
 	else
+	{
+		(*i)--;
 		(*token)++;
+	}
 }
 
 int	count_single_quote_token(char *input, int *i, int *token)
