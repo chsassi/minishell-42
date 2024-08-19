@@ -12,7 +12,7 @@
 
 // #include "parser.h"
 /* 
-void	process_words(t_parsing *all, char *input, int *index, enum e_state state)
+void	process_words(t_parsing *all, char *input, int *index, e_state state)
 {
 	int		start;
 	int		len;
@@ -36,7 +36,7 @@ void	process_words(t_parsing *all, char *input, int *index, enum e_state state)
 	(*index)--;
 }
 
-void	process_qoute(t_parsing *all, char *input, int *index, enum e_state state)
+void	process_qoute(t_parsing *all, char *input, int *index, e_state state)
 {
 	int		start;
 	int		len;
@@ -64,7 +64,7 @@ void	process_qoute(t_parsing *all, char *input, int *index, enum e_state state)
 	(*index)++;
 }
 
-void	process_env(t_parsing *all, char *input, int *index, enum e_state state)
+void	process_env(t_parsing *all, char *input, int *index, e_state state)
 {
 	int		start;
 	int		len;

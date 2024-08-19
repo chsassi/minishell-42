@@ -22,11 +22,11 @@ typedef struct s_all	t_all;
 
 typedef struct s_exec
 {
-    char    **full_cmd;
-    char    *abs_path;
-    int     infile;
-    int     outfile;
-}   t_exec;
+	char	**full_cmd;
+	char	*abs_path;
+	int		infile;
+	int		outfile;
+}	t_exec;
 
 // Builtins
 
