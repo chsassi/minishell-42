@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:49:01 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/03 11:28:14 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:06:47 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_normal_letter(char *input, int i)
 	return (0);
 }
 
-void	normal_token_length(char *input, int *i, int *token)
+void	count_normal_token(char *input, int *i, int *token)
 {
 	 while (is_normal_letter(input, *i) && input[*i] != '\0')
 		(*i)++;
@@ -42,7 +42,7 @@ void	normal_token_length(char *input, int *i, int *token)
 	(*token)++;
 }
 
-int	quote_token_length(char *input, int *i, int *token)
+int	count_quote_token(char *input, int *i, int *token)
 {
 	int check_1;
 	int check_2;
@@ -51,14 +51,14 @@ int	quote_token_length(char *input, int *i, int *token)
 	check_2 = 0;
 	if (input[*i] == '\'')
 	{
-		check_1 = single_quote_token_length(input, i, token);
+		check_1 = count_single_quote_token(input, i, token);
 		if (check_1 == -1)
 			return (-1);
 	}
 	else
 	{
-		check_2 = double_quote_token_length(input, i, token);
-		if (check_1 == -1)
+		check_2 = count_double_quote_token(input, i, token);
+		if (check_2 == -1)
 			return (-1);
 	}
 	return (1);

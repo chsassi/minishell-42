@@ -6,13 +6,13 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:33:54 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/03 14:05:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:19:54 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	find_number_of_tokens(char *input)
+int	count_number_of_tokens(char *input)
 {
 	int i;
 	int	check;
@@ -24,22 +24,24 @@ int	find_number_of_tokens(char *input)
 	while (input && input[i])
 	{
 		if (input[i] == '$')
-			env_token_length(input, &i, &token);
+			count_env_token(input, &i, &token);
 		else if (is_special_char(input[i]))
-			operator_token_length(input, &i, &token);
+			count_operator_token(input, &i, &token);
 		else if (is_quote(input[i]))
 		{
-			check = quote_token_length(input, &i, &token);
+			check = count_quote_token(input, &i, &token);
 			if (check == -1)
 				return (-1);
 		}
 		else if (is_normal_letter(input, i))
-			normal_token_length(input, &i, &token);
+			count_normal_token(input, &i, &token);
 		if (input[i] != '\0')
 			i++;
 	}
 	return (token);
 }
+
+
 
 // int	token_len(char *input, enum e_state *state)
 // {

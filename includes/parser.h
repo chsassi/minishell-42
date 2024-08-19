@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/03 14:08:31 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:05:47 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ enum e_state
 int				is_quote(char c);
 int				is_special_char(char c);
 int				is_normal_letter(char *input, int i);
-void			normal_token_length(char *input, int *i, int *token);
-int				quote_token_length(char *input, int *i, int *token);
-int				single_quote_token_length(char *input, int *i, int *token);
-int				double_quote_token_length(char *input, int *i, int *token);
-void			env_token_length(char *input, int *i, int *token);
-void			operator_token_length(char *input, int *i, int *token);
+void			count_normal_token(char *input, int *i, int *token);
+int				count_quote_token(char *input, int *i, int *token);
+int				count_single_quote_token(char *input, int *i, int *token);
+int				count_double_quote_token(char *input, int *i, int *token);
+void			count_env_token(char *input, int *i, int *token);
+void			count_operator_token(char *input, int *i, int *token);
 
 // Matrix functions
 
-int				find_number_of_tokens(char *input);
+int				count_number_of_tokens(char *input);
 
 // typedef struct s_elem
 // {
