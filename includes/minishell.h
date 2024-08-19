@@ -21,18 +21,10 @@
 
 typedef struct s_elem	t_elem;
 
-typedef struct s_envp
-{
-	char 			*str;
-	struct s_envp	*next;
-}	t_envp;
-
 typedef struct s_all
 {
-	t_elem	*node;
-	t_envp	*envp;
-	char	*path;
-	int		size;
+	char	**prompt;
+	char	**envp;
 }	t_all;
 
 #endif

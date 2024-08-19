@@ -41,18 +41,18 @@ int	count_number_of_tokens(char *input)
 	return (token);
 }
 
-int	token_length(char *input)
-{
-	while (*input)
-	{
-		if (*input == '$')
-			return (env_token_length(input));
-		else if (is_special_char(*input))
-			return (operator_token_length(input));
-		else if (is_quote(*input))
-			return(quote_token_length(input));
-	}
-}
+// int	token_length(char *input)
+// {
+// 	while (*input)
+// 	{
+// 		if (*input == '$')
+// 			return (env_token_length(input));
+// 		else if (is_special_char(*input))
+// 			return (operator_token_length(input));
+// 		else if (is_quote(*input))
+// 			return(quote_token_length(input));
+// 	}
+// }
 
 // int	token_len(char *input, enum e_state *state)
 // {

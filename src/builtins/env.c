@@ -12,4 +12,13 @@
 
 #include "minishell.h"
 
-void	run_env(t_all *pAll);
+void	run_env(t_all *pAll)
+{
+	char	*error;
+	error = pAll->prompt[1];
+
+	if (error)
+		printf("env: '%s': no such file or directory", error);
+	else
+		write_mtx(pAll->envp);
+}
