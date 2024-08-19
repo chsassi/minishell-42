@@ -15,19 +15,16 @@
 void	write_mtx(char **mtx)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	if (!mtx)
 	{
-		ft_printf("mtx doesn't exist");
+		printf("mtx doesn't exist");
 		return ;
 	}
 	while (mtx[i])
 	{
-		ft_printf("[%d] %s\n", j, mtx[i]);
+		printf("%s\n", mtx[i]);
 		i++;
-		j++;
 	}
 }

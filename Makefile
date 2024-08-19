@@ -24,6 +24,7 @@ SRC =	./main.c \
 		./src/parsing/mtx_handler.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
+		./src/builtins/env.c \
 		#./src/builtins/pwd.c \
 		#./src/exec/signals.c \
 
