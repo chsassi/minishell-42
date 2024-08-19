@@ -33,14 +33,14 @@
 // 	return (0);
 // }
 
-void add_word_token(t_parsing *all, char *content, int len, e_state state)
-{
-	t_elem *new_elem;
+// void add_word_token(t_parsing *all, char *content, int len, e_state state)
+// {
+// 	t_elem *new_elem;
 
-	new_elem = create_elem(content, len, WORD);
-	if (new_elem)
-	{
-		new_elem->state = state;
-		add_token(all, new_elem);
-	}
-}
+// 	new_elem = create_elem(content, len, WORD);
+// 	if (new_elem)
+// 	{
+// 		new_elem->state = state;
+// 		add_token(all, new_elem);
+// 	}
+// }
