@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:01:19 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/19 15:18:31 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:38:28 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,32 @@ int	operator_token_length(char *input)
 		return(i);
 	}
 	else
-		return(i++);
+		return(1);
 }
 
 int quote_token_length(char *input)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	if (*input == '\'')
 	{
-		if (input[i] == '\'')
-			return(i++);
+		if (input[i + 1] == '\'')
+			return(2);
+		i++;
 		while (input[i] != '\'')
 			i++;
+		i++;
 		return(i);
 	}
 	else
 	{
-		if (input[i] == '\"')
-			return(i++);
+		if (input[i + 1] == '\"')
+			return(2);
+		i++;
 		while (input[i] != '\"')
 			i++;
+		i++;
 		return(i);
 	}
 	return (i);
