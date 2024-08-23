@@ -15,8 +15,8 @@
 void	run_env(t_all *pAll)
 {
 	char	*error;
-	error = pAll->prompt[1];
 
+	error = pAll->prompt[1];
 	if (error)
 		printf("env: '%s': no such file or directory", error);
 	else

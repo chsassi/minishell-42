@@ -22,6 +22,9 @@ int	main(void)
 	// ptr = (t_all){0};
 	while (1)
 	{
+		// signal(SIGQUIT, handle_sigquit);
+		// signal(SIGINT, handle_sigint);
+		// signal(SIGTERM, handle_sigterm);
 		input = readline("minishell> ");
 		if (!input)
 			break ;

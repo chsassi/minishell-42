@@ -12,9 +12,7 @@
 
 #include "minishell.h"
 
-#include "minishell.h"
-
-void run_echo(t_all *pAll)
+void	run_echo(t_all *pAll)
 {
 	int	i;
 	int	nl;

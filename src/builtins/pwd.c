@@ -17,12 +17,12 @@ void	run_pwd(void)
 	char	*directory;
 
 	directory = getcwd(NULL, 0);
-	if (!directory)
+	if (directory)
+		ft_printf("%s", directory);
+	else
 	{
-		ft_printf("error: directory not found or not created");
+		ft_putstr_fd("pwd: error retrieving current directory", 2);
 		return ;
 	}
-	else
-		ft_printf("%s", directory);
 	free(directory);
 }
