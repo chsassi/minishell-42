@@ -25,11 +25,15 @@ SRC =	./main.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/utils/mtx_utils3.c \
-		./src/builtins/env.c \
-		./src/builtins/pwd.c \
-		./src/builtins/echo.c \
-		./src/list_helpers.c \
-		#./src/exec/signals.c \
+		# ./src/builtins/cd.c \
+		# ./src/builtins/echo.c \
+		# ./src/builtins/env.c \
+		# ./src/builtins/exit.c \
+		# ./src/builtins/export.c \
+		# ./src/builtins/pwd.c \
+		# ./src/builtins/unset.c \
+		# ./src/exec/exec.c \
+		# ./src/exec/signals.c \
 
 all: $(NAME)
 

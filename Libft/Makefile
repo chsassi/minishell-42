@@ -70,6 +70,7 @@ SRCS			= ./Booleans/ft_isalnum.c 			\
 					./List_ft/ft_lstmap.c 			\
 					./List_ft/ft_lstnew.c 			\
 					./List_ft/ft_lstsize.c 			\
+					./List_ft/env_list_helpers.c 	\
 					./Double_list/dll_add_back.c	\
 					./Double_list/dll_add_front.c	\
 					./Double_list/dll_clear.c		\
