@@ -6,25 +6,30 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 08:50:03 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/19 09:09:51 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:41:12 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+int	main(void)
 {
+	// t_all	ptr;
 	char	*input;
-	//t_all	*token;
-	int		n;
+	char	**mtx;
 
+	input = NULL;
+	// ptr = (t_all){0};
 	while (1)
 	{
-		input = readline("Minishell~> ");
+		input = readline("minishell> ");
 		if (!input)
 			break ;
-		n = count_number_of_tokens(input);
-		printf("Token number: %d\n", n);
+		// ptr = init(ac, av, envp);
+		mtx = create_mtx(input);
+		if (mtx)
+			write_mtx(mtx);
+		//free_mtx(mtx);
 		add_history(input);
 	}
 	return (0);

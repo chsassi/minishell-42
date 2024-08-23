@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 10:52:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/04/10 18:24:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:32:41 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_mtx(char **mtx)
 {
-	size_t	j;
+	int	j;
 
 	j = 0;
 	if (!mtx)

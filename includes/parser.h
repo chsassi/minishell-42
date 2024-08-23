@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/19 09:05:47 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:55:29 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,17 @@ int				count_single_quote_token(char *input, int *i, int *token);
 int				count_double_quote_token(char *input, int *i, int *token);
 void			count_env_token(char *input, int *i, int *token);
 void			count_operator_token(char *input, int *i, int *token);
+int				env_token_length(char *input);
+int				operator_token_length(char *input);
+int				quote_token_length(char *input);
+int				normal_token_length(char *input);
 
 // Matrix functions
 
 int				count_number_of_tokens(char *input);
+int				token_length(char *input);
+char			**fill_mtx(char **mtx, char *input);
+char			**create_mtx(char *input);
 
 // typedef struct s_elem
 // {

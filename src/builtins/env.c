@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:17:57 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 10:19:00 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/08/19 16:39:51 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,11 @@ void	run_env(t_all *pAll)
 	if (error)
 		printf("env: '%s': no such file or directory", error);
 	else
-		write_mtx(pAll->envp);
+	{
+		while (pAll->envp)
+		{
+			printf("%s=%s\n", pAll->envp->var, pAll->envp->content);
+			pAll = pAll->envp->next;
+		}
+	}
 }

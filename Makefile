@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/08/19 09:02:13 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/08/20 17:51:49 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,11 @@ SRC =	./main.c \
 		./src/parsing/mtx_handler.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
+		./src/parsing/utils/mtx_utils3.c \
 		./src/builtins/env.c \
-		#./src/builtins/pwd.c \
+		./src/builtins/pwd.c \
+		./src/builtins/echo.c \
+		./src/list_helpers.c \
 		#./src/exec/signals.c \
 
 all: $(NAME)
