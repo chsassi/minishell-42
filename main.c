@@ -14,14 +14,18 @@
 
 int	main(void)
 {
+	// t_all	ptr;
 	char	*input;
 	char	**mtx;
 
+	input = NULL;
+	// ptr = (t_all){0};
 	while (1)
 	{
-		input = readline("Minishell~> ");
+		input = readline("minishell> ");
 		if (!input)
 			break ;
+		// ptr = init(ac, av, envp);
 		mtx = create_mtx(input);
 		if (mtx)
 			write_mtx(mtx);

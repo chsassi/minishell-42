@@ -24,8 +24,8 @@ int run_exec(t_all *pAll)
     //     return (run_export();
     // else if (!ft_strcmp(pAll->node->content, "unset"))
     //     return (run_unset());
-    // else if (!ft_strcmp(mtx[i], "env"))
-    //     return (run_env());
+    else if (!ft_strcmp(pAll, "env"))
+        return (run_env(pAll));
     // else if (!ft_strcmp(pAll->node->content, "exit"))
     //     return (run_exit());
     else
