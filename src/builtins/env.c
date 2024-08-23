@@ -15,10 +15,16 @@
 void	run_env(t_all *pAll)
 {
 	char	*error;
-	error = pAll->prompt[];
+	error = pAll->prompt[1];
 
 	if (error)
 		printf("env: '%s': no such file or directory", error);
 	else
-		write_mtx(pAll->envp);
+	{
+		while (pAll->envp)
+		{
+			printf("%s=%s\n", pAll->envp->var, pAll->envp->content);
+			pAll = pAll->envp->next;
+		}
+	}
 }

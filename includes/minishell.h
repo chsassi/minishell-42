@@ -21,10 +21,17 @@
 
 typedef struct s_elem	t_elem;
 
+typedef struct s_env
+{
+	char			*var;
+	char			*content;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_all
 {
 	char	**prompt;
-	char	**envp;
+	t_env	*envp;
 }	t_all;
 
 #endif
