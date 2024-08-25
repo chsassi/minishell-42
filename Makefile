@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/08/20 17:51:49 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/08/25 18:25:39 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,12 @@ SRC =	./main.c \
 		# ./src/exec/exec.c \
 		# ./src/exec/signals.c \
 
-all: $(NAME)
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
 	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(HEADERS) $(SRC) -L$(LIBFT_MAKE) -lft -lreadline -o $(NAME)
+
+all: $(NAME)
 
 clean:
 	@make clean -s -C $(LIBFT_MAKE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:06:44 by chsassi           #+#    #+#             */
-/*   Updated: 2024/08/23 16:06:46 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/08/25 16:02:26 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	free_env_var(char *var, char *content)
 	content = NULL;
 }
 
-void	env_remove_node(t_env *list, char *env, char *content)
-{
-	if (!list)
-		return ;
-	free_env_var(list->var, list->content);
-	free(list);
-	list = NULL;
-}
+// void	env_remove_node(t_env *list, char *env, char *content)
+// {
+// 	if (!list)
+// 		return ;
+// 	free_env_var(list->var, list->content);
+// 	free(list);
+// 	list = NULL;
+// }
