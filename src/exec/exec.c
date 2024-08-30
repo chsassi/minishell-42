@@ -12,6 +12,30 @@
 
 #include "minishell.h"
 
+void execute(char *cmd, char **mtx, char **envp)
+{
+
+	int fd = open("./Makefile", O_RDONLY);
+	int fd2 = open("./test_copy", O_WRONLY);
+	printf("%d\n", fd);
+	printf("%d\n", fd2);
+	pid_t id = fork();
+
+	if (id == 0)
+	{
+
+		dup2(fd, STDIN_FILENO);
+		dup2(fd2, STDOUT_FILENO);
+		printf("%d\n", fd2);
+
+		execve(cmd, mtx, envp);
+	}
+
+	waitpid(-1, NULL, 0);
+	close(fd);
+	close(fd2);
+}
+
 int	run_exec(t_all *pAll);
 /*{     if (!ft_strcmp(pAll->node->content, "echo"))
 		return (run_echo(pAll));

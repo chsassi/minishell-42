@@ -25,6 +25,7 @@ SRC =	./main.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/utils/mtx_utils3.c \
+		./src/exec/signals.c \
 		# ./src/builtins/cd.c \
 		# ./src/builtins/echo.c \
 		# ./src/builtins/env.c \
@@ -33,8 +34,6 @@ SRC =	./main.c \
 		# ./src/builtins/pwd.c \
 		# ./src/builtins/unset.c \
 		# ./src/exec/exec.c \
-		# ./src/exec/signals.c \
-
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
