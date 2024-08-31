@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/20 17:55:29 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:42:39 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 
 enum e_token
 {
-	WORD = -1,
-	WHITE_SPACE = ' ',
+	CMD = -1,
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '\"',
 	ENV = '$',
@@ -63,6 +62,8 @@ int				count_number_of_tokens(char *input);
 int				token_length(char *input);
 char			**fill_mtx(char **mtx, char *input);
 char			**create_mtx(char *input);
+int				assign_token(char *str);
+int				*token_arr(char **mtx);
 
 // typedef struct s_elem
 // {

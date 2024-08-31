@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:11:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/25 17:35:09 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:42:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ int	assign_token(char *str)
 			return (DOUBLE_QUOTE);
 		else if (*str == '|')
 			return (PIPE_LINE);
+		else if (*str == '<' && *(str + 1) == '<')
+			return (HERE_DOC);
 		else if (*str == '<')
 			return (REDIR_IN);
+		else if (*str == '>' && *(str + 1) == '>')
+			return (DREDIR_OUT);
 		else if (*str == '>')
 			return (REDIR_OUT);
-		else if (*str == '<' && *str++ == '<')
-			return (HERE_DOC);
-		else if (*str == '>' && *str++ == '>')
-			return (DREDIR_OUT);
-		return (WORD);
+		else if (*str == '$')
+			return (ENV);
+		return (CMD);
 }
 
 int	*token_arr(char **mtx)
