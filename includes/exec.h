@@ -17,6 +17,7 @@
 # include "minishell.h"
 # include "parser.h"
 # include <signal.h>
+# include <sys/ioctl.h> 
 # include <sys/types.h>
 # include <sys/wait.h>
 

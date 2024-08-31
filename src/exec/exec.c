@@ -3,25 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 09:52:53 by chsassi           #+#    #+#             */
-/*   Updated: 2024/08/19 16:42:13 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/08/31 17:05:35 by chsassi           #+#    #+#             */
+/*   Updated: 2024/08/31 17:05:42 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+ #include "minishell.h"
+
+char	**get_path_from_env(t_all *pAll)
+{
+	char	*env_path;
+	char	**new_path;
+
+	env_path = getenv("PATH");
+	if (!env_path)
+		return NULL;
+	new_path = ft_split(env_path, ':');
+	return (new_path);
+}
+
+//da cambiare command con ptr a struct;
+char	*find_executable_in_env(char **paths, char *command)
+{
+	char		*str_tojoin;
+	const int	len = ft_strlen(command);
+
+	if (ft_strchr(command, '/'))
+	{
+		if (!access(command, X_OK))
+			return (ft_strdup(command));
+		return (NULL);
+	}
+	while (paths && *paths)
+	{
+		if (len > 0 && command[len - 1] == '/')
+			str_tojoin = ft_strjoin(paths, command);
+		else
+		{
+			str_tojoin = ft_strjoin(paths, "/");
+			str_tojoin = ft_strjoin_gnl(str_tojoin, command);
+		}
+		if (!access(str_tojoin, X_OK))
+			return (str_tojoin);
+		paths++;
+	}
+	return (free(str_tojoin), NULL);
+}
 
 void	exec_cmd(char *cmd, char **mtx, char **envp)
 {
+	//cerca path del comando; -se il comando non esiste, msg errore e exit g_status_code = 127;
 	pid_t id = fork();
 	if (id == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		execve(cmd, mtx, envp);
+		exit(0);
 	}
-	waitpid(-1, NULL, 0);
+	free(/*path*/NULL);
 }
+
 
 int	run_exec(t_all *pAll);
 /*{     if (!ft_strcmp(pAll->node->content, "echo"))

@@ -94,7 +94,7 @@ char	**create_mtx(char *input)
 	number_of_tokens = count_number_of_tokens(input);
 	if (number_of_tokens == -1)
 		return (ft_putstr_fd("Closing quotes missing\n", 2), NULL);
-	mtx = (char **)ft_calloc(number_of_tokens, sizeof(char *));
+	mtx = (char **)ft_calloc(number_of_tokens + 1, sizeof(char *));
 	if (!mtx || !input)
 		return (NULL);
 	mtx = fill_mtx(mtx, input);

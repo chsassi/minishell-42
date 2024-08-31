@@ -39,17 +39,19 @@ int	main(int ac, char **av, char **envp)
 		// ptr = init(ac, av, envp);
 		mtx = create_mtx(input);
 		arr = token_arr(mtx);
+		exec_cmd(input, mtx, envp); //ignorare spazi nella history
 		i = 0;
 		if (mtx)
 		{
-			//write_mtx(mtx);
+			write_mtx(mtx);
 			while (mtx[i])
 			{
 				printf("[%i] %s\n", arr[i], mtx[i]);
 				i++;
 			}
+			if (mtx[0])
+				add_history(input);
 		}
-		add_history(input);
 	}
 	return (0);
 }

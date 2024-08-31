@@ -31,8 +31,9 @@ void	handle_sigint(int signal)
 {
 	if (signal == SIGINT)
 	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\nminishell> ", 12);
+		ioctl(STDOUT_FILENO, TIOCSTI, "\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
 	}
 }
 
