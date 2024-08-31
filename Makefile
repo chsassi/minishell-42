@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/08/27 11:09:22 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/08/31 15:55:46 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,23 +25,6 @@ SRC =	./main.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/utils/mtx_utils3.c \
-<<<<<<< HEAD
-		./src/parsing/assign_tokens.c \
-=======
-		./src/exec/signals.c \
->>>>>>> 51effa1f6f6432c72edb8a3cf23f10ef4c8dcef0
-		# ./src/builtins/cd.c \
-		# ./src/builtins/echo.c \
-		# ./src/builtins/env.c \
-		# ./src/builtins/exit.c \
-		# ./src/builtins/export.c \
-		# ./src/builtins/pwd.c \
-		# ./src/builtins/unset.c \
-		# ./src/exec/exec.c \
-<<<<<<< HEAD
-		# ./src/exec/signals.c \
-=======
->>>>>>> 51effa1f6f6432c72edb8a3cf23f10ef4c8dcef0
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
