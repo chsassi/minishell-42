@@ -18,6 +18,7 @@
 # include "parser.h"
 # include <signal.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_all	t_all;
 

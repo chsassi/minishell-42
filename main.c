@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+int	g_status_code = 0;
+
 int	main(void)
 {
 	// t_all	ptr;
@@ -24,12 +26,14 @@ int	main(void)
 	// ptr = (t_all){0};
 	while (1)
 	{
-		// signal(SIGQUIT, handle_sigquit);
-		// signal(SIGINT, handle_sigint);
-		// signal(SIGTERM, handle_sigterm);
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);
 		input = readline("minishell> ");
 		if (!input)
+		{
+			write(1, "exit\n", 5);
 			break ;
+		}
 		// ptr = init(ac, av, envp);
 		mtx = create_mtx(input);
 		arr = token_arr(mtx);

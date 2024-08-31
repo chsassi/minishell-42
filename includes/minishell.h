@@ -19,6 +19,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+extern int	g_signal_code;
+
 typedef struct s_elem	t_elem;
 
 typedef struct s_env

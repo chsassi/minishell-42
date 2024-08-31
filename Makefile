@@ -25,7 +25,11 @@ SRC =	./main.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/utils/mtx_utils3.c \
+<<<<<<< HEAD
 		./src/parsing/assign_tokens.c \
+=======
+		./src/exec/signals.c \
+>>>>>>> 51effa1f6f6432c72edb8a3cf23f10ef4c8dcef0
 		# ./src/builtins/cd.c \
 		# ./src/builtins/echo.c \
 		# ./src/builtins/env.c \
@@ -34,7 +38,10 @@ SRC =	./main.c \
 		# ./src/builtins/pwd.c \
 		# ./src/builtins/unset.c \
 		# ./src/exec/exec.c \
+<<<<<<< HEAD
 		# ./src/exec/signals.c \
+=======
+>>>>>>> 51effa1f6f6432c72edb8a3cf23f10ef4c8dcef0
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
