@@ -14,7 +14,7 @@
 
 int	g_status_code = 0;
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	// t_all	ptr;
 	char	*input;
@@ -22,6 +22,8 @@ int	main(void)
 	int 	*arr;
 	int		i;
 
+	(void)ac;
+	(void)av;
 	input = NULL;
 	// ptr = (t_all){0};
 	while (1)

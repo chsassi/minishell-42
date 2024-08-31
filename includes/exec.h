@@ -46,4 +46,7 @@ void	handle_sigquit(int signal);
 void	handle_sigint(int signal);
 void	handle_sigterm(int signal);
 
+void	exec_cmd(char *cmd, char **mtx, char **envp);
+
+
 #endif

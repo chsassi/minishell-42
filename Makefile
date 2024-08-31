@@ -21,7 +21,10 @@ RM = rm -f
 LIBFT_MAKE = ./Libft
 
 SRC =	./main.c \
+		./src/exec/exec.c \
+		./src/exec/signals.c \
 		./src/parsing/mtx_handler.c \
+		./src/parsing/assign_tokens.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/utils/mtx_utils3.c \
