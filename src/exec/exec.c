@@ -27,6 +27,7 @@ void execute(char *cmd, char **mtx, char **envp)
 		dup2(fd, STDIN_FILENO);
 		dup2(fd2, STDOUT_FILENO);
 		printf("%d\n", fd2);
+		signal(SIGQUIT, SIG_DFL);
 
 		execve(cmd, mtx, envp);
 	}
