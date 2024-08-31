@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 08:50:03 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/27 11:23:31 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:44:32 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	(void)envp;
 	input = NULL;
 	// ptr = (t_all){0};
 	while (1)
