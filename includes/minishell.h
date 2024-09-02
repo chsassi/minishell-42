@@ -19,7 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int	g_signal_code;
+extern int	g_status_code;
 
 typedef struct s_elem	t_elem;
 

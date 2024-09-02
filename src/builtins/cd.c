@@ -12,4 +12,4 @@
 
 #include "minishell.h"
 
-void	run_cd(t_all *pAll);
+void	bin_cd(t_all *pAll);

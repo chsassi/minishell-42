@@ -14,7 +14,7 @@
 
 int	g_status_code = 0;
 
-int	main(int ac, char **av, char **envp)
+int	main(void/* int ac, char **av, char **envp */)
 {
 	// t_all	ptr;
 	char	*input;
@@ -22,9 +22,9 @@ int	main(int ac, char **av, char **envp)
 	int 	*arr;
 	int		i;
 
-	(void)ac;
-	(void)av;
-	(void)envp;
+	// (void)ac;
+	// (void)av;
+	// (void)envp;
 	input = NULL;
 	// ptr = (t_all){0};
 	while (1)
@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **envp)
 		// ptr = init(ac, av, envp);
 		mtx = create_mtx(input);
 		arr = token_arr(mtx);
-		exec_cmd(input, mtx, envp); //ignorare spazi nella history
+		// exec_cmd(input, mtx, envp); //ignorare spazi nella history
 		i = 0;
 		if (mtx)
 		{

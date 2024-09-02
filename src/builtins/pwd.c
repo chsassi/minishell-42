@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	run_pwd(void)
+void	bin_pwd(void)
 {
 	char	*directory;
 

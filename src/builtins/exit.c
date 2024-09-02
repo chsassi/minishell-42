@@ -12,4 +12,12 @@
 
 #include "minishell.h"
 
-void	run_exit(t_all *pAll);
+void	bin_exit(char **input/* t_all *pAll */)
+{
+    if (!ft_strcmp(*input, "exit"))
+    {
+		write(1, "exit\n", 5);
+        free(NULL);
+        exit(0);
+    }
+}

@@ -12,4 +12,4 @@
 
 #include "minishell.h"
 
-void	run_export(t_all *pAll);
+void	bin_export(t_all *pAll);

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	run_echo(t_all *pAll)
+void	bin_echo(t_all *pAll)
 {
 	int	i;
 	int	nl;

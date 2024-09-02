@@ -23,23 +23,15 @@
 
 typedef struct s_all	t_all;
 
-typedef struct s_exec
-{
-	char	**full_cmd;
-	char	*abs_path;
-	int		infile;
-	int		outfile;
-}	t_exec;
-
 // Builtins
 
-void	run_cd(t_all *pAll);
-void	run_echo(t_all *pAll);
-void	run_env(t_all *pAll);
-void	run_exit(t_all *pAll);
-void	run_export(t_all *pAll);
-void	run_pwd(void);
-void	run_unset(t_all *pAll);
+void	bin_cd(t_all *pAll);
+void	bin_echo(t_all *pAll);
+void	bin_env(t_all *pAll);
+void	bin_exit(char **input/* t_all *pAll */);
+void	bin_export(t_all *pAll);
+void	bin_pwd(void);
+void	bin_unset(t_all *pAll);
 
 // Signal Handling
 
@@ -47,7 +39,12 @@ void	handle_sigquit(int signal);
 void	handle_sigint(int signal);
 void	handle_sigterm(int signal);
 
-void	exec_cmd(char *cmd, char **mtx, char **envp);
+// Exec
 
+char	**get_path_from_env(void/* t_all *pAll */);
+char	*find_executable_in_env(char **paths, char *command);
+void	fork_cmd_process(char *cmd, char **mtx, char **envp);
+void	execute_command(t_all *pAll);
+int		run_exec(t_all *pAll);
 
 #endif

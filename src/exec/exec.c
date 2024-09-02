@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "minishell.h"
+#include "minishell.h"
 
-char	**get_path_from_env(t_all *pAll)
+char	**get_path_from_env(void/* t_all *pAll */)
 {
 	char	*env_path;
 	char	**new_path;
@@ -39,10 +39,10 @@ char	*find_executable_in_env(char **paths, char *command)
 	while (paths && *paths)
 	{
 		if (len > 0 && command[len - 1] == '/')
-			str_tojoin = ft_strjoin(paths, command);
+			str_tojoin = ft_strjoin(*paths, command);
 		else
 		{
-			str_tojoin = ft_strjoin(paths, "/");
+			str_tojoin = ft_strjoin(*paths, "/");
 			str_tojoin = ft_strjoin_gnl(str_tojoin, command);
 		}
 		if (!access(str_tojoin, X_OK))
@@ -52,7 +52,7 @@ char	*find_executable_in_env(char **paths, char *command)
 	return (free(str_tojoin), NULL);
 }
 
-void	exec_cmd(char *cmd, char **mtx, char **envp)
+void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 {
 	//cerca path del comando; -se il comando non esiste, msg errore e exit g_status_code = 127;
 	pid_t id = fork();
@@ -66,22 +66,42 @@ void	exec_cmd(char *cmd, char **mtx, char **envp)
 	free(/*path*/NULL);
 }
 
+/* void	execute_command(t_all *pAll)
+{
+	char	**paths;
+	char	*cmd_path;
+
+	if (run_exec(pAll))
+		return ;
+	paths = get_path_from_env();
+	cmd_path = find_executable_in_env(paths, pAll->node->content);
+	if (!cmd_path)
+	{
+		ft_putstr_fd("command not found: ", 2);
+		ft_putendl_fd(pAll->node->content, 2);
+		g_status_code = 127;
+	}
+	exec_cmd(cmd_path, pAll->node->args, pAll->envp);
+	free(cmd_path);
+	ft_free_matrix(paths);
+} */
 
 int	run_exec(t_all *pAll);
-/*{     if (!ft_strcmp(pAll->node->content, "echo"))
-		return (run_echo(pAll));
+/* {   
+	if (!ft_strcmp(pAll->node->content, "echo"))
+		return (bin_echo(pAll));
 	else if (!ft_strcmp(pAll->node->content, "cd"))
-		return (run_cd());
+		return (bin_cd());
 	else if (!ft_strcmp(pAll->node->content, "pwd"))
-		return (run_pwd());
+		return (bin_pwd());
 	else if (!ft_strcmp(pAll->node->content, "export"))
-		return (run_export();
+		return (bin_export();
 	else if (!ft_strcmp(pAll->node->content, "unset"))
-		return (run_unset());
+		return (bin_unset());
 	else if (!ft_strcmp(pAll, "env"))
-		return (run_env(pAll));
+		return (bin_env(pAll));
 	else if (!ft_strcmp(pAll->node->content, "exit"))
-		return (run_exit());
+		return (bin_exit());
 	else
 		return (0); 
-}*/
+} */

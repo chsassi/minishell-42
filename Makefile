@@ -23,6 +23,7 @@ LIBFT_MAKE = ./Libft
 SRC =	./main.c \
 		./src/exec/exec.c \
 		./src/exec/signals.c \
+		./src/builtins/exit.c \
 		./src/parsing/mtx_handler.c \
 		./src/parsing/assign_tokens.c \
 		./src/parsing/utils/mtx_utils.c \

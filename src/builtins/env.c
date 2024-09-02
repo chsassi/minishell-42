@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	run_env(t_all *pAll)
+void	bin_env(t_all *pAll)
 {
 	char	*error;
 

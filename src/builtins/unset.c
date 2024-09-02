@@ -12,4 +12,4 @@
 
 #include "minishell.h"
 
-void	run_unset(t_all *pAll);
+void	bin_unset(t_all *pAll);
