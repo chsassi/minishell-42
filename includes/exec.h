@@ -21,17 +21,23 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+typedef struct s_env	t_env;
 typedef struct s_all	t_all;
 
 // Builtins
 
 void	bin_cd(t_all *pAll);
 void	bin_echo(t_all *pAll);
-void	bin_env(t_all *pAll);
+void	bin_env(char **envp/* t_all *pAll */);
 void	bin_exit(char **input/* t_all *pAll */);
 void	bin_export(t_all *pAll);
 void	bin_pwd(void);
 void	bin_unset(t_all *pAll);
+
+// Environment
+
+t_env	*create_envp(char **envp);
+t_env	*new_env_node(const char *env_var);
 
 // Signal Handling
 

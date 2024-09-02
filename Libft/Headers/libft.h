@@ -66,6 +66,7 @@ int		find_min_value(t_dll *pStack);
 int		find_max_index(t_dll *pStack);
 int		find_max_value(t_dll *pStack);
 void	ft_bzero(char *s, size_t n);
+int		ft_strlen_until(char *str, char c);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);

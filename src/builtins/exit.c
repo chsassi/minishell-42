@@ -14,10 +14,10 @@
 
 void	bin_exit(char **input/* t_all *pAll */)
 {
-    if (!ft_strcmp(*input, "exit"))
-    {
+	if (!ft_strcmp(*input, "exit"))
+	{
 		write(1, "exit\n", 5);
-        free(NULL);
-        exit(0);
-    }
+		free(/*free struct*/NULL);
+		exit(0);
+	}
 }

@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+int	ft_strlen_until(char *str, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != c)
+		i++;
+	return (i);
+}
+
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;

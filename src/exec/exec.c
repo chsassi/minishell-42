@@ -54,7 +54,7 @@ char	*find_executable_in_env(char **paths, char *command)
 
 void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 {
-	//cerca path del comando; -se il comando non esiste, msg errore e exit g_status_code = 127;
+	//cerca path del comando; -se il comando non esiste, msg errore e g_exit = 127;
 	pid_t id = fork();
 	if (id == 0)
 	{
@@ -79,7 +79,7 @@ void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 	{
 		ft_putstr_fd("command not found: ", 2);
 		ft_putendl_fd(pAll->node->content, 2);
-		g_status_code = 127;
+		g_exit = 127;
 	}
 	exec_cmd(cmd_path, pAll->node->args, pAll->envp);
 	free(cmd_path);
