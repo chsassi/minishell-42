@@ -65,20 +65,15 @@ t_env	*create_envp(char **envp)
 	return (head);
 }
 
-void	bin_env(char **envp/* t_all *pAll */)
+t_env	*bin_env(t_env *env)
 {
-	t_env	*current_env;
+	t_env	*current;
+	current = env;
 
-	// if (/* pAll->prompt[1] */)
-	// {
-	// 	printf("env: '%s': No such file or directory\n", mtx[1]/* pAll->prompt[1] */);
-	// 	return ;
-	// }
-	// else
-	current_env = create_envp(envp);
-	while (current_env)
+	while (current)
 	{
-		printf("%s=%s\n", current_env->var, current_env->content);
-		current_env = current_env->next;
+		printf("%s=%s\n", current->var, current->content);
+		current = current->next;
 	}
+	return (env);
 }

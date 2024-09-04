@@ -17,6 +17,8 @@ int	g_exit = 0;
 int	main(int ac, char **av, char **envp)
 {
 	// t_all	ptr;
+	t_env	*ptr = NULL;
+	ptr = create_envp(envp);
 	char	*input;
 	char	**mtx;
 	int 	*arr;
@@ -40,18 +42,23 @@ int	main(int ac, char **av, char **envp)
 		// ptr = init(ac, av, envp);
 		mtx = create_mtx(input);
 		arr = token_arr(mtx);
+		if (!ft_strcmp(input, "env"))
+			ptr = bin_env(ptr);
+		else if (!ft_strcmp(input, "unset"))
+			ptr = bin_unset(&ptr, "MANAGERPID");
+		// fork_cmd_process(input, mtx, envp); //ignorare spazi nella history
 		i = 0;
-		if (mtx)
+/* 		if (mtx)
 		{
-			write_mtx(mtx);
-			while (mtx[i])
-			{
-				printf("[%i] %s\n", arr[i], mtx[i]);
-				i++;
-			}
+			// write_mtx(mtx);
+			// while (mtx[i])
+			// {
+			// 	printf("[%i] %s\n", arr[i], mtx[i]);
+			// 	i++;
+			// }
 			if (mtx[0])
 				add_history(input);
-		}
+		} */
 	}
 	return (0);
 }

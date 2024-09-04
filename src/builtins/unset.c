@@ -12,4 +12,21 @@
 
 #include "minishell.h"
 
-void	bin_unset(t_all *pAll);
+t_env	*bin_unset(t_env **head, char *var_name)
+{
+	t_env	*tmp;
+	t_env	**original_head;
+
+	if (!head || !*head)
+		return (*head);
+	original_head = head;
+	while (*head && ft_strcmp((*head)->var, var_name))
+		head = &((*head)->next);
+	if (*head)
+	{
+		tmp = *head;
+		*head = (*head)->next;
+		free_env_node(tmp);
+	}
+	return (*original_head);
+}

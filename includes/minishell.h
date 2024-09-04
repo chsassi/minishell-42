@@ -36,4 +36,8 @@ typedef struct s_all
 	t_env	*envp;
 }	t_all;
 
+// Free
+
+void	free_env_node(t_env *node);
+
 #endif

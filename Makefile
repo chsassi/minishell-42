@@ -25,6 +25,8 @@ SRC =	./main.c \
 		./src/exec/signals.c \
 		./src/builtins/env.c \
 		./src/builtins/exit.c \
+		./src/builtins/unset.c \
+		./src/free.c \
 		./src/parsing/mtx_handler.c \
 		./src/parsing/assign_tokens.c \
 		./src/parsing/utils/mtx_utils.c \

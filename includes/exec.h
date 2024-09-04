@@ -28,11 +28,11 @@ typedef struct s_all	t_all;
 
 void	bin_cd(t_all *pAll);
 void	bin_echo(t_all *pAll);
-void	bin_env(char **envp/* t_all *pAll */);
+t_env	*bin_env(t_env *current_env/* t_all *pAll */);
 void	bin_exit(char **input/* t_all *pAll */);
 void	bin_export(t_all *pAll);
 void	bin_pwd(void);
-void	bin_unset(t_all *pAll);
+t_env	*bin_unset(t_env **head, char *var_name);
 
 // Environment
 
