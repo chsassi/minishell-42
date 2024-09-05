@@ -12,14 +12,32 @@
 
 #include "parser.h"
 
+char	*env_string(char *input, t_env *envp, int len)
+{
+	int		i;
+	char	*s1;
+
+	i = 0;
+	s1 = ft_substr()
+	while (ft_strcmp())
+}
+
 char	*new_expanded_string(char *input, t_env *envp)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (input && input[i])
 	{
 		if (input[i] == '$')
+		{
+			j = i;
+			env_string(input + i, envp, env_token_length(input + i));
+
+		}
+
 				
 	}
 }
@@ -35,7 +53,8 @@ char	*expansion(char *input, t_env *envp)
 	input_exp = ft_strdup(input);
 	while (input_exp && input_exp[i] != '\0')
 	{
-		count_env_token(input_exp, i, n);
+		if (input_exp[i] == '$')
+			count_env_token(input_exp, i, n);
 		i++;
 	}
 	i = 0;
