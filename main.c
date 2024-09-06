@@ -45,7 +45,7 @@ int	main(int ac, char **av, char **envp)
 		if (!ft_strcmp(input, "env"))
 			ptr = bin_env(ptr);
 		else if (!ft_strcmp(input, "unset"))
-			ptr = bin_unset(&ptr, "MANAGERPID");
+			ptr = bin_unset(&ptr, "USER");
 		// fork_cmd_process(input, mtx, envp); //ignorare spazi nella history
 		i = 0;
 /* 		if (mtx)

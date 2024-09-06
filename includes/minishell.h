@@ -27,13 +27,15 @@ typedef struct s_env
 {
 	char			*var;
 	char			*content;
+	bool			is_hidden;
 	struct s_env	*next;
 }	t_env;
 
 typedef struct s_all
 {
-	char	**prompt;
-	t_env	*envp;
+	char			**prompt;
+	t_env			*envp;
+	unsigned char	status_code;
 }	t_all;
 
 // Free

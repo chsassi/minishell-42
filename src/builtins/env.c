@@ -31,7 +31,9 @@ t_env	*new_env_node(const char *env_var)
 	new_node->var = new_var;
 	new_node->content = ft_strdup(equal_sign + 1);
 	if (!new_node->content)
-		return (free(new_var), free(new_node), NULL);
+		new_node->is_hidden = true;
+	else
+		new_node->is_hidden = false;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -72,7 +74,8 @@ t_env	*bin_env(t_env *env)
 
 	while (current)
 	{
-		printf("%s=%s\n", current->var, current->content);
+		if (!current->is_hidden)
+			printf("%s=%s\n", current->var, current->content);
 		current = current->next;
 	}
 	return (env);

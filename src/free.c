@@ -6,8 +6,8 @@ void	free_env_node(t_env *node)
 	{
 		free(node->var);
 		free(node->content);
+		free(node);
 		node->var = NULL;
 		node->content = NULL;
-		free(node);
 	}
 }
