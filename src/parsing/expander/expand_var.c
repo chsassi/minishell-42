@@ -15,20 +15,26 @@
 char	*env_string(char *input, t_env *envp, int len)
 {
 	int		i;
-	char	*s1;
 
 	i = 0;
-	s1 = ft_substr()
-	while (ft_strcmp())
+	while (envp->next != NULL)
+	{
+		if (!ft_strncmp(input, envp->var, len))
+			return (envp->content);
+		envp = envp->next;
+	}
+	return (ft_strdup(""));
 }
 
 char	*new_expanded_string(char *input, t_env *envp)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*env_str
 
 	i = 0;
 	j = 0;
+	env_str = NULL;
 	while (input && input[i])
 	{
 		if (input[i] == '$')
