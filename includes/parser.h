@@ -19,6 +19,7 @@
 # include <readline/history.h>
 
 // typedef struct s_all	t_all;
+typedef struct s_env	t_env;
 
 enum e_token
 {
@@ -64,6 +65,9 @@ char			**fill_mtx(char **mtx, char *input);
 char			**create_mtx(char *input);
 int				assign_token(char *str);
 int				*token_arr(char **mtx);
+
+// Expansion function
+char			*expansion(char *input, t_env *envp);
 
 // typedef struct s_elem
 // {
