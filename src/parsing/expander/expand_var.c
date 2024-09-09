@@ -56,6 +56,7 @@ char	*expansion(char *input, t_env *envp)
 	int		j;
 
 	(void)envp;
+	j = 0;
 	i = 0;
 	n = 0;
 	input_exp = ft_strdup(input);
@@ -64,7 +65,11 @@ char	*expansion(char *input, t_env *envp)
 		if (input[i] == '\'')
 			i += quote_token_length(input + i);
 		if (input_exp[i] == '$')
+		{
+			i = j;
 			count_env_token(input_exp, &i, &n);
+			input_exp = new_expanded_string(input + j, envp);
+		}
 		i++;
 	}
 	return (input_exp);
