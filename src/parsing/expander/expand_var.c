@@ -12,41 +12,41 @@
 
 #include "parser.h"
 
-char	*env_string(char *input, t_env *envp, int len)
+char	*find_env_string(char *input, t_env *envp, int len)
 {
-	int		i;
+	t_env	*tmp;
 
-	i = 0;
-	while (envp->next != NULL)
+	tmp = envp;
+	while (tmp)
 	{
-		if (!ft_strncmp(input, envp->var, len))
-			return (envp->content);
-		envp = envp->next;
+		if (!ft_strncmp(input, tmp->var, len))
+			return (tmp->content);
+		tmp = tmp->next;
 	}
 	return (ft_strdup(""));
 }
 
-char	*new_expanded_string(char *input, t_env *envp)
-{
-	int		i;
-	int		j;
-	char	*env_str
+// char	*new_expanded_string(char *input, t_env *envp)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*env_str;
 
-	i = 0;
-	j = 0;
-	env_str = NULL;
-	while (input && input[i])
-	{
-		if (input[i] == '$')
-		{
-			j = i;
-			env_string(input + i, envp, env_token_length(input + i));
+// 	i = 0;
+// 	j = 0;
+// 	env_str = NULL;
+// 	while (input && input[i])
+// 	{
+// 		if (input[i] == '$')
+// 		{
+// 			j = i;
+// 			env_str = find_env_string(input + i, envp, env_token_length(input + i));
 
-		}
+// 		}
 
 				
-	}
-}
+// 	}
+// }
 
 char	*expansion(char *input, t_env *envp)
 {
@@ -54,20 +54,23 @@ char	*expansion(char *input, t_env *envp)
 	char	*input_exp;
 	int		i;
 
+	(void)envp;
 	i = 0;
 	n = 0;
 	input_exp = ft_strdup(input);
 	while (input_exp && input_exp[i] != '\0')
 	{
+		if (input[i] == '\'')
+			i += quote_token_length(input + i);
 		if (input_exp[i] == '$')
-			count_env_token(input_exp, i, n);
+			count_env_token(input_exp, &i, &n);
 		i++;
 	}
 	i = 0;
-	while (i < n)
-	{
-		input_exp = new_expanded_string(input_exp, envp);
-		i++;
-	}
+	// while (i < n)
+	// {
+	// 	input_exp = new_expanded_string(input_exp, envp);
+	// 	i++;
+	// }
 	return (input_exp);
 }
