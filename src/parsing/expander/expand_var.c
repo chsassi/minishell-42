@@ -19,40 +19,41 @@ char	*find_env_string(char *input, t_env *envp, int len)
 	tmp = envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(input, tmp->var, len))
+		if (!ft_strncmp(*input, tmp->var, len))
 			return (tmp->content);
 		tmp = tmp->next;
 	}
 	return (ft_strdup(""));
 }
 
-// char	*new_expanded_string(char *input, t_env *envp)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*env_str;
+char	*new_expanded_string(char *input, t_env *envp)
+{
+	int		i;
+	int		j;
+	char	*env_str;
 
-// 	i = 0;
-// 	j = 0;
-// 	env_str = NULL;
-// 	while (input && input[i])
-// 	{
-// 		if (input[i] == '$')
-// 		{
-// 			j = i;
-// 			env_str = find_env_string(input + i, envp, env_token_length(input + i));
+	i = 0;
+	j = 0;
+	env_str = NULL;
+	while (input && input[i])
+	{
+		if (input[i] == '$')
+		{
+			j = i;
+			env_str = find_env_string(input + i, envp, env_token_length(input + i));
 
-// 		}
+		}
 
 				
-// 	}
-// }
+	}
+}
 
 char	*expansion(char *input, t_env *envp)
 {
 	int		n;
 	char	*input_exp;
 	int		i;
+	int		j;
 
 	(void)envp;
 	i = 0;
@@ -66,11 +67,5 @@ char	*expansion(char *input, t_env *envp)
 			count_env_token(input_exp, &i, &n);
 		i++;
 	}
-	i = 0;
-	// while (i < n)
-	// {
-	// 	input_exp = new_expanded_string(input_exp, envp);
-	// 	i++;
-	// }
 	return (input_exp);
 }
