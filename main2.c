@@ -14,7 +14,7 @@ int main(int ac, char **av, char **envp)
 		input = readline("Minishell-> ");
 		if (!input)
 		{
-			write (1, "exit\n", 5);
+			write(1, "exit\n", 5);
 			break ;
 		}
 		if (!ft_strcmp(input, "env"))

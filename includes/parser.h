@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/29 11:42:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:56:41 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ char			**fill_mtx(char **mtx, char *input);
 char			**create_mtx(char *input);
 int				assign_token(char *str);
 int				*token_arr(char **mtx);
+
+//Expansion utils
+
+char			*find_env_string(char *input, t_env *envp, int len);
 
 // Expansion function
 char			*expansion(char *input, t_env *envp);
