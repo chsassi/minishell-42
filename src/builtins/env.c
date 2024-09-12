@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+<<<<<<< HEAD
 t_env	*new_env_node(const char *env_var)
 {
 	t_env	*new_node;
@@ -67,6 +68,8 @@ t_env	*create_envp(char **envp)
 	return (head);
 }
 
+=======
+>>>>>>> 6b0ff0f31d450f29126e28793f5d49b9b77ea4b8
 t_env	*bin_env(t_env *env)
 {
 	t_env	*current;

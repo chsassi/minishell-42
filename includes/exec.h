@@ -38,6 +38,7 @@ t_env	*bin_unset(t_env **head, char *var_name);
 
 t_env	*create_envp(char **envp);
 t_env	*new_env_node(const char *env_var);
+void	swap_env_nodes(t_env *a, t_env *b);
 
 // Signal Handling
 

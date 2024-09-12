@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+<<<<<<< HEAD
 t_env	*find_env_var(t_env *env, char *var)
 {
 	t_env	*tmp;
@@ -43,6 +44,10 @@ void	swap_nodes(t_env *a, t_env *b)
 
 // t_env	*sort_list(t_env *node)
 // {
+=======
+// t_env	*find_env_var(t_env *env, char *var)
+//{
+>>>>>>> 6b0ff0f31d450f29126e28793f5d49b9b77ea4b8
 // 	t_env	*tmp;
 
 // 	tmp = node;
@@ -56,6 +61,7 @@ void	swap_nodes(t_env *a, t_env *b)
 // 	return (tmp);
 // }
 
+<<<<<<< HEAD
 t_env	*bin_export(char **args, t_env **env_list, char *var_name, char *value)
 {
 	t_env	*new_var;
@@ -67,3 +73,7 @@ t_env	*bin_export(char **args, t_env **env_list, char *var_name, char *value)
 	// se is hidden e' true appare solo in export
 	// se sommo la variabile con new value join tra old var e new value
 }
+=======
+// t_env	*bin_export(t_all *pAll, t_env **env_list, char *var_name, char *value)
+// {}
+>>>>>>> 6b0ff0f31d450f29126e28793f5d49b9b77ea4b8
