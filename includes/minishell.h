@@ -38,7 +38,7 @@ typedef struct s_all
 	unsigned char	status_code;
 }	t_all;
 
-// Free
+// Utils
 
 void	free_env_node(t_env *node);
 
