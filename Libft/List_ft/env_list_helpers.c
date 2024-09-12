@@ -61,12 +61,3 @@ void	free_env_var(char *var, char *content)
 	var = NULL;
 	content = NULL;
 }
-
-// void	env_remove_node(t_env *list, char *env, char *content)
-// {
-// 	if (!list)
-// 		return ;
-// 	free_env_var(list->var, list->content);
-// 	free(list);
-// 	list = NULL;
-// }

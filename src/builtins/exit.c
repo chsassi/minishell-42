@@ -21,3 +21,6 @@ void	bin_exit(char **input/* t_all *pAll */)
 		exit(0);
 	}
 }
+
+// da leggere il funzionamento di exit con le pipe
+// da leggere il funzionamento degli exit status

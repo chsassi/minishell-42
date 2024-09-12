@@ -20,8 +20,8 @@ int	main(int ac, char **av, char **envp)
 	t_env	*ptr = NULL;
 	ptr = create_envp(envp);
 	char	*input;
-	char	**mtx;
-	int 	*arr;
+	// char	**mtx;
+	// int 	*arr;
 	int		i;
 
 	(void)ac;
@@ -40,8 +40,8 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		}
 		// ptr = init(ac, av, envp);
-		mtx = create_mtx(input);
-		arr = token_arr(mtx);
+		// mtx = create_mtx(input);
+		// arr = token_arr(mtx);
 		if (!ft_strcmp(input, "env"))
 			ptr = bin_env(ptr);
 		else if (!ft_strcmp(input, "unset"))

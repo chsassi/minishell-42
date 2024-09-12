@@ -38,6 +38,9 @@ typedef struct s_all
 	unsigned char	status_code;
 }	t_all;
 
+void	swap_nodes(t_env *a, t_env *b);
+t_env	*sort_list(t_env *node);
+
 // Free
 
 void	free_env_node(t_env *node);

@@ -12,37 +12,58 @@
 
 #include "minishell.h"
 
-// t_env	*find_env_var(t_env *env, char *var)
+t_env	*find_env_var(t_env *env, char *var)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->var, var))
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void	swap_nodes(t_env *a, t_env *b)
+{
+	char	*tmp_var;
+	tmp_var = a->var;
+	char *tmp_content;
+	tmp_content = a->content;
+
+	a->var = b->var;
+	a->content = b->content;
+	a->is_hidden = b->is_hidden;
+	b->var = tmp_var;
+	b->content = tmp_content;
+	b->is_hidden = a->is_hidden;
+}
+
+// t_env	*sort_list(t_env *node)
 // {
 // 	t_env	*tmp;
 
-// 	tmp = env;
-// 	while (tmp)
+// 	tmp = node;
+// 	while (tmp && tmp->next)
 // 	{
-// 		if (!ft_strcmp(tmp->var, var))
-// 			return (tmp);
+// 		if (tmp->var[0] < tmp->next->var[0])
+// 			swap_nodes(tmp, tmp->next);
+// 		printf("%s=%s\n", tmp->var, tmp->content);
 // 		tmp = tmp->next;
 // 	}
-// 	return (NULL);
+// 	return (tmp);
 // }
 
-// t_env	*bin_export(t_all *pAll, t_env **env_list, char *var_name, char *value)
-// {
-// 	t_env *new_var;
-
-// 	new_var = find_env_var(*env_list, var_name);
-// 	if (!pAll->prompt[1])
-// 	{
-
-// 	}
-// 	if (new_var)
-// 	{
-// 		if (value)
-// 		{
-// 			free(new_var->content);
-// 			new_var->content = strdup(value);
-// 		}
-// 		new_var->is_hidden = false;
-// 	}
-// 	else
-// }
+t_env	*bin_export(char **args, t_env **env_list, char *var_name, char *value)
+{
+	t_env	*new_var;
+	int		i;
+	
+	i = 1;
+	// while per controllo degli argomenti
+	// se strchr OK con '=' -> is hidden e' false e quindi var e' sia in export che in env
+	// se is hidden e' true appare solo in export
+	// se sommo la variabile con new value join tra old var e new value
+}

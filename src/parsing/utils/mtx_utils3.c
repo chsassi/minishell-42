@@ -12,88 +12,88 @@
 
 #include "parser.h"
 
-char	*env_string(char *input, int *i)
-{
-	int	j;
-	int	len;
+// char	*env_string(char *input, int *i)
+// {
+// 	int	j;
+// 	int	len;
 
-	j = i;
-	len = 0;
-    *i++;
-    if (input[*i] != '\0')
-    {
-		if (input[*i] == '?')
-			return (ft_strdup('$?')); //Function for exit
-		else if (input[*i] == '_' || ft_isalpha(input[*i]))
-		{
-			(*i)++;
-			while (input[*i] == '_' || ft_isalnum(input[*i]))
-			    (*i)++;
-			len = (*i) - j;
-			return (ft_substr(input, input + 1, len));
-		}
-    }
-	return (NULL);
-}
+// 	j = i;
+// 	len = 0;
+//     *i++;
+//     if (input[*i] != '\0')
+//     {
+// 		if (input[*i] == '?')
+// 			return (ft_strdup('$?')); //Function for exit
+// 		else if (input[*i] == '_' || ft_isalpha(input[*i]))
+// 		{
+// 			(*i)++;
+// 			while (input[*i] == '_' || ft_isalnum(input[*i]))
+// 			    (*i)++;
+// 			len = (*i) - j;
+// 			return (ft_substr(input, input + 1, len));
+// 		}
+//     }
+// 	return (NULL);
+// }
 
-int	operator_token_length(char *input)
-{
-	int i;
+// int	operator_token_length(char *input)
+// {
+// 	int i;
 
-	i = 0;
-	if (input[i] == '>')
-	{
-		i++;
-		if (input[i] == '>')
-			i++;
-		return(i);
-	}
-	else if (input[i] == '<')
-	{
-		i++;
-		if (input[i] == '<')
-			i++;
-		return(i);
-	}
-	else
-		return(1);
-}
+// 	i = 0;
+// 	if (input[i] == '>')
+// 	{
+// 		i++;
+// 		if (input[i] == '>')
+// 			i++;
+// 		return(i);
+// 	}
+// 	else if (input[i] == '<')
+// 	{
+// 		i++;
+// 		if (input[i] == '<')
+// 			i++;
+// 		return(i);
+// 	}
+// 	else
+// 		return(1);
+// }
 
-int quote_token_length(char *input)
-{
-	int i;
+// int quote_token_length(char *input)
+// {
+// 	int i;
 
-	i = 0;
-	if (*input == '\'')
-	{
-		if (input[i + 1] == '\'')
-			return(2);
-		i++;
-		while (input[i] != '\'')
-			i++;
-		i++;
-		return(i);
-	}
-	else
-	{
-		if (input[i + 1] == '\"')
-			return(2);
-		i++;
-		while (input[i] != '\"')
-			i++;
-		i++;
-		return(i);
-	}
-	return (i);
-}
+// 	i = 0;
+// 	if (*input == '\'')
+// 	{
+// 		if (input[i + 1] == '\'')
+// 			return(2);
+// 		i++;
+// 		while (input[i] != '\'')
+// 			i++;
+// 		i++;
+// 		return(i);
+// 	}
+// 	else
+// 	{
+// 		if (input[i + 1] == '\"')
+// 			return(2);
+// 		i++;
+// 		while (input[i] != '\"')
+// 			i++;
+// 		i++;
+// 		return(i);
+// 	}
+// 	return (i);
+// }
 
-int normal_token_length(char *input)
-{
-	int	i;
+// int normal_token_length(char *input)
+// {
+// 	int	i;
 
-	i = 0;
-	while (input[i] != ' ' && !is_special_char(input[i])
-			&& !is_quote(input[i]) && input[i] != '$' && input[i])
-			i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (input[i] != ' ' && !is_special_char(input[i])
+// 			&& !is_quote(input[i]) && input[i] != '$' && input[i])
+// 			i++;
+// 	return (i);
+// }

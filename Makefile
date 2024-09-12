@@ -20,19 +20,20 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
-		./src/parsing/expander/expand_var.c \
+SRC =	./main.c \
 		./src/builtins/env.c \
-		./src/parsing/utils/mtx_utils2.c \
-		./src/parsing/utils/mtx_utils3.c \
-		./src/parsing/utils/mtx_utils.c \
-		# ./src/exec/exec.c \
-		# ./src/exec/signals.c \
-		# ./src/builtins/exit.c \
-		# ./src/builtins/unset.c \
-		# ./src/free.c \
+		./src/exec/exec.c \
+		./src/exec/signals.c \
+		./src/builtins/export.c \
+		./src/builtins/exit.c \
+		./src/builtins/unset.c \
+		./src/free.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
+		# ./src/parsing/expander/expand_var.c \
+		# ./src/parsing/utils/mtx_utils2.c \
+		# ./src/parsing/utils/mtx_utils3.c \
+		# ./src/parsing/utils/mtx_utils.c \
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
