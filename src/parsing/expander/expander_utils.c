@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/12 17:06:26 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:03:50 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ char	*env_string(char *input, int *i)
 			return (ft_substr(input, input + 1, len));
 		}
     }
-	return (NULL);
+	return ('$');
 }
