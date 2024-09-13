@@ -27,7 +27,7 @@ SRC =	./main.c \
 		./src/builtins/export.c \
 		./src/builtins/exit.c \
 		./src/builtins/unset.c \
-		./src/free.c \
+		./src/utils/free.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
 		# ./src/parsing/expander/expand_var.c \
