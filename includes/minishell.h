@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/08/01 11:54:27 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:35:15 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,7 @@ typedef struct s_all
 	unsigned char	status_code;
 }	t_all;
 
-<<<<<<< HEAD
-void	swap_nodes(t_env *a, t_env *b);
-t_env	*sort_list(t_env *node);
-
-// Free
-=======
 // Utils
->>>>>>> 6b0ff0f31d450f29126e28793f5d49b9b77ea4b8
 
 void	free_env_node(t_env *node);
 

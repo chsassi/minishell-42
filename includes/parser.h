@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/10 14:56:41 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:46:36 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 // typedef struct s_all	t_all;
 typedef struct s_env	t_env;
+
+extern int	g_exit;
 
 enum e_token
 {
@@ -50,9 +52,9 @@ void			count_normal_token(char *input, int *i, int *token);
 int				count_quote_token(char *input, int *i, int *token);
 int				count_single_quote_token(char *input, int *i, int *token);
 int				count_double_quote_token(char *input, int *i, int *token);
-void			count_env_token(char *input, int *i, int *token);
+//void			count_env_token(char *input, int *i, int *token);
 void			count_operator_token(char *input, int *i, int *token);
-int				env_token_length(char *input);
+//int				env_token_length(char *input);
 int				operator_token_length(char *input);
 int				quote_token_length(char *input);
 int				normal_token_length(char *input);

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/12 18:00:09 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:46:07 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,40 @@
 
 char	*new_exp_string(char *input_exp, t_env *envp, int *i)
 {
-	char	*exp_str;
+	char	*first_str;
+	char	*second_str;
+	char	*third_str;
+	char	*tmp_str;
 
-	exp_str = NULL;
-	exp_str = env_string(input_exp, i);
-	
+	first_str = NULL;
+	second_str = NULL;
+	third_str = NULL;
+	tmp_str = NULL;
+	if ((*i) != 0)
+		first_str = ft_substr(input_exp, 0, (*i));
+	second_str = env_string(input_exp, *i, envp);
+	third_str = ft_substr(input_exp, (*i), ft_strlen(input_exp));
+	free(input_exp);
+	tmp_str = ft_strjoin_gnl(first_str, second_str);
+	free(second_str);
+	tmp_str= ft_strjoin_gnl(tmp_str, third_str);
+	free(third_str);
+	return(tmp_str);
 }
 
 char	*expansion(char *input, t_env *envp)
 {
 	char	*input_exp;
-	char	*env_var;
 	int		i;
 
-	(void)envp;
 	i = 0;
 	input_exp = ft_strdup(input);
-	env_var = NULL;
 	while (input_exp && input_exp[i] != '\0')
 	{
 		if (input[i] == '\'')
 			i += quote_token_length(input + i);
 		if (input_exp[i] == '$')
 		{
-			env = 
 			input_exp = new_exp_string(input_exp, envp, &i);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/12 18:03:50 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:39:00 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ char	*find_env_string(char *input, t_env *envp, int len)
 	tmp = envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(*input, tmp->var, len))
+		if (!ft_strncmp(input, tmp->var, len))
 			return (tmp->content);
 		tmp = tmp->next;
 	}
 	return (ft_strdup(""));
 }
 
-char	*env_string(char *input, int *i)
+char	*env_string(char *input, int *i, t_env *envp)
 {
 	int	j;
 	int	len;
 
-	j = i;
+	j = (*i);
 	len = 0;
-    *i++;
+    (*i)++;
     if (input[*i] != '\0')
     {
 		if (input[*i] == '?')
@@ -44,8 +44,8 @@ char	*env_string(char *input, int *i)
 			while (input[*i] == '_' || ft_isalnum(input[*i]))
 			    (*i)++;
 			len = (*i) - j;
-			return (ft_substr(input, input + 1, len));
+			return (find_env_string(input + (*i), envp, len));
 		}
     }
-	return ('$');
+	return (ft_strdup("$"));
 }
