@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/08/31 15:55:46 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/09/13 18:51:16 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,14 @@ SRC =	./main.c \
 		# ./src/parsing/utils/mtx_utils2.c \
 		# ./src/parsing/utils/mtx_utils3.c \
 		# ./src/parsing/utils/mtx_utils.c \
+		# ./src/parsing/assign_tokens.c \
+		# ./src/parsing/mtx_handler.c \
+		# ./src/exec/exec.c \
+		# ./src/exec/signals.c \
+		# ./src/builtins/export.c \
+		# ./src/builtins/exit.c \
+		# ./src/builtins/unset.c \
+		# ./src/free.c \
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
