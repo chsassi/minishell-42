@@ -44,8 +44,12 @@ int	main(int ac, char **av, char **envp)
 		// arr = token_arr(mtx);
 		if (!ft_strcmp(input, "env"))
 			ptr = bin_env(ptr);
+		else if (!ft_strcmp(input, "pwd"))
+			bin_pwd();
 		else if (!ft_strcmp(input, "unset"))
 			ptr = bin_unset(&ptr, "USER");
+		else if (!ft_strcmp(input, "cd"))
+			bin_cd(ptr, input);
 		// fork_cmd_process(input, mtx, envp); //ignorare spazi nella history
 		i = 0;
 /* 		if (mtx)

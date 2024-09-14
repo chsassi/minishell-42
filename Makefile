@@ -25,6 +25,8 @@ SRC =	./main.c \
 		./src/utils/list_utils.c \
 		./src/exec/exec.c \
 		./src/exec/signals.c \
+		./src/builtins/cd.c \
+		./src/builtins/pwd.c \
 		./src/builtins/export.c \
 		./src/builtins/exit.c \
 		./src/builtins/unset.c \

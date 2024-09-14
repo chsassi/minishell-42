@@ -18,10 +18,10 @@ void	bin_pwd(void)
 
 	directory = getcwd(NULL, 0);
 	if (directory)
-		ft_printf("%s", directory);
+		ft_printf("%s\n", directory);
 	else
 	{
-		ft_putstr_fd("pwd: error retrieving current directory", 2);
+		ft_putstr_fd("pwd: error retrieving current directory\n", 2);
 		return ;
 	}
 	free(directory);
