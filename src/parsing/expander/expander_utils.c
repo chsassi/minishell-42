@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/13 18:39:00 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/14 19:37:08 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ char	*env_string(char *input, int *i, t_env *envp)
     if (input[*i] != '\0')
     {
 		if (input[*i] == '?')
-			return (ft_itoa(g_exit));
+			return (ft_itoa(123));
 		else if (input[*i] == '_' || ft_isalpha(input[*i]))
 		{
 			(*i)++;
 			while (input[*i] == '_' || ft_isalnum(input[*i]))
 			    (*i)++;
 			len = (*i) - j;
-			return (find_env_string(input + (*i), envp, len));
+			return (find_env_string(input + (j + 1), envp, len));
 		}
     }
 	return (ft_strdup("$"));

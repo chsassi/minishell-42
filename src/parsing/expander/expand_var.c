@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/13 17:46:07 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:54:18 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*new_exp_string(char *input_exp, t_env *envp, int *i)
 	tmp_str = NULL;
 	if ((*i) != 0)
 		first_str = ft_substr(input_exp, 0, (*i));
-	second_str = env_string(input_exp, *i, envp);
+	second_str = env_string(input_exp, i, envp);
 	third_str = ft_substr(input_exp, (*i), ft_strlen(input_exp));
 	free(input_exp);
 	tmp_str = ft_strjoin_gnl(first_str, second_str);
