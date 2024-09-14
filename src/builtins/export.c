@@ -12,20 +12,28 @@
 
 #include "minishell.h"
 
-// t_env	*find_env_var(t_env *env, char *var)
-//{
-// 	t_env	*tmp;
+t_env	*find_env_var(t_env *env_list, char *var)
+{
+	while (env_list)
+	{
+		if (!ft_strcmp(env_list->var, var))
+			return (env_list);
+		env_list = env_list->next;
+	}
+	return (NULL);
+}
 
-// 	tmp = node;
-// 	while (tmp && tmp->next)
-// 	{
-// 		if (tmp->var[0] < tmp->next->var[0])
-// 			swap_nodes(tmp, tmp->next);
-// 		printf("%s=%s\n", tmp->var, tmp->content);
-// 		tmp = tmp->next;
-// 	}
-// 	return (tmp);
-// }
+void	update_env_var(t_env *env_list, char *var_name, char *new_value)
+{
+	t_env	*var;
+
+	var = find_env_var(env_list, var_name);
+	if (var)
+	{
+		free(var->content);
+		var->content = strdup(new_value);
+	}
+}
 
 // t_env	*bin_export(t_all *pAll, t_env **env_list, char *var_name, char *value)
 // {}

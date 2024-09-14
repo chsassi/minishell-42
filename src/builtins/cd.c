@@ -12,31 +12,31 @@
 
 #include "minishell.h"
 
-void	bin_cd(t_env *env_list, const char *path)
+void	bin_cd(t_env *env_list, char *path)
 {
-	t_env	*pwd;
-	t_env	*oldpwd;
-	
-	pwd = find_env_var(env_list, "PWD");
-	oldpwd = find_env_var(env_list, "OLDPWD");
-	if (!ft_strcmp(path, "-"))
+	if (!path || !ft_strcmp(path, "~"))
+		cd_home(env_list);
+	else if (!ft_strcmp(path, "-"))
+		cd_oldpwd(env_list);
+	else if (!ft_strcmp(path, ".."))
+		cd_up(env_list);
+	else
 	{
-		if (!oldpwd || !oldpwd->content)
+		if (chdir(path))
 		{
-			printf("bash: cd: OLDPWD not set\n");
+			perror("bash: cd");
 			return ;
 		}
-		// stampa
-		path = oldpwd->content;
-	}
-	if (!ft_strcmp(path, ".."))
-	{
-		if (!oldpwd || !oldpwd->content)
+		update_env_var(env_list, "OLDPWD", get_env_var(env_list, "PWD"));
+		char	*new_dir;
+		new_dir = getcwd(NULL, 0);
+		if (new_dir)
 		{
-			printf("bash: cd: ..: Permission denied");
-			return ;
+			update_env_var(env_list, "PWD", new_dir);
+			free(new_dir);
 		}
-		path = oldpwd->content;
+		else
+			perror("bash: cd");
 	}
 }
 

@@ -22,6 +22,7 @@ LIBFT_MAKE = ./Libft
 
 SRC =	./main.c \
 		./src/builtins/env.c \
+		./src/utils/list_utils.c \
 		./src/exec/exec.c \
 		./src/exec/signals.c \
 		./src/builtins/export.c \
