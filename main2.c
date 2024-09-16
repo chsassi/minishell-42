@@ -21,6 +21,7 @@ int main(int ac, char **av, char **envp)
 			env = bin_env(env);
 		test = expansion(input, env);
 		printf("%s\n", test);
+		free(test);
 	}
 	return (0);
 }

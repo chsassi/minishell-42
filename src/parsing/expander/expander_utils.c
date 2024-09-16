@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/14 19:37:08 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:18:01 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*find_env_string(char *input, t_env *envp, int len)
 	while (tmp)
 	{
 		if (!ft_strncmp(input, tmp->var, len))
-			return (tmp->content);
+			return (ft_strdup(tmp->content));
 		tmp = tmp->next;
 	}
 	return (ft_strdup(""));
