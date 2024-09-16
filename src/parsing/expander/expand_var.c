@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/16 09:40:20 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:36:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ char	*new_exp_string(char *input_exp, t_env *envp, int *i)
 		first_str = ft_strdup("");
 	second_str = env_string(input_exp, i, envp);
 	third_str = ft_strdup(input_exp + (*i));
+	*i = 0;
 	result = ft_strjoin_gnl(first_str, second_str);
+	*i += ft_strlen(result);
 	free(second_str);
 	result= ft_strjoin_gnl(result, third_str);
 	free(third_str);
@@ -47,16 +49,18 @@ char	*expansion(char *input, t_env *envp)
 	input_exp = ft_strdup(input);
 	while (input_exp && input_exp[i] != '\0')
 	{
-		if (input[i] == '\'')
+		if (input_exp[i] == '\'')
 			i += quote_token_length(input + i);
 		if (input_exp[i] == '$')
 		{
-			tmp = new_exp_string(input_exp, envp, &i);
+			tmp = new_exp_string(input_exp, envp, &i);			
 			free(input_exp);
 			input_exp = tmp;
-			i = 0;
 		}
-		i++;
+		if (input_exp[i] == '\0')
+			break;
+		if(input_exp[i] != '$')
+			i++;
 	}
 	return (input_exp);
 }
