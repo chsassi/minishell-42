@@ -87,9 +87,7 @@ static char	**new_arr(char **mtx, const char *s, char c)
 char	**ft_split(const char *s, char c)
 {
 	char	**matrix;
-	size_t	j;
 
-	j = 0;
 	matrix = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!matrix || !s)
 	{
