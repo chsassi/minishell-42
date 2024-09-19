@@ -24,10 +24,11 @@ SRC =	./main.c \
 		./src/builtins/env.c \
 		./src/exec/exec.c \
 		./src/exec/signals.c \
-		./src/builtins/export.c \
 		./src/builtins/exit.c \
+		./src/utils/list_utils.c \
+		./src/utils/free.c \
 		./src/builtins/unset.c \
-		./src/free.c \
+		# ./src/builtins/export.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
 		# ./src/parsing/expander/expand_var.c \
