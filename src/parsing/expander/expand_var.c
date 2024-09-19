@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/16 15:36:42 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:21:54 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*expansion(char *input, t_env *envp)
 char	*find_env_string(char *input, t_env *envp, int len)
 {
 	t_env	*tmp;
-	char *substring;
+	char	*substring;
 	
 	tmp = envp;
 	while (tmp)
