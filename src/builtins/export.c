@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+<<<<<<< HEAD
 t_env	*find_env_var(t_env *env, char *var)
 {
 	t_env	*tmp;
@@ -67,3 +68,7 @@ t_env	*bin_export(char **args, t_env **env_list, char *var_name, char *value)
 	// se is hidden e' true appare solo in export
 	// se sommo la variabile con new value join tra old var e new value
 }
+=======
+// t_env	*bin_export(t_all *pAll, t_env **env_list, char *var_name, char *value)
+// {}
+>>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0

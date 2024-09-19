@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/08/01 11:54:27 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:35:15 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ typedef struct s_all
 
 // Utils
 
+<<<<<<< HEAD
 t_env	*new_env_node(const char *env_var);
 
 void	swap_nodes(t_env *a, t_env *b);
 t_env	*sort_list(t_env *node);
 
+=======
+>>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
 void	free_env_node(t_env *node);
 
 #endif

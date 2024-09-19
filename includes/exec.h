@@ -26,10 +26,20 @@ typedef struct s_all	t_all;
 
 // Builtins
 
-void	bin_cd(t_all *pAll);
+char	*get_env_var(t_env *env_list, char *var_name);
+void	cd_upper_dir(t_env *env_list);
+void	cd_previous_dir(t_env *env_list);
+void	cd_home(t_env *env_list);
+void	bin_cd(t_env *env_list, char *path);
+
 void	bin_echo(t_all *pAll);
 t_env	*bin_env(t_env *current_env/* t_all *pAll */);
 void	bin_exit(char **input/* t_all *pAll */);
+
+
+t_env	*find_env_var(t_env *env_list, char *var);
+void	update_env_var(t_env *env_list, char *var_name, char *new_value);
+
 void	bin_export(t_all *pAll);
 void	bin_pwd(void);
 t_env	*bin_unset(t_env **head, char *var_name);

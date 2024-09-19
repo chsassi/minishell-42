@@ -30,7 +30,7 @@ t_env	*new_env_node(const char *env_var)
 		return (free(new_var), NULL);
 	new_node->var = new_var;
 	new_node->content = ft_strdup(equal_sign + 1);
-	if (!new_node->content)
+	if (!ft_strchr(env_var, '='))
 		new_node->is_hidden = true;
 	else
 		new_node->is_hidden = false;
