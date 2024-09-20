@@ -70,10 +70,10 @@ int				*token_arr(char **mtx);
 
 //Expansion utils
 
-char			*find_env_string(char *input, t_env *envp, int len);
-char			*env_string(char *input, int *i, t_env *envp);
 
 // Expansion function
+char			*find_env_string(char *input, t_env *envp, int len);
+char			*env_string(char *input, int *i, t_env *envp);
 char			*expansion(char *input, t_env *envp);
 char			*new_exp_string(char *input_exp, t_env *envp, int *i);
 
