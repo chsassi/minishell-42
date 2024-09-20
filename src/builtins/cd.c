@@ -22,7 +22,7 @@ void	cd_home(t_env *env_list)
 		ft_putstr_fd("bash: cd:	HOME not set\n", 2);
 		return ;
 	}
-	if (chdir(home->content))le
+	if (chdir(home->content))
 	{
 		ft_putstr_fd("bash: cd: /home/user: No such file or directory", 2);
 		return ;
@@ -106,10 +106,3 @@ No such file or directory\n", 2);
 		}
 	}
 }
-
-// da controllare gli argomenti post cd nella lista t_env
-// se il new path e' valido, aggiornare PATH nella lista t_env
-
-// .. -> directory dove ci si trovava in precedenza
-// -  -> directory precedente alla corrente
-// no argomento, ~ -> home

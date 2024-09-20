@@ -12,23 +12,20 @@
 
 #include "minishell.h"
 
-int	g_exit = 0;
+int g_exit = 0;
 
-int	main(int ac, char **av, char **envp)
+int main(int ac, char **av, char **envp)
 {
-	// t_all	ptr;
 	t_env	*ptr = NULL;
-	ptr = create_envp(envp);
 	char	*input;
-	// char	**mtx;
-	// int 	*arr;
+	char	**args;
 	int		i;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
+	ptr = create_envp(envp);
 	input = NULL;
-	// ptr = (t_all){0};
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -39,26 +36,22 @@ int	main(int ac, char **av, char **envp)
 			write(1, "exit\n", 5);
 			break ;
 		}
-		// ptr = init(ac, av, envp);
-		// mtx = create_mtx(input);
-		// arr = token_arr(mtx);
-		if (!ft_strcmp(input, "env"))
+		args = ft_split(input, ' ');
+		if (!ft_strcmp(args[0], "env"))
 			ptr = bin_env(ptr);
-		else if (!ft_strcmp(input, "unset"))
-			ptr = bin_unset(&ptr, "USER");
-		// fork_cmd_process(input, mtx, envp); //ignorare spazi nella history
-		i = 0;
-/* 		if (mtx)
+		else if (!ft_strcmp(args[0], "unset"))
 		{
-			// write_mtx(mtx);
-			// while (mtx[i])
-			// {
-			// 	printf("[%i] %s\n", arr[i], mtx[i]);
-			// 	i++;
-			// }
-			if (mtx[0])
-				add_history(input);
-		} */
+			if (args[1])
+				ptr = bin_unset(&ptr, args[1]);
+		}
+		else if (!ft_strcmp(args[0], "cd"))
+		{
+			if (args[1])
+				bin_cd(ptr, args[1]);
+		}
+		else if (!ft_strcmp(args[0], "pwd"))
+			bin_pwd();
+		i = 0;
 	}
 	return (0);
 }
