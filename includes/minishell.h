@@ -36,6 +36,8 @@ typedef struct s_all
 	char			**prompt;
 	t_env			*envp;
 	unsigned char	status_code;
+	int				pipe[2];
+	int				heredoc;
 }	t_all;
 
 // Env Utils
