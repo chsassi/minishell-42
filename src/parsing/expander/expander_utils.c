@@ -64,6 +64,10 @@ char	*create_escaped_str(char *content, int *i)
 	*i = 0;
 	result = ft_strchr_gnl(front_str, escaped_str);
 	*i += ft_strlen(result);
+	free(escaped_str);
+	result = ft_strjoin_gnl(result, back_str);
+	free(back_str);
+	return(result);
 }
 
 char	*processed_str_exp(char *content)
@@ -72,10 +76,17 @@ char	*processed_str_exp(char *content)
 	int		i;
 
 	i = 0;
+	new = NULL;
 	while (content[i] != '\0')
 	{
 		if (is_escaped_char(content[i]))
-			new = 
+		{
+			new = create_escaped_str(content, &i);
+			free(content);
+		}
+		if (content[i] == '\0')
+			break;
+		i++;
 	}
+	return (new);
 }
-
