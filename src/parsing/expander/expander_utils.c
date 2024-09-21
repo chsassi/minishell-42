@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/20 12:05:35 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:44:31 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,23 @@ char	*process_escaped(char *str, int *i)
 	
 	tmp = NULL;
 	len = 0;
-	while (is_escaped_char(str[len]))
-		len++;
-	(*i) += len;
-	len = 0;
-	tmp = malloc(sizeof(char) * len + 3);
+	tmp = malloc(sizeof(char) * 4);
 	if (!tmp)
 		return (NULL);
-	tmp[len] = '*';
-	len++;
-	while (is_escaped_char(str[len]))
+	if (str[*i] == '\'')
 	{
-		tmp[len] = str[len];
-		len++;
+		tmp[len] = '\"';
+		tmp[len + 1] = str[*i];
+		tmp[len + 2] = '\"';
 	}
-	tmp[len] = '*';
-	tmp[len + 1] = '\0';
+	else
+	{
+		tmp[len] = '\'';
+		tmp[len + 1] = str[*i];
+		tmp[len + 2] = '\'';
+	}
+	tmp[len + 3] = '\0';
+	(*i) += ft_strlen(tmp);
 	return (tmp);
 }
 
@@ -59,10 +60,10 @@ char	*create_escaped_str(char *content, int *i)
 		front_str = ft_substr(content, 0, (*i));
 	else
 		front_str = ft_strdup("");
-	escaped_str = process_escaped(content[*i], *i);
+	escaped_str = process_escaped(content + (*i), i);
 	back_str = ft_strdup(content + (*i));
 	*i = 0;
-	result = ft_strchr_gnl(front_str, escaped_str);
+	result = ft_strjoin_gnl(front_str, escaped_str);
 	*i += ft_strlen(result);
 	free(escaped_str);
 	result = ft_strjoin_gnl(result, back_str);

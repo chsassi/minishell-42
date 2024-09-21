@@ -19,7 +19,7 @@ int main(int ac, char **av, char **envp)
 		}
 		if (!ft_strcmp(input, "env"))
 			env = bin_env(env);
-		test = expansion(input, env);
+		test = processed_str_exp(input);
 		printf("%s\n", test);
 		free(test);
 	}
