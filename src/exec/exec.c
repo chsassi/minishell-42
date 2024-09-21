@@ -21,7 +21,7 @@ char	**get_path_from_env(void/* t_all *pAll */)
 	if (!env_path)
 		return NULL;
 	new_path = ft_split(env_path, ':');
-	return (new_path);
+	return (new_path);	
 }
 
 //da cambiare command con ptr a struct;
@@ -87,7 +87,7 @@ void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 } */
 
 int	run_exec(t_all *pAll);
-/* {   
+/*{
 	if (!ft_strcmp(pAll->node->content, "echo"))
 		return (bin_echo(pAll));
 	else if (!ft_strcmp(pAll->node->content, "cd"))

@@ -36,18 +36,24 @@ typedef struct s_all
 	char			**prompt;
 	t_env			*envp;
 	unsigned char	status_code;
+	int				pipe[2];
+	int				heredoc;
 }	t_all;
 
-// Utils
-
-<<<<<<< HEAD
-t_env	*new_env_node(const char *env_var);
-
-void	swap_nodes(t_env *a, t_env *b);
-t_env	*sort_list(t_env *node);
-
-=======
->>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
+// Env Utils
+t_env	*find_env_var(t_env *env_list, char *var);
+void	update_env_var(t_env *env_list, char *var_name, char *new_value);
+char	*get_env_var(t_env *env_list, char *var_name);
 void	free_env_node(t_env *node);
+
+// List Utils
+t_env	*create_envp(char **envp);
+t_env	*new_env_node(const char *env_var);
+void	swap_env_nodes(t_env *a, t_env *b);
+
+// Signal Handling
+void	handle_sigquit(int signal);
+void	handle_sigint(int signal);
+void	handle_sigterm(int signal);
 
 #endif

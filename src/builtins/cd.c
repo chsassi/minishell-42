@@ -12,79 +12,9 @@
 
 #include "minishell.h"
 
-<<<<<<< HEAD
-void	bin_cd(t_env *env_list, const char *path)
-{
-	t_env	*pwd;
-	t_env	*oldpwd;
-	
-	pwd = find_env_var(env_list, "PWD");
-	oldpwd = find_env_var(env_list, "OLDPWD");
-	if (!ft_strcmp(path, "-"))
-	{
-		if (!oldpwd || !oldpwd->content)
-		{
-			printf("bash: cd: OLDPWD not set\n");
-			return ;
-		}
-		// stampa
-		path = oldpwd->content;
-	}
-	if (!ft_strcmp(path, ".."))
-	{
-		if (!oldpwd || !oldpwd->content)
-		{
-			printf("bash: cd: ..: Permission denied");
-			return ;
-		}
-		path = oldpwd->content;
-	}
-}
-
-void builtin_cd(t_env *env_list, const char *path)
-{
-	t_env *pwd_var = find_env_var(env_list, "PWD");
-	t_env *oldpwd_var = find_env_var(env_list, "OLDPWD");
-
-	if (chdir(path) != 0)
-	{
-		perror("cd");
-		return ;
-	}
-	if (pwd_var)
-	{
-		if (oldpwd_var)
-		{
-			free(oldpwd_var->content);
-			oldpwd_var->content = ft_strdup(pwd_var->content);
-		}
-		else
-		{
-			t_env *new_oldpwd;
-			new_oldpwd = (t_env *)malloc(sizeof(t_env));
-			new_oldpwd->var = ft_strdup("OLDPWD");
-			new_oldpwd->content = ft_strdup(pwd_var->content);
-			new_oldpwd->is_hidden = false;
-			new_oldpwd->next = env_list;
-			env_list = new_oldpwd;
-		}
-	}
-	char	*new_pwd;
-	new_pwd = getcwd(NULL, 0);
-	if (new_pwd)
-	{
-		update_env_var(env_list, "PWD", new_pwd);
-		free(new_pwd);
-	}
-	else
-		perror("cd: getcwd");
-}
-
-=======
 void	cd_home(t_env *env_list)
 {
 	t_env	*home;
->>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
 
 	home = find_env_var(env_list, "HOME");
 	if (!home || !home->content)
@@ -176,3 +106,4 @@ No such file or directory\n", 2);
 		}
 	}
 }
+

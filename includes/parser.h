@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/13 18:46:36 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:04:19 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 // typedef struct s_all	t_all;
 typedef struct s_env	t_env;
-
-extern int	g_exit;
 
 enum e_token
 {
@@ -70,10 +68,12 @@ int				*token_arr(char **mtx);
 
 //Expansion utils
 
-char			*find_env_string(char *input, t_env *envp, int len);
 
 // Expansion function
+char			*find_env_string(char *input, t_env *envp, int len);
+char			*env_string(char *input, int *i, t_env *envp);
 char			*expansion(char *input, t_env *envp);
+char			*new_exp_string(char *input_exp, t_env *envp, int *i);
 
 // typedef struct s_elem
 // {

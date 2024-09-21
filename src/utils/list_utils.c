@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 16:43:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/13 16:43:31 by chsassi          ###   ########.fr       */
+/*   Created: 2024/09/19 16:33:15 by chsassi           #+#    #+#             */
+/*   Updated: 2024/09/19 16:35:41 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,14 @@ t_env	*create_envp(char **envp)
 	return (head);
 }
 
-// t_env	*find_env_var(t_env *env, char *var)
-// {
-// 	while (env)
-// 	{
-// 		if (!ft_strcmp(env->var, var))
-// 			return (env);
-// 		env = env->next;
-// 	}
-// 	return (NULL);
-// }
-
-// void	update_env_var(t_env *env_list, const char *var_name, const char *new_value)
-// {
-// 	t_env	*var;
-
-// 	var = find_env_var(env_list, var_name);
-// 	if (var)
-// 	{
-// 		free(var->content);
-// 		var->content = ft_strdup(new_value);
-// 	}
-// }
+void	free_env_node(t_env *node)
+{
+	if (node)
+	{
+		free(node->var);
+		free(node->content);
+		free(node);
+		node->var = NULL;
+		node->content = NULL;
+	}
+}

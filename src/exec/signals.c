@@ -13,7 +13,6 @@
 #include "minishell.h"
 
 // ctrl-bckslsh
-/*** need to be added only when fd is 0 in execution part ***/
 void	handle_sigquit(int signal)
 {
 	const char	*message;
@@ -24,6 +23,7 @@ void	handle_sigquit(int signal)
 		if (isatty(STDIN_FILENO))
 			write(1, message, 20);
 	}
+	g_exit = 131;
 }
 
 //ctrl-c
@@ -31,9 +31,10 @@ void	handle_sigint(int signal)
 {
 	if (signal == SIGINT)
 	{
-		ioctl(STDOUT_FILENO, TIOCSTI, "\n");
 		rl_replace_line("", 0);
-		rl_on_new_line();
+		write(1, "\nminishell> ", 12);
+		rl_redisplay();
+		g_exit = 130;
 	}
 }
 

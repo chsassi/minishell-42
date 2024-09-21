@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:17:57 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/13 18:31:26 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/09/19 16:35:39 by chsassi           #+#    #+#             */
+/*   Updated: 2024/09/19 16:35:41 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-<<<<<<< HEAD
-=======
 t_env	*find_env_var(t_env *env_list, char *var)
 {
 	while (env_list)
@@ -46,20 +44,4 @@ char	*get_env_var(t_env *env_list, char *var_name)
 		env_list = env_list->next;
 	}
 	return (NULL);
-}
-
->>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
-t_env	*bin_env(t_env *env)
-{
-	t_env	*current;
-	current = env;
-
-	while (current)
-	{
-		if (!current->is_hidden)
-			printf("%s=%s\n", current->var, current->content);
-		current = current->next;
-	}
-	g_exit = 0;
-	return (env);
 }
