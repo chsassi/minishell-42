@@ -105,4 +105,5 @@ No such file or directory\n", 2);
 			free(new_dir);
 		}
 	}
+	g_exit = 0;
 }

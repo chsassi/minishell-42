@@ -23,5 +23,6 @@ t_env	*bin_env(t_env *env)
 			printf("%s=%s\n", current->var, current->content);
 		current = current->next;
 	}
+	g_exit = 0;
 	return (env);
 }

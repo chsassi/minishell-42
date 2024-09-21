@@ -21,8 +21,6 @@
 // typedef struct s_all	t_all;
 typedef struct s_env	t_env;
 
-extern int	g_exit;
-
 enum e_token
 {
 	CMD = -1,

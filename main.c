@@ -19,6 +19,7 @@ int main(int ac, char **av, char **envp)
 	t_env	*ptr = NULL;
 	char	*input;
 	char	**args;
+	int i = 0;
 
 	(void)ac;
 	(void)av;
@@ -27,8 +28,8 @@ int main(int ac, char **av, char **envp)
 	input = NULL;
 	while (1)
 	{
-		// signal(SIGQUIT, SIG_IGN);
-		// signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);
 		input = readline("minishell> ");
 		if (!input)
 		{
@@ -50,6 +51,12 @@ int main(int ac, char **av, char **envp)
 		}
 		else if (!ft_strcmp(args[0], "pwd"))
 			bin_pwd();
+		expansion(args[0], ptr);
+		while (args[i])
+		{
+			free(args[i]);
+			i++;
+		}
 	}
 	return (0);
 }

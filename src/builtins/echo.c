@@ -33,4 +33,5 @@ void	bin_echo(t_all *pAll)
 	}
 	if (nl)
 		printf("\n");
+	g_exit = 0;
 }

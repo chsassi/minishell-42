@@ -53,7 +53,7 @@ char	*expansion(char *input, t_env *envp)
 			i += quote_token_length(input + i);
 		if (input_exp[i] == '$')
 		{
-			tmp = new_exp_string(input_exp, envp, &i);			
+			tmp = new_exp_string(input_exp, envp, &i);
 			free(input_exp);
 			input_exp = tmp;
 		}
@@ -98,7 +98,7 @@ char	*env_string(char *input, int *i, t_env *envp)
 		if (input[*i] == '?')
 		{
 			(*i)++;
-			return (ft_itoa(123));
+			return (ft_itoa(g_exit));
 		}
 		else if (input[*i] == '_' || ft_isalpha(input[*i]))
 		{

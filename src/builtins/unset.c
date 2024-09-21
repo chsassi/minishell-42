@@ -28,5 +28,6 @@ t_env	*bin_unset(t_env **head, char *var_name)
 		*head = (*head)->next;
 		free_env_node(tmp);
 	}
+	g_exit = 0;
 	return (*original_head);
 }
