@@ -28,10 +28,10 @@ SRC =	./main2.c \
 		./src/parsing/utils/mtx_utils3.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
-		./src/exec/exec.c \
-		# ./src/builtins/unset.c \
-		# ./src/utils/free.c \
-		# ./src/exec/signals.c \
+		./src/builtins/unset.c \
+		./src/builtins/pwd.c \
+		./src/builtins/cd.c \
+		./src/exec/signals.c \
 		# ./src/builtins/exit.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
