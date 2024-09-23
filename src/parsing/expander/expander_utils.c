@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/19 17:00:01 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:44:31 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,34 @@ int	is_escaped_char(int c)
 	return (0);
 }
 
-char	*escped_str(char *s, int *i)
+char	*process_escaped(char *str, int *i)
 {
 	char	*tmp;
 	int		len;
 	
 	tmp = NULL;
-	len	= 0;
-	while (is_escaped_char(s[*i]))
+	len = 0;
+	tmp = malloc(sizeof(char) * 4);
+	if (!tmp)
+		return (NULL);
+	if (str[*i] == '\'')
 	{
-		(*i)++;
-		len++;
+		tmp[len] = '\"';
+		tmp[len + 1] = str[*i];
+		tmp[len + 2] = '\"';
 	}
+	else
+	{
+		tmp[len] = '\'';
+		tmp[len + 1] = str[*i];
+		tmp[len + 2] = '\'';
+	}
+	tmp[len + 3] = '\0';
+	(*i) += ft_strlen(tmp);
+	return (tmp);
 }
 
-char	*create_escaped_str(char *content, char *new, int *i)
+char	*create_escaped_str(char *content, int *i)
 {
 	char	*front_str;
 	char	*escaped_str;
@@ -47,7 +60,15 @@ char	*create_escaped_str(char *content, char *new, int *i)
 		front_str = ft_substr(content, 0, (*i));
 	else
 		front_str = ft_strdup("");
-	escaped_str = 
+	escaped_str = process_escaped(content + (*i), i);
+	back_str = ft_strdup(content + (*i));
+	*i = 0;
+	result = ft_strjoin_gnl(front_str, escaped_str);
+	*i += ft_strlen(result);
+	free(escaped_str);
+	result = ft_strjoin_gnl(result, back_str);
+	free(back_str);
+	return(result);
 }
 
 char	*processed_str_exp(char *content)
@@ -56,10 +77,17 @@ char	*processed_str_exp(char *content)
 	int		i;
 
 	i = 0;
+	new = NULL;
 	while (content[i] != '\0')
 	{
 		if (is_escaped_char(content[i]))
-			new = 
+		{
+			new = create_escaped_str(content, &i);
+			free(content);
+		}
+		if (content[i] == '\0')
+			break;
+		i++;
 	}
+	return (new);
 }
-

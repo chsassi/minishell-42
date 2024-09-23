@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/16 15:04:19 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:28:18 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ int				*token_arr(char **mtx);
 
 //Expansion utils
 
+int				is_escaped_char(int c);
+char			*process_escaped(char *str, int *i);
+char			*create_escaped_str(char *content, int *i);
+char			*processed_str_exp(char *content);
 
 // Expansion function
 char			*find_env_string(char *input, t_env *envp, int len);

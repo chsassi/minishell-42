@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/09/14 16:59:55 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/09/21 18:28:17 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,32 +21,18 @@ RM = rm -f
 LIBFT_MAKE = ./Libft
 
 SRC =	./main.c \
-		./src/builtins/env.c \
+		./src/parsing/expander/expand_var.c \
+		./src/parsing/expander/expander_utils.c \
 		./src/utils/list_utils.c \
-		./src/exec/exec.c \
-		./src/exec/signals.c \
-		./src/builtins/cd.c \
-		./src/builtins/pwd.c \
-		./src/builtins/export.c \
-		./src/builtins/exit.c \
-		./src/utils/list_utils.c \
-		./src/builtins/unset.c \
-		# ./src/builtins/export.c \
-		./src/utils/list_utils.c \
-		./src/builtins/env.c  \
-		./src/builtins/cd.c \
-		./src/builtins/pwd.c \
-		./src/utils/env_utils.c \
+		./src/builtins/env.c 	\
 		./src/parsing/utils/mtx_utils3.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/builtins/unset.c \
-		./src/parsing/expander/expand_var.c \
+		./src/builtins/pwd.c \
+		./src/builtins/cd.c \
 		./src/exec/signals.c \
-		# ./src/builtins/export.c \
-		./src/parsing/expander/expander_utils.c \
 		# ./src/builtins/exit.c \
-		# ./src/builtins/unset.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
 		# ./src/parsing/expander/expand_var.c \
