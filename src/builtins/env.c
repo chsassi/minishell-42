@@ -6,14 +6,12 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:17:57 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/13 18:31:26 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:37:50 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-<<<<<<< HEAD
-=======
 t_env	*find_env_var(t_env *env_list, char *var)
 {
 	while (env_list)
@@ -48,7 +46,6 @@ char	*get_env_var(t_env *env_list, char *var_name)
 	return (NULL);
 }
 
->>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
 t_env	*bin_env(t_env *env)
 {
 	t_env	*current;
