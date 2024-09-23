@@ -20,9 +20,9 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
-		./src/parsing/expander/expander_utils.c \
+SRC =	./main.c \
 		./src/parsing/expander/expand_var.c \
+		./src/parsing/expander/expander_utils.c \
 		./src/utils/list_utils.c \
 		./src/builtins/env.c 	\
 		./src/parsing/utils/mtx_utils3.c \
@@ -31,11 +31,14 @@ SRC =	./main2.c \
 		./src/builtins/unset.c \
 		./src/builtins/pwd.c \
 		./src/builtins/cd.c \
-		./src/exec/signals.c \
+		# ./src/exec/signals.c \
 		# ./src/builtins/exit.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
+		# ./src/parsing/expander/expand_var.c \
 		# ./src/parsing/assign_tokens.c \
+		# ./src/parsing/mtx_handler.c \
+		# ./src/exec/exec.c \
 		# ./src/exec/signals.c \
 		# ./src/builtins/export.c \
 		# ./src/builtins/exit.c \
