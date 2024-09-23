@@ -30,7 +30,6 @@ SRC =	./main.c \
 		./src/builtins/export.c \
 		./src/builtins/exit.c \
 		./src/utils/list_utils.c \
-		./src/utils/free.c \
 		./src/builtins/unset.c \
 		# ./src/builtins/export.c \
 		./src/utils/list_utils.c \

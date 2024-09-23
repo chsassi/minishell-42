@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-<<<<<<< HEAD
-=======
 t_env	*find_env_var(t_env *env_list, char *var)
 {
 	while (env_list)
@@ -48,7 +46,6 @@ char	*get_env_var(t_env *env_list, char *var_name)
 	return (NULL);
 }
 
->>>>>>> fbb75f5b0f4482de4c8334639747f254120473b0
 t_env	*bin_env(t_env *env)
 {
 	t_env	*current;
