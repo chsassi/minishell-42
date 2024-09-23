@@ -65,7 +65,7 @@ char	*create_escaped_str(char *content, int *i)
 	back_str = ft_strdup(content + (*i));
 	*i = 0;
 	result = ft_strjoin_gnl(front_str, escaped_str);
-	*i += ft_strlen(result);
+	*i += ft_strlen(result) - 1;
 	free(escaped_str);
 	result = ft_strjoin_gnl(result, back_str);
 	free(back_str);

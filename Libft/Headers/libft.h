@@ -30,6 +30,8 @@
 # include <limits.h>
 # include <sys/stat.h>
 
+typedef struct s_env	t_env;
+
 typedef struct s_dll
 {
 	int				value;
@@ -104,6 +106,7 @@ void	dll_add_back(t_dll **lst, t_dll *new);
 void	dll_add_front(t_dll **lst, t_dll *new);
 void	dll_clear(t_dll **lst);
 void	set_index(t_dll **stack);
+void	env_lstadd_back(t_env **head, t_env *new);
 t_dll	*dll_iterate(t_dll *lst);
 t_dll	*dll_last(t_dll *lst);
 t_dll	*dll_new(int value);
