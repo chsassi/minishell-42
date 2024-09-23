@@ -37,6 +37,8 @@ int main(int ac, char **av, char **envp)
 			break ;
 		}
 		args = ft_split(input, ' ');
+		if (!args[0])
+			continue ;
 		if (!ft_strcmp(args[0], "env"))
 			ptr = bin_env(ptr);
 		else if (!ft_strcmp(args[0], "unset"))

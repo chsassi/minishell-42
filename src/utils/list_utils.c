@@ -58,7 +58,7 @@ t_env	*create_envp(char **envp)
 		}
 		else
 		{
-			env_lstadd_back(head, new_node);
+			env_lstadd_back(&head, new_node);
 			current->next = new_node;
 		}
 		new_node = new_node->next;

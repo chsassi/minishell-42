@@ -62,6 +62,7 @@ SRCS			= ./Booleans/ft_isalnum.c 			\
 					./Put_ft/ft_putnbr_fd.c 		\
 					./Put_ft/ft_putstr_fd.c 		\
 					./List_ft/ft_lstadd_back.c 		\
+					./List_ft/env_list_helpers.c	\
 					./List_ft/ft_lstadd_front.c 	\
 					./List_ft/ft_lstclear.c 		\
 					./List_ft/ft_lstdelone.c 		\

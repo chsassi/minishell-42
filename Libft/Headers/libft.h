@@ -44,6 +44,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_env	t_env;
+
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -121,5 +123,8 @@ int		ft_putnbr_u(unsigned int n);
 int		ft_putaddr(uintptr_t ptr);
 int		ft_puthex(unsigned int n, const char type);
 int		ft_printf(const char *str, ...);
+
+void	env_lstadd_back(t_env **head, t_env *new);
+
 
 #endif
