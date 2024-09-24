@@ -34,6 +34,7 @@ char	*new_exp_string(char *input_exp, t_env *envp, int *i)
 	*i += ft_strlen(result);
 	free(second_str);
 	result= ft_strjoin_gnl(result, third_str);
+	result = processed_str_exp(result);
 	free(third_str);
 	return(result);
 }

@@ -28,6 +28,7 @@ typedef struct s_env
 	char			*var;
 	char			*content;
 	bool			is_hidden;
+	int				rows;
 	struct s_env	*next;
 }	t_env;
 
@@ -45,11 +46,11 @@ t_env	*find_env_var(t_env *env_list, char *var);
 void	update_env_var(t_env *env_list, char *var_name, char *new_value);
 char	*get_env_var(t_env *env_list, char *var_name);
 void	free_env_node(t_env *node);
+void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 
 // List Utils
 t_env	*create_envp(char **envp);
 t_env	*new_env_node(const char *env_var);
-void	swap_env_nodes(t_env *a, t_env *b);
 
 // Signal Handling
 void	handle_sigquit(int signal);

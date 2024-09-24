@@ -43,6 +43,7 @@ void	env_lstadd_back(t_env **head, t_env *new)
 {
 	t_env	*tmp;
 
+	tmp = NULL;
 	if (!head || !new)
 		return ;
 	if (!(*head))

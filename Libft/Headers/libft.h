@@ -30,6 +30,8 @@
 # include <limits.h>
 # include <sys/stat.h>
 
+typedef struct s_env	t_env;
+
 typedef struct s_dll
 {
 	int				value;
@@ -106,6 +108,7 @@ void	dll_add_back(t_dll **lst, t_dll *new);
 void	dll_add_front(t_dll **lst, t_dll *new);
 void	dll_clear(t_dll **lst);
 void	set_index(t_dll **stack);
+void	env_lstadd_back(t_env **head, t_env *new);
 t_dll	*dll_iterate(t_dll *lst);
 t_dll	*dll_last(t_dll *lst);
 t_dll	*dll_new(int value);
@@ -123,6 +126,7 @@ int		ft_putnbr_u(unsigned int n);
 int		ft_putaddr(uintptr_t ptr);
 int		ft_puthex(unsigned int n, const char type);
 int		ft_printf(const char *str, ...);
+void	env_lstadd_back(t_env **head, t_env *new);
 
 void	env_lstadd_back(t_env **head, t_env *new);
 
