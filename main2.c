@@ -1,14 +1,17 @@
 #include "minishell.h"
 
+int g_exit = 0;
+
 int main(int ac, char **av, char **envp)
 {
-    t_env	*env = create_envp(envp);
+    t_env	*env = NULL;
 	char	*input = NULL;
 	char	*test = NULL;
 
 
 	(void)ac;
 	(void)av;
+	env = create_envp(envp);
 	while (1)
 	{
 		input = readline("Minishell-> ");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:15 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/19 16:35:41 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/09/24 15:39:58 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_env	*new_env_node(const char *env_var)
 
 t_env	*create_envp(char **envp)
 {
-	t_env	*head;
+	t_env	*head = NULL;
 	t_env	*current = NULL;
 	t_env	*new_node = NULL;
 	int		rows;
