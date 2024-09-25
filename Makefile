@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/09/24 07:55:56 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/09/25 10:41:57 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
-		./src/parsing/expander/expand_var.c \
-		./src/parsing/expander/expander_utils.c \
+SRC =	./main.c \
 		./src/utils/list_utils.c \
 		./src/builtins/env.c 	\
 		./src/parsing/utils/mtx_utils3.c \

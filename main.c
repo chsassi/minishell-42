@@ -51,7 +51,7 @@ int main(int ac, char **av, char **envp)
 		}
 		else if (!ft_strcmp(args[0], "pwd"))
 			bin_pwd();
-		expansion(args[0], ptr);
+		// expansion(args[0], ptr);
 		while (args[i])
 		{
 			free(args[i]);

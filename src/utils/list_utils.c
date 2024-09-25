@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:33:15 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/24 15:39:58 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:41:06 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,37 @@ t_env	*new_env_node(const char *env_var)
 	return (new_node);
 }
 
+void	set_env_head(t_env **head, t_env *new_node, t_env **current)
+{
+	if (!(*head))
+	{
+		(*head) = new_node;
+		(*current) = (*head);
+	}
+	else
+	{
+		(*current)->next = new_node;
+		(*current) = new_node;
+	}
+}
+
 t_env	*create_envp(char **envp)
 {
-	t_env	*head = NULL;
-	t_env	*current = NULL;
-	t_env	*new_node = NULL;
+	t_env	*head;
+	t_env	*current;
+	t_env	*new_node;
 	int		rows;
 
 	rows = 0;
+	head = NULL;
+	current = NULL;
+	new_node = NULL;
 	while (envp[rows])
 	{
 		new_node = new_env_node(envp[rows]);
 		if (!new_node)
 			return (free(new_node), NULL);
-		if (!head)
-		{
-			head = new_node;
-			current = head;
-		}
-		else
-		{
-			env_lstadd_back(&head, new_node);
-			current->next = new_node;
-		}
+		set_env_head(&head, new_node, &current);
 		new_node = new_node->next;
 		rows++;
 	}

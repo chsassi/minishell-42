@@ -23,7 +23,7 @@ char	*ft_strchr(const char *str, int c)
 	i = 0;
 	while (i <= len_str)
 	{
-		if (str2[i] == (char)c)
+		if (str2 && str2[i] == (char)c)
 			return (&str2[i]);
 		i++;
 	}
