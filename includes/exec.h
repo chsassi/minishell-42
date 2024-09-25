@@ -56,4 +56,7 @@ void	fork_cmd_process(char *cmd, char **mtx, char **envp);
 void	execute_command(t_all *pAll);
 int		run_exec(t_all *pAll);
 
+// Heredoc
+void	handle_heredoc(char *delim/* , int *pipe_fd */);
+
 #endif

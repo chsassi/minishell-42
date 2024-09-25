@@ -29,7 +29,8 @@ SRC =	./main.c \
 		./src/builtins/unset.c \
 		./src/builtins/pwd.c \
 		./src/builtins/cd.c \
-		# ./src/exec/signals.c \
+		./src/exec/heredoc.c \
+		./src/exec/signals.c \
 		# ./src/builtins/exit.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
