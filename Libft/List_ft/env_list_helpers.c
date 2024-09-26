@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:06:44 by chsassi           #+#    #+#             */
-/*   Updated: 2024/08/25 16:02:26 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:19:50 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	free_env_node(t_env *node)
 	if (node)
 	{
 		free(node->var);
-		free(node->content);
-		free(node);
 		node->var = NULL;
+		free(node->content);
 		node->content = NULL;
+		free(node);
 	}
 }
 

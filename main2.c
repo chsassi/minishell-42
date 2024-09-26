@@ -20,7 +20,7 @@ int main(int ac, char **av, char **envp)
 		if (!input)
 		{
 			write(1, "exit\n", 5);
-			free(env);
+			free_env_list(env);
 			break ;
 		}
 		if (!ft_strcmp(input, "env"))
@@ -37,7 +37,6 @@ int main(int ac, char **av, char **envp)
 			free_mtx(mtx);
 			free(test);
 		}
-		
 	}
 	return (0);
 }
