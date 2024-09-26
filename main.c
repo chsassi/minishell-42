@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 08:50:03 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/31 16:44:32 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:22:30 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(int ac, char **av, char **envp)
 	t_env	*ptr = NULL;
 	char	*input;
 	char	**args;
+	int i = 0;
 
 	(void)ac;
 	(void)av;
@@ -33,6 +34,7 @@ int main(int ac, char **av, char **envp)
 		if (!input)
 		{
 			write(1, "exit\n", 5);
+			free_env_list(ptr);
 			break ;
 		}
 		args = ft_split(input, ' ');
@@ -54,8 +56,15 @@ int main(int ac, char **av, char **envp)
 			bin_pwd();
 		else if (!ft_strcmp(args[0], "<<"))
 			handle_heredoc(args[1]);
-		fork_cmd_process(args[0], args, envp);
+		//fork_cmd_process(args[0], args, envp);
 		expansion(args[0], ptr);
+		while(args[i])
+		{
+			free(args[i]);
+			i++;
+		}
+		free(args);
+		
 	}
 	return (0);
 }
