@@ -56,10 +56,7 @@ int main(int ac, char **av, char **envp)
 			bin_pwd();
 		else if (!ft_strcmp(args[0], "<<"))
 			handle_heredoc(args[1]);
-<<<<<<< HEAD
-=======
 		//fork_cmd_process(args[0], args, envp);
->>>>>>> c8f866307d36999ca31895a66072143a916faec3
 		expansion(args[0], ptr);
 		while(args[i])
 		{
