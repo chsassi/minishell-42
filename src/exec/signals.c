@@ -39,11 +39,11 @@ void	handle_sigint(int signal)
 }
 
 //ctrl-d
-void	handle_sigterm(int signal)
+/* void	handle_sigterm(int signal)
 {
 	if (signal == SIGTERM)
 	{
 		if (isatty(STDIN_FILENO))
 			exit(0);
 	}
-}
+} */

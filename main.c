@@ -19,7 +19,6 @@ int main(int ac, char **av, char **envp)
 	t_env	*ptr = NULL;
 	char	*input;
 	char	**args;
-	int i = 0;
 
 	(void)ac;
 	(void)av;
@@ -55,12 +54,7 @@ int main(int ac, char **av, char **envp)
 			bin_pwd();
 		else if (!ft_strcmp(args[0], "<<"))
 			handle_heredoc(args[1]);
-		// expansion(args[0], ptr);
-		while (args[i])
-		{
-			free(args[i]);
-			i++;
-		}
+		expansion(args[0], ptr);
 	}
 	return (0);
 }

@@ -21,8 +21,13 @@ void	handle_heredoc(char *delim)
 	len = 0;
 	while (1)
 	{
-		write(1, "> ", 1);
+		write(1, "> ", 2);
 		line = gnl(STDIN_FILENO);
+		if (!line)
+		{
+			write(1, "\n", 1);
+			break ;
+		}
 		len = ft_strlen(line);
 		if (line[len - 1] == '\n')
 			line[len - 1] = '\0';

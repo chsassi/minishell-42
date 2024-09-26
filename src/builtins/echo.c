@@ -35,3 +35,4 @@ void	bin_echo(t_all *pAll)
 		printf("\n");
 	g_exit = 0;
 }
+//da implementare il caso con "$?"
