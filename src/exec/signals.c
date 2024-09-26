@@ -6,25 +6,25 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:53:07 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 09:53:09 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/09/25 11:51:08 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // ctrl-bckslsh
-void	handle_sigquit(int signal)
-{
-	const char	*message;
+// void	handle_sigquit(int signal)
+// {
+// 	const char	*message;
 
-	message = "^\\Quit (core dumped)\n";
-	if (signal == SIGQUIT)
-	{
-		if (isatty(STDIN_FILENO))
-			write(1, message, 20);
-	}
-	g_exit = 131;
-}
+// 	message = "^\\Quit (core dumped)\n";
+// 	if (signal == SIGQUIT)
+// 	{
+// 		if (isatty(STDIN_FILENO))
+// 			write(1, message, 21);
+// 		g_exit = 131;
+// 	}
+// }
 
 //ctrl-c
 void	handle_sigint(int signal)
@@ -38,12 +38,3 @@ void	handle_sigint(int signal)
 	}
 }
 
-//ctrl-d
-void	handle_sigterm(int signal)
-{
-	if (signal == SIGTERM)
-	{
-		if (isatty(STDIN_FILENO))
-			exit(0);
-	}
-}

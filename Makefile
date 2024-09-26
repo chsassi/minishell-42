@@ -20,24 +20,24 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
+SRC =	./main.c \
 		./src/utils/list_utils.c \
 		./src/builtins/env.c 	\
+		./src/builtins/pwd.c \
+		./src/builtins/cd.c \
+		./src/builtins/unset.c \
+		./src/builtins/exit.c \
+		./src/exec/heredoc.c \
 		./src/parsing/expander/expand_var.c \
 		./src/parsing/expander/expander_utils.c \
+		./src/exec/signals.c \
 		./src/parsing/utils/mtx_utils3.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
 		./src/parsing/mtx_handler.c \
-		# ./src/builtins/unset.c \
-		# ./src/builtins/pwd.c \
-		# ./src/builtins/cd.c \
-		# ./src/exec/signals.c \
-		# ./src/builtins/exit.c \
-		# ./src/parsing/mtx_handler.c \
-		# ./src/parsing/assign_tokens.c \
-		# ./src/exec/exec.c \
-		# ./src/builtins/export.c \
+		./src/parsing/assign_tokens.c \
+		./src/exec/exec.c \
+		./src/builtins/export.c \
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)

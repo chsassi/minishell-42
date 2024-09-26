@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 09:52:27 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 10:19:00 by chsassi          ###   ########.fr       */
+/*   Created: 2024/09/25 11:51:07 by chsassi           #+#    #+#             */
+/*   Updated: 2024/09/25 11:51:18 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bin_echo(t_all *pAll)
+void	handle_heredoc(char *delim)
 {
-	int	i;
-	int	nl;
+	char	*line;
+	int		len;
+	int		i;
 
-	i = 1;
-	nl = 1;
-	if (pAll->prompt[1] && !ft_strcmp(pAll->prompt[1], "-n"))
+	line = NULL;
+	len = 0;
+	i = 0;
+	while (1)
 	{
-		nl = 0;
-		i = 2;
-	}
-	while (pAll->prompt[i])
-	{
-		printf("%s", pAll->prompt[i]);
-		if (pAll->prompt[i + 1])
-			printf(" ");
 		i++;
+		write(1, "> ", 2);
+		line = gnl(STDIN_FILENO);
+		if (!line)
+		{
+			printf("bash: warning: here-document at line %i \
+delimited by end-of-file (wanted `%s')\n", i, delim);
+			break ;
+		}
+		len = ft_strlen(line);
+		if (line[len - 1] == '\n')
+			line[len - 1] = '\0';
+		if (!ft_strcmp(line, delim))
+			break ;
 	}
-	if (nl)
-		printf("\n");
+	free(line);
 	g_exit = 0;
 }
-//da implementare il caso con "$?"

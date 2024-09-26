@@ -19,7 +19,6 @@ int main(int ac, char **av, char **envp)
 	t_env	*ptr = NULL;
 	char	*input;
 	char	**args;
-	int i = 0;
 
 	(void)ac;
 	(void)av;
@@ -37,6 +36,8 @@ int main(int ac, char **av, char **envp)
 			break ;
 		}
 		args = ft_split(input, ' ');
+		if (!args[0])
+			continue ;
 		if (!ft_strcmp(args[0], "env"))
 			ptr = bin_env(ptr);
 		else if (!ft_strcmp(args[0], "unset"))
@@ -51,12 +52,10 @@ int main(int ac, char **av, char **envp)
 		}
 		else if (!ft_strcmp(args[0], "pwd"))
 			bin_pwd();
-		// expansion(args[0], ptr);
-		while (args[i])
-		{
-			free(args[i]);
-			i++;
-		}
+		else if (!ft_strcmp(args[0], "<<"))
+			handle_heredoc(args[1]);
+		fork_cmd_process(args[0], args, envp);
+		expansion(args[0], ptr);
 	}
 	return (0);
 }

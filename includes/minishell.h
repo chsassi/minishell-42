@@ -38,19 +38,18 @@ typedef struct s_all
 	t_env			*envp;
 	unsigned char	status_code;
 	int				pipe[2];
-	int				heredoc;
 }	t_all;
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);
 void	update_env_var(t_env *env_list, char *var_name, char *new_value);
 char	*get_env_var(t_env *env_list, char *var_name);
-void	free_env_node(t_env *node);
-void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 
 // List Utils
+void	set_var_content(t_env *new_node, char *equal_sign);
+t_env	*new_env_node(char *env_var);
+void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 t_env	*create_envp(char **envp);
-t_env	*new_env_node(const char *env_var);
 
 // Signal Handling
 void	handle_sigquit(int signal);

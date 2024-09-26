@@ -13,52 +13,34 @@
 #include "../../includes/minishell.h"
 #include "libft.h"
 
-t_env	*env_new_node(char *var, char *content)
-{
-	t_env	*new;
-
-	new = (t_env *)malloc(sizeof(t_env));
-	if (!new)
-		return (NULL);
-	new->var = ft_strdup(var);
-	new->content = ft_strdup(content);
-	new->next = NULL;
-	return (new);
-}
-
-t_env	*env_last(t_env *list)
-{
-	if (!list)
-		return (NULL);
-	while (list)
-	{
-		if (list->next == NULL)
-			return (list);
-		list = list->next;
-	}
-	return (list);
-}
-
-void	env_lstadd_back(t_env **head, t_env *new)
-{
-	t_env	*tmp;
-
-	tmp = NULL;
-	if (!head || !new)
-		return ;
-	if (!(*head))
-	{
-		*head = new;
-		return ;
-	}
-	tmp = env_last(*head);
-	tmp->next = new;
-}
-
 void	free_env_var(char *var, char *content)
 {
 	free(var);
 	free(content);
 	var = NULL;
 	content = NULL;
+}
+
+void	free_env_node(t_env *node)
+{
+	if (node)
+	{
+		free(node->var);
+		free(node->content);
+		free(node);
+		node->var = NULL;
+		node->content = NULL;
+	}
+}
+
+void	free_env_list(t_env *head)
+{
+	t_env *tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free_env_node(tmp);
+	}
 }
