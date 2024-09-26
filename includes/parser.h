@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/21 16:28:18 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:03:33 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ enum e_token
 enum e_state
 {
 	IN_DQUOTE,
-	IN_QUOTE,
 	GENERAL,
 };
 
@@ -77,7 +76,8 @@ char			*processed_str_exp(char *content);
 char			*find_env_string(char *input, t_env *envp, int len);
 char			*env_string(char *input, int *i, t_env *envp);
 char			*expansion(char *input, t_env *envp);
-char			*new_exp_string(char *input_exp, t_env *envp, int *i);
+char			*exp_string(char *inp, t_env *env, int *i, enum e_state state);
+void			set_state(enum e_state *state);
 
 // typedef struct s_elem
 // {

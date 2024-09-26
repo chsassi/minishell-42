@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:33:54 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/21 17:39:56 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:03:57 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int	count_number_of_tokens(char *input)
 	check = 0;
 	while (input && input[i])
 	{
-		if (input[i] == '$')
-			count_env_token(input, &i, &token);
-		else if (is_special_char(input[i]))
+		if (is_special_char(input[i]))
 			count_operator_token(input, &i, &token);
 		else if (is_quote(input[i]))
 		{
@@ -45,9 +43,7 @@ int	token_length(char *input)
 {
 	if (*input)
 	{
-		if (*input == '$')
-			return (env_token_length(input));
-		else if (is_special_char(*input))
+		if (is_special_char(*input))
 			return (operator_token_length(input));
 		else if (is_quote(*input))
 			return(quote_token_length(input));

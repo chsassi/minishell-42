@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:49:01 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/19 09:06:47 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:03:26 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_special_char(char c)
 int	is_normal_letter(char *input, int i)
 {
 	if (input[i] != ' ' && !is_special_char(input[i])
-		&& !is_quote(input[i]) && input[i] != '$')
+		&& !is_quote(input[i]))
 		return (1);
 	return (0);
 }
