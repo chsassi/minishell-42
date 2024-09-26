@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:11:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/29 11:42:45 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:54:08 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	assign_token(char *str)
 			return (DREDIR_OUT);
 		else if (*str == '>')
 			return (REDIR_OUT);
-		else if (*str == '$')
-			return (ENV);
 		return (CMD);
 }
 

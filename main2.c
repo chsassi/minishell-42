@@ -7,6 +7,7 @@ int main(int ac, char **av, char **envp)
     t_env	*env = NULL;
 	char	*input = NULL;
 	char	*test = NULL;
+	char	**mtx = NULL;
 
 
 	(void)ac;
@@ -23,7 +24,8 @@ int main(int ac, char **av, char **envp)
 		if (!ft_strcmp(input, "env"))
 			env = bin_env(env);
 		test = expansion(input, env);
-		printf("%s\n", test);
+		mtx = create_mtx(test);
+		write_mtx(mtx);
 		free(test);
 	}
 	return (0);

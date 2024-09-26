@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/09/25 10:51:56 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/09/26 12:11:09 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC =	./main2.c \
 		./src/parsing/utils/mtx_utils3.c \
 		./src/parsing/utils/mtx_utils.c \
 		./src/parsing/utils/mtx_utils2.c \
+		./src/parsing/mtx_handler.c \
 		# ./src/builtins/unset.c \
 		# ./src/builtins/pwd.c \
 		# ./src/builtins/cd.c \
@@ -35,7 +36,6 @@ SRC =	./main2.c \
 		# ./src/builtins/exit.c \
 		# ./src/parsing/mtx_handler.c \
 		# ./src/parsing/assign_tokens.c \
-		# ./src/parsing/mtx_handler.c \
 		# ./src/exec/exec.c \
 		# ./src/builtins/export.c \
 
