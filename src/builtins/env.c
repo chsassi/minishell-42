@@ -49,8 +49,8 @@ char	*get_env_var(t_env *env_list, char *var_name)
 t_env	*bin_env(t_env *env)
 {
 	t_env	*current;
-	current = env;
 
+	current = env;
 	while (current)
 	{
 		if (!current->is_hidden)

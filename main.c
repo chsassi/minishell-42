@@ -54,7 +54,6 @@ int main(int ac, char **av, char **envp)
 			bin_pwd();
 		else if (!ft_strcmp(args[0], "<<"))
 			handle_heredoc(args[1]);
-		fork_cmd_process(args[0], args, envp);
 		expansion(args[0], ptr);
 	}
 	return (0);

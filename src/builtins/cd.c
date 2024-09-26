@@ -78,11 +78,28 @@ void	cd_upper_dir(t_env *env_list)
 	}
 }
 
-void	bin_cd(t_env *env_list, char *path)
+void	cd_from_path(t_env *env_list, char *path)
 {
 	char	*new_dir;
 
 	new_dir = NULL;
+	if (chdir(path))
+	{
+		ft_putstr_fd("bash: cd: /absolute/path: \
+No such file or directory\n", 2);
+		return ;
+	}
+	update_env_var(env_list, "OLDPWD", get_env_var(env_list, "PWD"));
+	new_dir = getcwd(NULL, 0);
+	if (new_dir)
+	{
+		update_env_var(env_list, "PWD", new_dir);
+		free(new_dir);
+	}
+}
+
+void	bin_cd(t_env *env_list, char *path)
+{
 	if (!path || !ft_strcmp(path, "~"))
 		cd_home(env_list);
 	else if (!ft_strcmp(path, "-"))
@@ -90,20 +107,5 @@ void	bin_cd(t_env *env_list, char *path)
 	else if (!ft_strcmp(path, ".."))
 		cd_upper_dir(env_list);
 	else
-	{
-		if (chdir(path))
-		{
-			ft_putstr_fd("bash: cd: /absolute/path: \
-No such file or directory\n", 2);
-			return ;
-		}
-		update_env_var(env_list, "OLDPWD", get_env_var(env_list, "PWD"));
-		new_dir = getcwd(NULL, 0);
-		if (new_dir)
-		{
-			update_env_var(env_list, "PWD", new_dir);
-			free(new_dir);
-		}
-	}
+		cd_from_path(env_list, path);
 }
-

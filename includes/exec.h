@@ -28,6 +28,7 @@ typedef struct s_all	t_all;
 void	cd_home(t_env *env_list);
 void	cd_previous_dir(t_env *env_list);
 void	cd_upper_dir(t_env *env_list);
+void	cd_from_path(t_env *env_list, char *path);
 void	bin_cd(t_env *env_list, char *path);
 
 // ECHO
