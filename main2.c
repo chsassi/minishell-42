@@ -8,6 +8,7 @@ int main(int ac, char **av, char **envp)
 	char	*input = NULL;
 	char	*test = NULL;
 	char	**mtx = NULL;
+	int		*tokens = NULL;
 
 
 	(void)ac;
@@ -19,14 +20,24 @@ int main(int ac, char **av, char **envp)
 		if (!input)
 		{
 			write(1, "exit\n", 5);
+			free(env);
 			break ;
 		}
 		if (!ft_strcmp(input, "env"))
 			env = bin_env(env);
 		test = expansion(input, env);
 		mtx = create_mtx(test);
-		write_mtx(mtx);
-		free(test);
+		if (!mtx)
+			free(test);
+		else
+		{
+			tokens = token_arr(mtx);
+			write_mtx2(mtx, tokens);
+			free(tokens);
+			free_mtx(mtx);
+			free(test);
+		}
+		
 	}
 	return (0);
 }

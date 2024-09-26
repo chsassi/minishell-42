@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:33:54 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 12:03:57 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:03:24 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char	**create_mtx(char *input)
 	int		number_of_tokens;
 
 	i = 0;
+	mtx = NULL;
 	number_of_tokens = count_number_of_tokens(input);
 	if (number_of_tokens == -1)
 		return (ft_putstr_fd("Closing quotes missing\n", 2), NULL);

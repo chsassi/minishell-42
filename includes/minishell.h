@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/13 18:35:15 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:28:56 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,10 @@ t_env	*new_env_node(const char *env_var);
 void	handle_sigquit(int signal);
 void	handle_sigint(int signal);
 void	handle_sigterm(int signal);
+
+// Waste
+
+void	write_mtx2(char **mtx, int *arr);
+char 	*arr_int_str(int i);
 
 #endif
