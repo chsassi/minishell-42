@@ -126,9 +126,9 @@ int		ft_putnbr_u(unsigned int n);
 int		ft_putaddr(uintptr_t ptr);
 int		ft_puthex(unsigned int n, const char type);
 int		ft_printf(const char *str, ...);
-void	env_lstadd_back(t_env **head, t_env *new);
-
-void	env_lstadd_back(t_env **head, t_env *new);
+void	free_env_var(char *var, char *content);
+void	free_env_node(t_env *node);
+void	free_env_list(t_env *head);
 
 
 #endif

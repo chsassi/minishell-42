@@ -16,16 +16,20 @@ void	handle_heredoc(char *delim)
 {
 	char	*line;
 	int		len;
-	
+	int		i;
+
 	line = NULL;
 	len = 0;
+	i = 0;
 	while (1)
 	{
+		i++;
 		write(1, "> ", 2);
 		line = gnl(STDIN_FILENO);
 		if (!line)
 		{
-			write(1, "\n", 1);
+			printf("bash: warning: here-document at line %i \
+delimited by end-of-file (wanted `%s')\n", i, delim);
 			break ;
 		}
 		len = ft_strlen(line);
@@ -35,4 +39,5 @@ void	handle_heredoc(char *delim)
 			break ;
 	}
 	free(line);
+	g_exit = 0;
 }

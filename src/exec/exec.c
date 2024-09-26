@@ -66,26 +66,6 @@ void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 	free(/*path*/NULL);
 }
 
-/* void	execute_command(t_all *pAll)
-{
-	char	**paths;
-	char	*cmd_path;
-
-	if (run_exec(pAll))
-		return ;
-	paths = get_path_from_env();
-	cmd_path = find_executable_in_env(paths, pAll->node->content);
-	if (!cmd_path)
-	{
-		ft_putstr_fd("command not found: ", 2);
-		ft_putendl_fd(pAll->node->content, 2);
-		g_exit = 127;
-	}
-	exec_cmd(cmd_path, pAll->node->args, pAll->envp);
-	free(cmd_path);
-	ft_free_matrix(paths);
-} */
-
 int	run_exec(t_all *pAll);
 /*{
 	if (!ft_strcmp(pAll->node->content, "echo"))
@@ -102,6 +82,7 @@ int	run_exec(t_all *pAll);
 		return (bin_env(pAll));
 	else if (!ft_strcmp(pAll->node->content, "exit"))
 		return (bin_exit());
+	else if ()
 	else
 		return (0); 
 } */
