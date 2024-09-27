@@ -2,8 +2,8 @@
 
 char *arr_int_str(int i)
 {
-    if (i == CMD)
-        return(ft_strdup("CMD"));
+    if (i == WORD)
+        return(ft_strdup("WORD"));
     else if(i == QUOTE)
         return(ft_strdup("QUOTE"));
     else if(i == DOUBLE_QUOTE)
@@ -38,7 +38,7 @@ void	write_mtx2(char **mtx, int *arr)
 	while (mtx[i])
 	{
         s = arr_int_str(arr[i]);
-		printf("[ %s ]=[ %s ]\n", mtx[i], s);
+		printf("[ %s ]__[ %s ]\n", mtx[i], s);
         free(s);
 		i++;
 	}
