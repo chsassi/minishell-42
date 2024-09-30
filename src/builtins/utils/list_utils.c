@@ -28,25 +28,24 @@ void	set_var_content(t_env *new_node, char *equal_sign)
 
 t_env	*new_env_node(char *env_var)
 {
-	t_env *new_node;
-	char *equal_sign;
-	int equal_sign_pos;
-	char *new_var;
+	t_env	*new_node;
+	char	*equal_sign;
+	int		var_len;
 
+	var_len = 0;
 	equal_sign = ft_strchr(env_var, '=');
-	if (!equal_sign)
-		return (NULL);
-	equal_sign_pos = ft_strlen_until(env_var, '=');
-	new_var = (char *)ft_calloc(equal_sign_pos + 1, sizeof(char));
-	if (!new_var)
-		return (NULL);
-	ft_strlcpy(new_var, env_var, equal_sign_pos + 1);
+	if (equal_sign)
+		var_len = ft_strlen_until(env_var, '=');
+	else
+		var_len = ft_strlen(env_var);
 	new_node = (t_env *)ft_calloc(1, sizeof(t_env));
 	if (!new_node)
-		return (free(new_var), NULL);
-	new_node->var = new_var;
+		return (NULL);
+	new_node->var = (char *)ft_calloc(var_len + 1, sizeof(char));
+	if (!new_node->var)
+		return (free(new_node), NULL);
+	ft_strlcpy(new_node->var, env_var, var_len + 1);
 	set_var_content(new_node, equal_sign);
-	new_node->next = NULL;
 	return (new_node);
 }
 
