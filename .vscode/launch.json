@@ -8,7 +8,7 @@
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
-        "environment": [{"name": "ONE", "value": "a | a"}, {"name": "TWO", "value": "b < b"}],
+        "environment": [{"name": "ONE", "value": "a'|     a'"}, {"name": "TWO", "value": "b < b"}],
         "externalConsole": false,
         "MIMode": "gdb",
         "setupCommands": [
