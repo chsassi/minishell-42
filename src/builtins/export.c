@@ -12,5 +12,25 @@
 
 #include "minishell.h"
 
-// t_env	*bin_export(t_all *pAll, t_env **env_list, char *var_name, char *value)
-// {}
+void	bin_export(t_env **env_list, char **args)
+{
+	t_env	*current;
+	int		i;
+
+	if (!args[1])
+	{
+		current = *env_list;
+		while (current)
+		{
+			print_export(current);
+			current = current->next;
+		}
+		return ;
+	}
+	i = 1;
+	while (args[i])
+	{
+		export_var(env_list, args[i]);
+		i++;
+	}
+}

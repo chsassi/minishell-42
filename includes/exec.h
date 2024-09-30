@@ -24,29 +24,17 @@
 typedef struct s_env	t_env;
 typedef struct s_all	t_all;
 
-// CD
+// Builtins
 void	cd_home(t_env *env_list);
 void	cd_previous_dir(t_env *env_list);
 void	cd_upper_dir(t_env *env_list);
 void	cd_from_path(t_env *env_list, char *path);
 void	bin_cd(t_env *env_list, char *path);
-
-// ECHO
 void	bin_echo(t_all *pAll);
-
-// ENV
 t_env	*bin_env(t_env *current_env/* t_all *pAll */);
-
-// EXIT
 void	bin_exit(char **input/* t_all *pAll */);
-
-// EXPORT
-void	bin_export(t_all *pAll);
-
-// PWD
+void	bin_export(t_env **env_list, char **args);
 void	bin_pwd(void);
-
-// UNSET
 t_env	*bin_unset(t_env **head, char *var_name);
 
 // Exec
@@ -57,5 +45,28 @@ int		run_exec(t_all *pAll);
 
 // Heredoc
 void	handle_heredoc(char *delim);
+
+// Env Utils
+t_env	*find_env_var(t_env *env_list, char *var);
+void	update_env_var(t_env *env_list, char *var_name, char *new_value);
+char	*get_env_var(t_env *env_list, char *var_name);
+void	print_env(t_env *var);
+
+// Export Utils
+void	add_node_to_list(t_env **env_list, t_env *new_node);
+void	handle_env_var(t_env **env_list, t_env *existing_var, char *var_name, char *equal_sign);
+void	export_var(t_env **env_list, char *arg);
+void	print_export(t_env *var);
+
+// List Utils
+void	set_var_content(t_env *new_node, char *equal_sign);
+t_env	*new_env_node(char *env_var);
+void	set_env_head(t_env **head, t_env *new_node, t_env **current);
+t_env	*create_envp(char **envp);
+
+// Signal Handling
+void	handle_sigquit(int signal);
+void	handle_sigint(int signal);
+void	handle_sigterm(int signal);
 
 #endif

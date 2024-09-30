@@ -37,4 +37,3 @@ void	handle_sigint(int signal)
 		g_exit = 130;
 	}
 }
-

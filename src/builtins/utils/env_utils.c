@@ -45,3 +45,14 @@ char	*get_env_var(t_env *env_list, char *var_name)
 	}
 	return (NULL);
 }
+
+void	print_env(t_env *var)
+{
+	if (!var->is_hidden)
+	{
+		printf("%s=", var->var);
+		if (var->content)
+			printf("%s", var->content);
+		printf("\n");
+	}
+}
