@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 14:35:06 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:01:04 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_env	t_env;
 
 enum e_token
 {
-	CMD = -1,
+	WORD = -1,
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '\"',
 	ENV = '$',

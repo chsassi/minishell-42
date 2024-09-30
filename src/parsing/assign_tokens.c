@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:11:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 11:54:08 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:01:09 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	assign_token(char *str)
 			return (DREDIR_OUT);
 		else if (*str == '>')
 			return (REDIR_OUT);
-		return (CMD);
+		return (WORD);
 }
 
 int	*token_arr(char **mtx)
