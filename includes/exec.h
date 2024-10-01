@@ -80,8 +80,8 @@ void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 t_env	*create_envp(char **envp);
 
 // Signal Handling
-void	handle_sigquit(int signal);
+
+// void	handle_sigquit(int signal);
 void	handle_sigint(int signal);
-void	handle_sigterm(int signal);
 
 #endif

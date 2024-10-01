@@ -41,7 +41,7 @@ int	process_input(char *input, t_env **env, int fd[2])
 	}
 	check_redirection(args, fd);
 	run_builtin(args, env);
-	expansion(args[0], *env);
+	// expansion(args[0], *env);
 	restore_fds(fd);
 	free_mtx(args);
 	return (1);

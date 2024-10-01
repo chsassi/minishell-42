@@ -18,14 +18,14 @@ int	main(int ac, char **av, char **envp)
 {
 	t_env	*ptr;
 	char	*input;
-	char **envmtx;
+	// char **envmtx;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
 	ptr = create_envp(envp);
-	envmtx = create_env_mtx(ptr);
-	write_mtx(envmtx);
+	// envmtx = create_env_mtx(ptr);
+	// write_mtx(envmtx);
 	input = NULL;
 	minishell_loop(input, ptr);
 	return (0);
