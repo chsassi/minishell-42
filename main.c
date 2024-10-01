@@ -12,17 +12,20 @@
 
 #include "minishell.h"
 
-int g_exit = 0;
+int	g_exit = 0;
 
 int	main(int ac, char **av, char **envp)
 {
-	t_env	*ptr = NULL;
+	t_env	*ptr;
 	char	*input;
+	char **envmtx;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
 	ptr = create_envp(envp);
+	envmtx = create_env_mtx(ptr);
+	write_mtx(envmtx);
 	input = NULL;
 	minishell_loop(input, ptr);
 	return (0);

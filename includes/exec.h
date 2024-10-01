@@ -68,6 +68,11 @@ char *var_name, char *equal_sign);
 void	export_var(t_env **env_list, char *arg);
 void	print_export(t_env *var);
 
+// Mtx from Env
+int		count_env_vars(t_env *env_list);
+void	strjoin_loop(t_env *current, char **env_mtx, char *tmp);
+char	**create_env_mtx(t_env *env_list);
+
 // List Utils
 void	set_var_content(t_env *new_node, char *equal_sign);
 t_env	*new_env_node(char *env_var);

@@ -20,7 +20,8 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
+SRC =	./main.c \
+		./src/builtins/utils/mtx_from_env.c \
 		./src/init.c \
 		./src/builtins/utils/list_utils.c \
 		./src/builtins/utils/env_utils.c \
