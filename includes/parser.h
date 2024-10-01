@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/27 10:01:04 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:51:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ enum e_state
 	IN_DQUOTE,
 	GENERAL,
 };
+
+typedef	struct s_pars
+{
+	char 			*str;
+	int				i;
+	int				to_merge_before;
+	int				to_merge_after;
+	struct s_pars	*next;
+}	t_pars;
+
 
 // Helper functions
 
@@ -78,6 +88,10 @@ char			*env_string(char *input, int *i, t_env *envp);
 char			*expansion(char *input, t_env *envp);
 char			*exp_string(char *inp, t_env *env, int *i, enum e_state state);
 void			set_state(enum e_state *state);
+
+// Quote Trimming
+
+int				*array_of_index(char *input);
 
 // typedef struct s_elem
 // {
