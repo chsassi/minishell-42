@@ -47,16 +47,6 @@ int	process_input(char *input, t_env **env, int fd[2])
 	return (1);
 }
 
-// void check_input(char *input, t_env *env)
-// {
-// 	if (!input)
-// 	{
-// 		write(1, "exit\n", 5);
-// 		free_env_list(env);
-// 		exit(0);
-// 	}
-// }
-
 void	minishell_loop(char *input, t_env *env)
 {
 	char **args;
@@ -80,6 +70,7 @@ void	minishell_loop(char *input, t_env *env)
 		}
 		if (!process_input(input, &env, fd))
 			continue ;
+		add_history(input);
 		free(input);
 	}
 }
