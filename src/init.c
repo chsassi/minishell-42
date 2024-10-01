@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:17:57 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 10:19:00 by chsassi          ###   ########.fr       */
+/*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
+/*   Updated: 2024/10/01 13:40:07 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//da fare join con lo spazio
-void	bin_export(t_env **env_list, char **args)
+void	shell_loop(char *input, t_env *env)
 {
-	t_env	*current;
+	char	**args;
 	int		i;
 
-	if (!args[1])
+	args = NULL;
+	i = 0;
+	while (1)
 	{
-		current = *env_list;
-		while (current)
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);
+		input = readline("minishell> ");
+		if (!input)
 		{
-			print_export(current);
-			current = current->next;
+			write(1, "exit\n", 5);
+			free_env_list(env);
+			break ;
 		}
-		return ;
-	}
-	i = 1;
-	while (args[i])
-	{
-		export_var(env_list, args[i]);
-		i++;
+		args = ft_split(input, ' ');
+		if (!args[0])
+			continue ;
+		run_builtin(args, &env);
+		expansion(args[0], env);
+		i = 0;
+		free_mtx(args);
 	}
 }

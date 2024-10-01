@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/10/01 12:09:02 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/01 13:43:57 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
+SRC =	./main.c \
+		./src/init.c \
 		./src/builtins/utils/list_utils.c \
 		./src/builtins/utils/env_utils.c \
 		./src/builtins/utils/export_utils.c \
@@ -37,6 +38,7 @@ SRC =	./main2.c \
 		./src/builtins/unset.c \
 		./src/builtins/exit.c \
 		./src/exec/heredoc.c \
+		./src/exec/redirect.c \
 		./src/exec/signals.c \
 		./src/exec/exec.c \
 		./src/builtins/export.c \
