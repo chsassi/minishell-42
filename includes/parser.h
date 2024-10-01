@@ -40,15 +40,14 @@ enum e_state
 	GENERAL,
 };
 
-typedef	struct s_pars
+typedef struct s_pars
 {
-	char 			*str;
+	char			*str;
 	int				i;
 	int				to_merge_before;
 	int				to_merge_after;
 	struct s_pars	*next;
 }	t_pars;
-
 
 // Helper functions
 

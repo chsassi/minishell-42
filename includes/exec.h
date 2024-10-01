@@ -22,9 +22,9 @@
 # include <sys/wait.h>
 
 # define BUILTIN 9
-# define REDIRECT_IN "<" //command < inputfile (takes input from inputfile)
-# define REDIRECT_OUT ">" //command > outputfile (writes the output to outputfile)
-# define REDIRECT_APPEND ">>" //command >> outputfile (appends the output to outputfile).
+# define REDIRECT_IN "<"
+# define REDIRECT_OUT ">"
+# define REDIRECT_APPEND ">>"
 # define HEREDOC "<<"
 
 typedef struct s_env	t_env;
@@ -37,22 +37,23 @@ void	cd_upper_dir(t_env *env_list);
 void	cd_from_path(t_env *env_list, char *path);
 void	bin_cd(t_env *env_list, char *path);
 void	bin_echo(t_all *pAll);
-t_env	*bin_env(t_env *current_env/* t_all *pAll */);
-void	bin_exit(char **input/* t_all *pAll */);
+t_env	*bin_env(t_env *current_env);
+void	bin_exit(char **input);
 void	bin_export(t_env **env_list, char **args);
 void	bin_pwd(void);
 t_env	*bin_unset(t_env **head, char *var_name);
 
 // Exec
-char	**get_path_from_env(void/* t_all *pAll */);
+char	**get_path_from_env(void);
 char	*find_executable_in_env(char **paths, char *command);
 void	fork_cmd_process(char *cmd, char **mtx, char **envp);
 void	run_builtin(char	**args, t_env **env_list);
 int		run_exec(t_all *pAll);
 
 // Heredoc & Redirects
+void	restore_fds(int fd[2]);
 void	handle_heredoc(char *delim);
-void	handle_redirection(char *type, char *file);
+void	handle_redirection(char *type, char *file, int fd[2]);
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);
@@ -62,7 +63,8 @@ void	print_env(t_env *var);
 
 // Export Utils
 void	add_node_to_list(t_env **env_list, t_env *new_node);
-void	handle_env_var(t_env **env_list, t_env *existing_var, char *var_name, char *equal_sign);
+void	handle_env_var(t_env **env_list, t_env *existing_var, \
+char *var_name, char *equal_sign);
 void	export_var(t_env **env_list, char *arg);
 void	print_export(t_env *var);
 

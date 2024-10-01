@@ -18,14 +18,12 @@ int	main(int ac, char **av, char **envp)
 {
 	t_env	*ptr = NULL;
 	char	*input;
-	int		i;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
 	ptr = create_envp(envp);
 	input = NULL;
-	i = 0;
-	shell_loop(input, ptr);
+	minishell_loop(input, ptr);
 	return (0);
 }

@@ -12,11 +12,59 @@
 
 #include "minishell.h"
 
-void	shell_loop(char *input, t_env *env)
+void	check_redirection(char **args, int fd[2])
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		if (!ft_strcmp(args[i], REDIRECT_IN) || !ft_strcmp(args[i], REDIRECT_OUT) || !ft_strcmp(args[i], REDIRECT_APPEND))
+		{
+			handle_redirection(args[i], args[i + 1], fd);
+			args[i] = NULL;
+			break ;
+		}
+		i++;
+	}
+}
+
+int	process_input(char *input, t_env **env, int fd[2])
 {
 	char	**args;
-	int		i;
 
+	args = ft_split(input, ' ');
+	if (!args || !args[0])
+	{
+		free_mtx(args);
+		return (0);
+	}
+	check_redirection(args, fd);
+	run_builtin(args, env);
+	expansion(args[0], *env);
+	restore_fds(fd);
+	free_mtx(args);
+	return (1);
+}
+
+// void check_input(char *input, t_env *env)
+// {
+// 	if (!input)
+// 	{
+// 		write(1, "exit\n", 5);
+// 		free_env_list(env);
+// 		exit(0);
+// 	}
+// }
+
+void	minishell_loop(char *input, t_env *env)
+{
+	char **args;
+	int i;
+	int fd[2];
+
+	fd[0] = dup(STDIN_FILENO);
+	fd[1] = dup(STDOUT_FILENO);
 	args = NULL;
 	i = 0;
 	while (1)
@@ -28,14 +76,10 @@ void	shell_loop(char *input, t_env *env)
 		{
 			write(1, "exit\n", 5);
 			free_env_list(env);
-			break ;
+			exit(0);
 		}
-		args = ft_split(input, ' ');
-		if (!args[0])
+		if (!process_input(input, &env, fd))
 			continue ;
-		run_builtin(args, &env);
-		expansion(args[0], env);
-		i = 0;
-		free_mtx(args);
+		free(input);
 	}
 }

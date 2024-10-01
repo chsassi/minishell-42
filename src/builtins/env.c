@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chsassi <chsassi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 10:17:57 by chsassi           #+#    #+#             */
 /*   Updated: 2024/09/23 10:37:50 by brulutaj         ###   ########.fr       */

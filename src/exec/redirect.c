@@ -12,27 +12,36 @@
 
 #include "minishell.h"
 
-void	handle_redirection(char *type, char *file)
+void	restore_fds(int fd[2])
 {
-	int	fd;
+	dup2(fd[0], STDIN_FILENO);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[0]);
+	close(fd[1]);
+}
 
+void	handle_redirection(char *type, char *file, int fd[2])
+{
+	int	redirect_fd;
+
+	fd[0] = dup(STDIN_FILENO);
+	fd[1] = dup(STDOUT_FILENO);
 	if (!ft_strcmp(type, REDIRECT_IN))
-		fd = open(file, O_RDONLY);
+		redirect_fd = open(file, O_RDONLY);
 	else if (!ft_strcmp(type, REDIRECT_OUT))
-		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		redirect_fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (!ft_strcmp(type, REDIRECT_APPEND))
-		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		redirect_fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		return ;
-	if (fd < 0)
+	if (redirect_fd < 0)
 	{
-		//printa errore
-		//free
+		printf("Invalid file descriptor");
 		return ;
 	}
 	if (!ft_strcmp(type, REDIRECT_IN))
-		dup2(fd, STDIN_FILENO);
+		dup2(redirect_fd, STDIN_FILENO);
 	else
-		dup2(fd, STDOUT_FILENO);
-	close(fd);
+		dup2(redirect_fd, STDOUT_FILENO);
+	close(redirect_fd);
 }

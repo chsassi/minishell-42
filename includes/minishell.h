@@ -21,14 +21,11 @@
 
 extern int	g_exit;
 
-typedef struct s_elem	t_elem;
-
 typedef struct s_env
 {
 	char			*var;
 	char			*content;
 	bool			is_hidden;
-	int				rows;
 	struct s_env	*next;
 }	t_env;
 
@@ -41,10 +38,12 @@ typedef struct s_all
 }	t_all;
 
 // Init
-void	shell_loop(char *input, t_env *env);
+void	check_redirection(char **args, int fd[2]);
+int		process_input(char *input, t_env **env, int fd[2]);
+void	minishell_loop(char *input, t_env *env);
 
 // Waste
 void	write_mtx2(char **mtx, int *arr);
-char 	*arr_int_str(int i);
+char	*arr_int_str(int i);
 
 #endif
