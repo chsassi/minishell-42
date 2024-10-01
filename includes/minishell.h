@@ -40,24 +40,7 @@ typedef struct s_all
 	int				pipe[2];
 }	t_all;
 
-// Env Utils
-t_env	*find_env_var(t_env *env_list, char *var);
-void	update_env_var(t_env *env_list, char *var_name, char *new_value);
-char	*get_env_var(t_env *env_list, char *var_name);
-
-// List Utils
-void	set_var_content(t_env *new_node, char *equal_sign);
-t_env	*new_env_node(char *env_var);
-void	set_env_head(t_env **head, t_env *new_node, t_env **current);
-t_env	*create_envp(char **envp);
-
-// Signal Handling
-void	handle_sigquit(int signal);
-void	handle_sigint(int signal);
-void	handle_sigterm(int signal);
-
 // Waste
-
 void	write_mtx2(char **mtx, int *arr);
 char 	*arr_int_str(int i);
 

@@ -49,22 +49,25 @@ int main(int ac, char **av, char **envp)
 		}
 		else if (!ft_strcmp(args[0], "cd"))
 		{
-			if (args[1])
+			if (!args[1])
+				cd_home(ptr);
+			else
 				bin_cd(ptr, args[1]);
 		}
 		else if (!ft_strcmp(args[0], "pwd"))
 			bin_pwd();
 		else if (!ft_strcmp(args[0], "<<"))
 			handle_heredoc(args[1]);
-		//fork_cmd_process(args[0], args, envp);
+		else if (!ft_strcmp(args[0], "export"))
+			bin_export(&ptr, args);
 		expansion(args[0], ptr);
+		i = 0;
 		while(args[i])
 		{
 			free(args[i]);
 			i++;
 		}
 		free(args);
-		
 	}
 	return (0);
 }
