@@ -21,6 +21,7 @@ RM = rm -f
 LIBFT_MAKE = ./Libft
 
 SRC =	./main.c \
+		./src/init.c \
 		./src/builtins/utils/list_utils.c \
 		./src/builtins/utils/env_utils.c \
 		./src/builtins/utils/export_utils.c \
@@ -37,6 +38,7 @@ SRC =	./main.c \
 		./src/builtins/unset.c \
 		./src/builtins/exit.c \
 		./src/exec/heredoc.c \
+		./src/exec/redirect.c \
 		./src/exec/signals.c \
 		./src/exec/exec.c \
 		./src/builtins/export.c \

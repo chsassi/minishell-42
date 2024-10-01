@@ -40,6 +40,9 @@ typedef struct s_all
 	int				pipe[2];
 }	t_all;
 
+// Init
+void	shell_loop(char *input, t_env *env);
+
 // Waste
 void	write_mtx2(char **mtx, int *arr);
 char 	*arr_int_str(int i);

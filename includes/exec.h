@@ -21,6 +21,12 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+# define BUILTIN 9
+# define REDIRECT_IN "<" //command < inputfile (takes input from inputfile)
+# define REDIRECT_OUT ">" //command > outputfile (writes the output to outputfile)
+# define REDIRECT_APPEND ">>" //command >> outputfile (appends the output to outputfile).
+# define HEREDOC "<<"
+
 typedef struct s_env	t_env;
 typedef struct s_all	t_all;
 
@@ -41,10 +47,12 @@ t_env	*bin_unset(t_env **head, char *var_name);
 char	**get_path_from_env(void/* t_all *pAll */);
 char	*find_executable_in_env(char **paths, char *command);
 void	fork_cmd_process(char *cmd, char **mtx, char **envp);
+void	run_builtin(char	**args, t_env **env_list);
 int		run_exec(t_all *pAll);
 
-// Heredoc
+// Heredoc & Redirects
 void	handle_heredoc(char *delim);
+void	handle_redirection(char *type, char *file);
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);

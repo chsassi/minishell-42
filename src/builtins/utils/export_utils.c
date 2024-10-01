@@ -54,17 +54,19 @@ void	handle_env_var(t_env **env_list, t_env *existing_var, char *var_name, char 
 
 void	export_var(t_env **env_list, char *arg)
 {
-	char	*equal_sign;
-	int		name_len;
-	char	*var_name;
 	t_env	*existing_var;
+	char	*equal_sign;
+	char	*var_name;
+	int		var_name_len;
 
+	existing_var = NULL;
 	equal_sign = ft_strchr(arg, '=');
+	var_name = NULL;
+	var_name_len = equal_sign - arg;
 	if (equal_sign)
-		name_len = equal_sign - arg;
+		var_name = ft_substr(arg, 0, var_name_len);
 	else
-		name_len = ft_strlen(arg);
-	var_name = ft_strdup(arg);
+		var_name = ft_strdup(arg);
 	existing_var = find_env_var(*env_list, var_name);
 	handle_env_var(env_list, existing_var, var_name, equal_sign);
 	free(var_name);

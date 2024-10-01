@@ -66,23 +66,29 @@ void	fork_cmd_process(char *cmd, char **mtx, char **envp)
 	free(/*path*/NULL);
 }
 
+void	run_builtin(char	**args, t_env **env_list) //da cambiare: accettera' la struct concordata
+{
+/* 	if (!ft_strcmp(args[0], "echo"))
+		bin_echo(args);
+	else  */if (!ft_strcmp(args[0], "cd"))
+		bin_cd(*env_list, args[1]);
+	else if (!ft_strcmp(args[0], "pwd"))
+		bin_pwd();
+	else if (!ft_strcmp(args[0], "export"))
+		bin_export(env_list, args);
+	else if (!ft_strcmp(args[0], "unset"))
+		bin_unset(env_list, args[1]);
+	else if (!ft_strcmp(args[0], "env"))
+		bin_env(*env_list);
+	else if (!ft_strcmp(args[0], HEREDOC))
+		handle_heredoc(args[1]);
+	// else if (!ft_strcmp(args[0], "exit"))
+	// 	return (bin_exit();
+	else
+		return ;
+}
+
 int	run_exec(t_all *pAll);
 /*{
-	if (!ft_strcmp(pAll->node->content, "echo"))
-		return (bin_echo(pAll));
-	else if (!ft_strcmp(pAll->node->content, "cd"))
-		return (bin_cd());
-	else if (!ft_strcmp(pAll->node->content, "pwd"))
-		return (bin_pwd());
-	else if (!ft_strcmp(pAll->node->content, "export"))
-		return (bin_export();
-	else if (!ft_strcmp(pAll->node->content, "unset"))
-		return (bin_unset());
-	else if (!ft_strcmp(pAll, "env"))
-		return (bin_env(pAll));
-	else if (!ft_strcmp(pAll->node->content, "exit"))
-		return (bin_exit());
-	else if ()
-	else
-		return (0); 
+
 } */
