@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/01 11:51:45 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:06:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,17 @@ enum e_state
 	GENERAL,
 };
 
-typedef struct s_pars
-{
-	char			*str;
-	int				i;
-	int				to_merge_before;
-	int				to_merge_after;
-	struct s_pars	*next;
-}	t_pars;
+
+
+// typedef	struct s_pars
+// {
+// 	char 			*str;
+// 	int				i;
+// 	int				to_merge_before;
+// 	int				to_merge_after;
+//  int				to_merge_both;
+// 	struct s_pars	*next;
+// }	t_pars;
 
 // Helper functions
 

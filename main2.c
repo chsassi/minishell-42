@@ -26,7 +26,7 @@ int main(int ac, char **av, char **envp)
 		if (!ft_strcmp(input, "env"))
 			env = bin_env(env);
 		test = expansion(input, env);
-		printf("Expnaded string: %s\n", test);
+		printf("Expanded string: %s\n", test);
 		mtx = create_mtx(test);
 		if (!mtx)
 			free(test);
