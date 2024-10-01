@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 13:42:21 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/01 11:23:43 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:32:33 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ int	*array_of_index(char *input)
 		i++;
 	}
 	return (arr);
+}
+
+char	**merging_quotes(char *input, char **mtx)
+{
+	int		i;
+	char	**merged_mtx;
+
+	i = 0;
+	merged_mtx = copy_mtx(mtx);
+	while (input[i] != '\0')
+	{
+		if (is_quote(input[i]))
+		{
+			
+		}
+	}
 }
 
 // int	count_merges(char *input, char **mtx, int *array)
