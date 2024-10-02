@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 13:42:21 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/01 16:32:33 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:32:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,40 @@ int	*array_of_index(char *input)
 	return (arr);
 }
 
-char	**merging_quotes(char *input, char **mtx)
+char	*trimmed_quote_token(char *str)
+{
+	char	*s;
+
+	s = NULL;
+	if (*str == "\"")
+	{
+		s = ft_strtrim(str, "\"");
+		free(str);
+	}
+	else
+	{
+		s = ft_strtrim(str, "\'");
+		free(str);
+	}
+	return (s);
+}
+
+char	**merging_quotes(char *input, char **mtx, int *array)
 {
 	int		i;
+	int		quote_number;
 	char	**merged_mtx;
 
 	i = 0;
-	merged_mtx = copy_mtx(mtx);
+	merged_mtx = NULL;
+	quote_number = quote_tokens(array, input);
 	while (input[i] != '\0')
 	{
 		if (is_quote(input[i]))
 		{
-			
+			while (ft_strncmp((input + i), mtx[i], ft_strlen(mtx[i])))
+				i++;
+			if ()
 		}
 	}
 }
