@@ -47,8 +47,9 @@ t_env	*bin_unset(t_env **head, char *var_name);
 char	**get_path_from_env(void);
 char	*find_executable_in_env(char **paths, char *command);
 void	fork_cmd_process(char *cmd, char **mtx, char **envp);
-void	run_builtin(char	**args, t_env **env_list);
-int		run_exec(t_all *pAll);
+int		run_builtin(char **args, t_env **env_list);
+void	fork_cmd(char *cmd, char **mtx, char **envp);
+void	run_exec(t_env *env, char **args);
 
 // Heredoc & Redirects
 void	restore_fds(int fd[2]);

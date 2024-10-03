@@ -19,7 +19,9 @@ void	check_redirection(char **args, int fd[2])
 	i = 0;
 	while (args[i])
 	{
-		if (!ft_strcmp(args[i], REDIRECT_IN) || !ft_strcmp(args[i], REDIRECT_OUT) || !ft_strcmp(args[i], REDIRECT_APPEND))
+		if (!ft_strcmp(args[i], REDIRECT_IN)
+			|| !ft_strcmp(args[i], REDIRECT_OUT)
+			|| !ft_strcmp(args[i], REDIRECT_APPEND))
 		{
 			handle_redirection(args[i], args[i + 1], fd);
 			args[i] = NULL;
@@ -40,8 +42,13 @@ int	process_input(char *input, t_env **env, int fd[2])
 		return (0);
 	}
 	check_redirection(args, fd);
-	run_builtin(args, env);
-	// expansion(args[0], *env);
+	if (run_builtin(args, env))
+	{
+		restore_fds(fd);
+		free_mtx(args);
+		return (1);
+	}
+	run_exec(*env, args);
 	restore_fds(fd);
 	free_mtx(args);
 	return (1);
@@ -49,9 +56,9 @@ int	process_input(char *input, t_env **env, int fd[2])
 
 void	minishell_loop(char *input, t_env *env)
 {
-	char **args;
-	int i;
-	int fd[2];
+	char	**args;
+	int		i;
+	int		fd[2];
 
 	fd[0] = dup(STDIN_FILENO);
 	fd[1] = dup(STDOUT_FILENO);
@@ -70,7 +77,8 @@ void	minishell_loop(char *input, t_env *env)
 		}
 		if (!process_input(input, &env, fd))
 			continue ;
-		add_history(input);
+		if (ft_strlen(input) > 0)
+			add_history(input);
 		free(input);
 	}
 }
