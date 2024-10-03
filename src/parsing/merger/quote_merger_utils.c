@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_struct.c                                     :+:      :+:    :+:   */
+/*   quote_merger_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 11:55:25 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/03 16:50:57 by brulutaj         ###   ########.fr       */
+/*   Created: 2024/10/02 11:13:02 by brulutaj          #+#    #+#             */
+/*   Updated: 2024/10/03 16:11:53 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_pars	*new_parse_node(char *s, enum e_token tok)
+int	quote_tokens(int *array, int *input)
 {
-	t_pars	*new;
-
-	new = (t_pars *)malloc(sizeof(t_pars));
-	if (!new)
-		return (NULL);
-	new->str = ft_strdup(s);
-	new->type = tok;
-	new->next = NULL;
-	return (new);
+	int	len;
+	int count;
+	int	i;
+	
+	i = 0;
+	count = 0;
+	len = count_number_of_tokens(input);
+	while (i < len)
+	{
+		if (array[i] == DOUBLE_QUOTE || array[i] == QUOTE)
+			count++;
+		i++;
+	}
+	return(count);
 }
