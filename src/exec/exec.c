@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	**get_path_from_env(void/* t_all *pAll */)
+char	**get_path_from_env(void)
 {
 	char	*env_path;
 	char	**new_path;
@@ -29,7 +29,6 @@ char	*find_executable_in_env(char **paths, char *command)
 {
 	char		*full_path;
 	char		*tmp;
-	// const int	len = ft_strlen(command);
 
 	if (ft_strchr(command, '/'))
 	{
@@ -56,12 +55,13 @@ void	fork_cmd(char *cmd, char **args, char **envp)
 	int		status;
 
 	pid = fork();
+	status = 0;
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (execve(cmd, args, envp) == -1)
-			exit(127);
+			exit(g_exit = 127);
 		exit(0);
 	}
 	else if (pid < 0)
