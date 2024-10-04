@@ -66,7 +66,8 @@ void	cd_upper_dir(t_env *env_list)
 	new_dir = NULL;
 	if (chdir(".."))
 	{
-		perror("bash: cd: /previous/directory: No such file or directory");
+		ft_putstr_fd("bash: cd: /previous/directory: \
+No such file or directory", 2);
 		return ;
 	}
 	update_env_var(env_list, "OLDPWD", get_env_var(env_list, "PWD"));

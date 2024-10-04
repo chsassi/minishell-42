@@ -130,5 +130,4 @@ void	free_env_var(char *var, char *content);
 void	free_env_node(t_env *node);
 void	free_env_list(t_env *head);
 
-
 #endif

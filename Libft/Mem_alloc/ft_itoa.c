@@ -55,7 +55,6 @@ char	*ft_itoa(int n)
 		nl = nl / 10;
 		len--;
 	}
-	printf("%s\n", str);
 	return (str);
 }
 /*

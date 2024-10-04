@@ -35,7 +35,7 @@ void	free_env_node(t_env *node)
 
 void	free_env_list(t_env *head)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	while (head)
 	{

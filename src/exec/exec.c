@@ -24,7 +24,6 @@ char	**get_path_from_env(void)
 	return (new_path);
 }
 
-//da cambiare command con ptr a struct;
 char	*find_executable_in_env(char **paths, char *command)
 {
 	char		*full_path;
@@ -65,7 +64,7 @@ void	fork_cmd(char *cmd, char **args, char **envp)
 		exit(0);
 	}
 	else if (pid < 0)
-		perror("Fork error");
+		ft_putstr_fd("bash: fork: retry: Resource temporarily unavailable", 2);
 	else
 		waitpid(pid, &status, 0);
 }
@@ -100,7 +99,6 @@ void	run_exec(t_env *env, char **args, bool inside_fork)
 
 	if (!args || !args[0])
 		return ;
-	
 	if (run_builtin(args, &env))
 	{
 		if (inside_fork)
@@ -117,6 +115,7 @@ void	run_exec(t_env *env, char **args, bool inside_fork)
 		return ;
 	}
 	env_mtx = create_env_mtx(env);
+	
 	if (!inside_fork)
 		fork_cmd(cmd_path, args, env_mtx);
 	else

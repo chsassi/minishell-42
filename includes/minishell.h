@@ -33,14 +33,26 @@ typedef struct s_shell
 {
 	char			**cmd;
 	char			**redirects;
+	int				*pipe;
 	int				fd_in; // start from -1
 	int				fd_out; // start from -1
+	int				cmd_id;
 	char			*last_heredoc;
 	struct s_shell	*next;
 }	t_shell;
 
+typedef struct s_all
+{
+	t_shell	*shell;
+	t_env	**env; //controllare dbl ptr
+	int		cmd_nbr;
+	int		restore_fd_in;
+	int		restore_fd_out;
+	int		status_code;
+}	t_all;
+
 // Init
-void	check_redirection(char **args, int fd[2]);
+void	check_input_loop(t_all *pAll, t_shell *shell);
 int		process_input(char *input, t_env **env, int fd[2]);
 void	minishell_loop(char *input, t_env *env);
 

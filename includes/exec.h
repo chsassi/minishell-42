@@ -28,6 +28,7 @@
 # define HEREDOC "<<"
 
 typedef struct s_env	t_env;
+typedef struct s_shell	t_shell;
 typedef struct s_all	t_all;
 
 // Builtins
@@ -46,15 +47,22 @@ t_env	*bin_unset(t_env **head, char *var_name);
 // Exec
 char	**get_path_from_env(void);
 char	*find_executable_in_env(char **paths, char *command);
-void	fork_cmd_process(char *cmd, char **mtx, char **envp);
+void	fork_cmd(char *cmd, char **args, char **envp);
 int		run_builtin(char **args, t_env **env_list);
-void	fork_cmd(char *cmd, char **mtx, char **envp);
-void	run_exec(t_env *env, char **args, bool inside_fork)
+void	run_exec(t_env *env, char **args, bool inside_fork);
 
-// Heredoc & Redirects
-void	restore_fds(int fd[2]);
-void	handle_heredoc(char *delim);
-void	handle_redirection(char *type, char *file, int fd[2]);
+// Heredoc
+void	heredoc_loop(char *delim, char *line, int fd);
+void	handle_heredoc(char *delim, char *filename);
+void	exec_heredocs(t_shell *cmds);
+
+// Redirect
+void	restore_fds(t_all *pAll);
+int	handle_redirection(t_all *pAll, char *type, char *file);
+void	exec_redirection(t_all *pAll);
+
+// Signal
+void	handle_sigint(int signal);
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);
@@ -80,9 +88,5 @@ t_env	*new_env_node(char *env_var);
 void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 t_env	*create_envp(char **envp);
 
-// Signal Handling
-
-// void	handle_sigquit(int signal);
-void	handle_sigint(int signal);
 
 #endif

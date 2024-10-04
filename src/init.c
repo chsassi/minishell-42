@@ -12,76 +12,67 @@
 
 #include "minishell.h"
 
-void	check_redirection(/*t_shell *ptr */char **args, int fd[2])
+void	check_input_loop(t_all *pAll, t_shell *shell)
 {
-	int	i;
+	pid_t	pid;
 
-	i = 0;
-	while (ptr->redirects && ptr->redirects[i])
+	exec_redirection(pAll);
+	if (pAll->cmd_nbr > 1)
 	{
-		if (!ft_strcmp(ptr->redirects[i], REDIRECT_IN)
-			|| !ft_strcmp(ptr->redirects[i], REDIRECT_OUT)
-			|| !ft_strcmp(ptr->redirects[i], REDIRECT_APPEND))
+		pid = fork();
+		//check_cmd_order();
+		if (pid == 0)
 		{
-			handle_redirection(ptr->redirects[i], ptr->redirects[i + 1], fd);
-			ptr->redirects[i] = NULL;
-			break ;
+			run_exec(*pAll->env, shell->cmd, true);
+			//check free
+			exit(pAll->status_code);
 		}
-		i++;
 	}
+	else
+		run_exec(*pAll->env, shell->cmd, false);
 }
 
-int	process_input(char *input, t_env **env, int fd[2])
+int	process_input(char *input, t_env **env, int fd_in, int fd_out)
 {
-	char	**args;
-	int		**pipex;
-	int		i;
-	pid_t	process;
+	t_all		*all;
+	t_shell		*shell;
+	int			**pipex;
+	int			i;
+	pid_t		process;
 
-	args = ft_split(input, ' ');
-	if (!args || !args[0])
-		return (free_mtx(args), 0);
+	(void)shell;
+	(void)process;
+	all = parse_input(input, env);
+	if (!all)
+		return (/*free*/0);
 	//check sintassi
-	run_all_heredoc();
-	pipex = ft_calloc(cmd_nbr, sizeof(int *));
+	exec_heredocs(all->shell);
+	pipex = ft_calloc(all->cmd_nbr, sizeof(int *));
+	if (!pipex)
+		return (/*free*/0);
 	i = -1;
-	while (++i < cmd_nbr)
+	while (++i < all->cmd_nbr)
 	{
+		// check su fd se c'e' un'unica pipe, se c'e' piu di un comando e, se si, quale id sono
+		//in base a questo devo reindirizzare l'output delle pipe chiudendole e rinizializzandole
 		pipex[i] = ft_calloc(2, sizeof(int));
 		if (pipe(pipex[i]) == -1)
-		{
-			// free di tutto quello che ho allocato finora
-			return (0);
-		}
-		check_redirection(args, fd);
-		if (cmd_nbr > 1)
-		{
-			process = fork();
-			if (process == 0)
-			{
-				run_exec(*env, args, true);
-				//check free
-				exit(/* g_exit*/0);
-			}
-		}
-		else
-			run_exec(*env, args, false);
+			return (/*free*/0);
+		all->shell->pipe = pipex[i];
+		check_input_loop(all, all->shell);
 	}
-	restore_fds(fd);
-	//free
-	return (1);
+	return (restore_fds(all), /*free*/ 1);
 }
 
 void	minishell_loop(char *input, t_env *env)
 {
-	char	**args;
-	int		i;
+	t_all	ptr;
 	int		fd[2];
 
-	fd[0] = dup(STDIN_FILENO);
-	fd[1] = dup(STDOUT_FILENO);
-	args = NULL;
-	i = 0;
+	ptr = (t_all){0};
+	ptr.env = &env;
+	ptr.restore_fd_in = dup(STDIN_FILENO);
+	ptr.restore_fd_out = dup(STDOUT_FILENO);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);

@@ -12,7 +12,51 @@
 
 #include "minishell.h"
 
-void	run_all_heredocs(t_shell *cmds)
+void	heredoc_loop(char *delim, char *line, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		i++;
+		line = readline("> ");
+		if (!line || !ft_strcmp(line, delim))
+		{
+			free(line);
+			break ;
+		}
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		if (!line)
+		{
+			printf("bash: warning: here-document at line %i \
+delimited by end-of-file (wanted `%s')\n", i, delim);
+			break ;
+		}
+		if (!ft_strcmp(line, delim))
+			break ;
+	}
+}
+
+void	handle_heredoc(char *delim, char *filename)
+{
+	char	*line;
+	int		fd;
+
+	line = NULL;
+	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error opening heredoc", 2);
+		return ;
+	}
+	heredoc_loop(delim, line, fd);
+	free(line);
+	g_exit = 0;
+}
+
+void	exec_heredocs(t_shell *cmds)
 {
 	t_shell	*curr;
 	char	*name;
@@ -20,6 +64,7 @@ void	run_all_heredocs(t_shell *cmds)
 	int		i;
 
 	curr = cmds;
+	name = NULL;
 	while (curr)
 	{
 		i = -1;
@@ -39,42 +84,4 @@ void	run_all_heredocs(t_shell *cmds)
 		}
 		curr = curr->next;
 	}
-}
-
-void	handle_heredoc(char *delim, char *filename)
-{
-	char	*line;
-	// int		len;
-	int		i;
-	int		fd;
-
-	line = NULL;
-	// len = 0;
-	i = 0;
-	// change CTRL+C
-	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY);
-	// fd == -1
-	while (1)
-	{
-		i++;
-		// write(1, "> ", 2);
-		line = readline("> ");
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		// WRITE `line` in `.heredoc-<block idx>`
-		// IF CTRL+C => break all HEREDOCS;
-		if (!line)
-		{
-			printf("bash: warning: here-document at line %i \
-delimited by end-of-file (wanted `%s')\n", i, delim);
-			break ;
-		}
-		// len = ft_strlen(line);
-		// if (line[len - 1] == '\n')
-		// 	line[len - 1] = '\0';
-		if (!ft_strcmp(line, delim))
-			break ;
-	}
-	free(line);
-	g_exit = 0;
 }
