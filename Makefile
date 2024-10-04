@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/10/01 14:24:09 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/04 18:22:23 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main.c \
+SRC =	./main2.c \
 		./src/builtins/utils/mtx_from_env.c \
 		./src/init.c \
 		./src/builtins/utils/list_utils.c \
@@ -33,6 +33,7 @@ SRC =	./main.c \
 		./src/parsing/expander/expand_var.c \
 		./src/parsing/expander/expander_utils.c \
 		./src/parsing/assign_tokens.c \
+		./src/parsing/merger/quote_merger_utils.c \
 		./src/builtins/env.c 	\
 		./src/builtins/pwd.c \
 		./src/builtins/cd.c \
