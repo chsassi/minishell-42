@@ -92,7 +92,7 @@ int	run_builtin(char **args, t_env **env_list) //da cambiare: accettera' la stru
 		return (0);
 }
 
-void	run_exec(t_env *env, char **args)
+void	run_exec(t_env *env, char **args, bool inside_fork)
 {
 	char	*cmd_path;
 	char	**paths;
@@ -100,8 +100,13 @@ void	run_exec(t_env *env, char **args)
 
 	if (!args || !args[0])
 		return ;
+	
 	if (run_builtin(args, &env))
+	{
+		if (inside_fork)
+			exit(/*g_exit*/);
 		return ;
+	}
 	paths = get_path_from_env();
 	cmd_path = find_executable_in_env(paths, args[0]);
 	if (!cmd_path)
@@ -112,7 +117,10 @@ void	run_exec(t_env *env, char **args)
 		return ;
 	}
 	env_mtx = create_env_mtx(env);
-	fork_cmd(cmd_path, args, env_mtx);
+	if (!inside_fork)
+		fork_cmd(cmd_path, args, env_mtx);
+	else
+		exec_cmd(cmd_path, args, env_mtx);
 	free(cmd_path);
 	free_mtx(env_mtx);
 	free_mtx(paths);

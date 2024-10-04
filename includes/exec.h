@@ -49,7 +49,7 @@ char	*find_executable_in_env(char **paths, char *command);
 void	fork_cmd_process(char *cmd, char **mtx, char **envp);
 int		run_builtin(char **args, t_env **env_list);
 void	fork_cmd(char *cmd, char **mtx, char **envp);
-void	run_exec(t_env *env, char **args);
+void	run_exec(t_env *env, char **args, bool inside_fork)
 
 // Heredoc & Redirects
 void	restore_fds(int fd[2]);
