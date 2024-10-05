@@ -8,8 +8,6 @@ char *arr_int_str(int i)
         return(ft_strdup("QUOTE"));
     else if(i == DOUBLE_QUOTE)
         return(ft_strdup("DOUBLE_QUOTE"));
-    else if(i == ENV)
-        return(ft_strdup("ENV"));
     else if (i == PIPE_LINE)
         return(ft_strdup("PIPE_LINE"));
     else if (i == REDIR_IN)

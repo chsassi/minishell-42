@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 13:42:21 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/04 19:02:25 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:00:20 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	type_of_merge(char *str, int start, int end)
 	{
 		if (start != 0 && str[end] != '\0')
 		{
-			if ((is_quote(str[start - 1]) || is_normal_letter(str, start - 1)) 
+			if ((is_quote(str[start - 1]) || is_normal_letter(str, start - 1))
 				&& (is_quote(str[end]) || is_normal_letter(str, end)))
 				return (BOTH);
 		}
@@ -42,7 +42,7 @@ int	*array_of_merges(char *input, char **mtx)
 	int			i;
 	int			j;
 	const int	len = count_number_of_tokens(input);
-	
+
 	i = 0;
 	j = 0;
 	if (!len)
@@ -52,7 +52,7 @@ int	*array_of_merges(char *input, char **mtx)
 		return (NULL);
 	while (input[i] != '\0')
 	{
-		while(input[i] == 32)
+		while (input[i] == 32)
 			i++;
 		arr[j] = type_of_merge(input, i, (i + ft_strlen(mtx[j])));
 		i += ft_strlen(mtx[j]);
@@ -81,17 +81,12 @@ int	*process_arr_merger(char *input, char **mtx)
 	return (arr);
 }
 
-char *str(int *arr, char **mtx, int *i)
-{
-	
-}
-
-char	*trimmed_quote_token(char *str)
+char	*trimm_quotes(char *str)
 {
 	char	*s;
 
 	s = NULL;
-	if (*str == "\"")
+	if (*str == '\"')
 	{
 		s = ft_strtrim(str, "\"");
 		free(str);
@@ -104,24 +99,26 @@ char	*trimmed_quote_token(char *str)
 	return (s);
 }
 
-// t_pars *init_parser(char *input, char **mtx, int *array)
-// {
-// 	int		i;
-// 	int		quote_number;
-// 	t_pars	*parser;
+char	*merge_string(int *arr, char **mtx, int *i)
+{
+	char	*str;
 
-// 	i = 0;
-// 	parser = NULL;
-// 	quote_number = quote_tokens(array, input);
-// 	while (mtx[i] != '\0')
-// 	{
-// 		if (array[i] == DOUBLE_QUOTE || array[i] == QUOTE || array[i] == WORD)
-// 		{
-			
-// 		}
-// 		if (!parser)
-// 			parser = new_parse_node(mtx[i], array[i]);
-// 		i++;
-// 	}
-// 	return (parser)
-// }
+	str = NULL;
+	if (arr[*i] == NO)
+		str = ft_strdup(mtx[*i]);
+	else
+	{
+		while (arr[*i] == NEXT)
+		{
+			if (str == NULL)
+				str = ft_strjoin(trimm_quotes(mtx[*i]),
+						trimm_quotes(mtx[(*i) + 1]));
+			else
+				str = ft_strjoin_gnl(str, trimm_quotes(mtx[(*i) + 1]));
+			(*i)++;
+		}
+	}
+	if (mtx[*i] == NULL)
+		(*i)++;
+	return (str);
+}

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/04 19:16:14 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:47:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ enum e_state
 	IN_DQUOTE,
 	GENERAL,
 };
-
-
 
 typedef	struct s_pars
 {
@@ -100,6 +98,16 @@ void			set_state(enum e_state *state);
 int				type_of_merge(char *str, int start, int end);
 int				*array_of_merges(char *input, char **mtx);
 int				*process_arr_merger(char *input, char **mtx);
+char			*trimm_quotes(char *str);
+char			*merge_string(int *arr, char **mtx, int *i);
+
+
+// Parse struct
+
+t_pars			*new_parse_node(char **mtx, int i, int tok, int *arr);
+t_pars			*last_parse(t_pars *lst);
+void			add_back_parse(t_pars **lst, t_pars *new);
+t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 
 // typedef struct s_elem
 // {
