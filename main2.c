@@ -71,13 +71,12 @@ int main(int ac, char **av, char **envp)
 			// write_arr_merge(mergers, mtx);
 			//printf("\n");
 			// write_arr_merge(pro_mergers, mtx);
-			write_mtx2(mtx, tokens);
+			//write_mtx2(mtx, tokens);
 			write_parse(parser);
 			// free(mergers);
 			// free(pro_mergers);
-			free(parser);
+			clear_parse(parser);
 			free(tokens);
-			free_mtx(mtx);
 			free(input);
 		}
 	}

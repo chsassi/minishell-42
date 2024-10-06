@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:52:23 by brulutaj          #+#    #+#             */
-/*   Updated: 2023/11/13 11:36:36 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:57:14 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 	char	*trim;
 	size_t	len;
 
-	while (*s1 != '\0' && is_set(*s1, set))
+	while (s1 && *s1 != '\0' && is_set(*s1, set))
 		s1++;
 	len = ft_strlen(s1);
 	while (len > 0 && is_set(s1[len - 1], set))

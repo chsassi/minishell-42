@@ -6,20 +6,20 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:55:25 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/05 18:57:27 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:30:39 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_pars	*new_parse_node(char **mtx, int i, int tok, int *arr)
+t_pars	*new_parse_node(char **mtx, int *i, int tok, int *arr)
 {
 	t_pars	*new;
 
 	new = (t_pars *)malloc(sizeof(t_pars));
 	if (!new)
 		return (NULL);	
-	new->str = merge_string(arr, mtx, &i);
+	new->str = merge_string(arr, mtx, i);
 	new->type = tok;
 	new->next = NULL;
 	return (new);
@@ -53,6 +53,21 @@ void	add_back_parse(t_pars **lst, t_pars *new)
 	tmp->next = new;
 }
 
+void	clear_parse(t_pars *parser)
+{
+	t_pars	*tmp;
+
+	tmp = NULL;
+	while (parser)
+	{
+		tmp = parser;
+		parser = parser->next;
+		free(tmp->str);
+		tmp->next = NULL;
+		free(tmp);
+	}
+}
+
 t_pars	*parse_struct_init(char *input, char **mtx, int *token)
 {
 	t_pars	*head;
@@ -61,12 +76,19 @@ t_pars	*parse_struct_init(char *input, char **mtx, int *token)
 	int		i;
 
 	i = 0;
-	merge = process_arr_merger(input, mtx);
-	head = new_parse_node(mtx, i, token[i], merge);
+	if (ft_strlen(*mtx) == 0)
+		merge = NULL;
+	else
+		merge = process_arr_merger(input, mtx);
+	if (!token)
+		return (NULL);
+	head = new_parse_node(mtx, &i, token[i], merge);
 	while (mtx[i] != NULL)
 	{
-		parsing = new_parse_node(mtx, i, token[i], merge);
+		parsing = new_parse_node(mtx, &i, token[i], merge);
 		add_back_parse(&head, parsing);
 	}
+	free(merge);
+	free_mtx(mtx);
 	return (head);
 }

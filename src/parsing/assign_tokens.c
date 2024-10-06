@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:11:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/27 10:01:09 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:27:05 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	*token_arr(char **mtx)
 	int	i;
 
 	len = ft_rowlen(mtx);
+	if (len == 0)
+		return (NULL);
 	arr = (int *)malloc(sizeof(int) * len);
 	if (!arr)
 		return (NULL);
@@ -49,5 +51,4 @@ int	*token_arr(char **mtx)
 	}
 	return (arr);
 }
-
 
