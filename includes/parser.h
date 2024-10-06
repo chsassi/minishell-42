@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/03 16:03:25 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:47:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,19 @@ enum e_token
 	WORD = -1,
 	QUOTE = '\'',
 	DOUBLE_QUOTE = '\"',
-	ENV = '$',
 	PIPE_LINE = '|',
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HERE_DOC,
 	DREDIR_OUT,
+};
+
+enum e_merge
+{
+	NEXT,
+	PREV,
+	BOTH,
+	NO,
 };
 
 enum e_state
@@ -40,16 +47,14 @@ enum e_state
 	GENERAL,
 };
 
-
-
 typedef	struct s_pars
 {
 	char 			*str;
-	enum e_token	type;
+	int				type;
 	struct s_pars	*next;
 }	t_pars;
 
-// Helper functions
+// Helper functions 
 
 int				is_quote(char c);
 int				is_special_char(char c);
@@ -90,7 +95,19 @@ void			set_state(enum e_state *state);
 
 // Quote Trimming
 
-int				*array_of_index(char *input);
+int				type_of_merge(char *str, int start, int end);
+int				*array_of_merges(char *input, char **mtx);
+int				*process_arr_merger(char *input, char **mtx);
+char			*trimm_quotes(char *str);
+char			*merge_string(int *arr, char **mtx, int *i);
+
+
+// Parse struct
+
+t_pars			*new_parse_node(char **mtx, int i, int tok, int *arr);
+t_pars			*last_parse(t_pars *lst);
+void			add_back_parse(t_pars **lst, t_pars *new);
+t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 
 // typedef struct s_elem
 // {
