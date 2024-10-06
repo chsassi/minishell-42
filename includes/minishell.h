@@ -29,13 +29,15 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef struct s_all
+typedef struct s_shell
 {
-	char			**prompt;
-	t_env			*envp;
-	unsigned char	status_code;
-	int				pipe[2];
-}	t_all;
+	char			**cmd;
+	char			**redirects;
+	int				fd_in; // start from -1
+	int				fd_out; // start from -1
+	char			*last_heredoc;
+	struct s_shell	*next;
+}	t_shell;
 
 // Init
 void	check_redirection(char **args, int fd[2]);

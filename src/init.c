@@ -12,17 +12,19 @@
 
 #include "minishell.h"
 
-void	check_redirection(char **args, int fd[2])
+void	check_redirection(/*t_shell *ptr */char **args, int fd[2])
 {
 	int	i;
 
 	i = 0;
-	while (args[i])
+	while (ptr->redirects && ptr->redirects[i])
 	{
-		if (!ft_strcmp(args[i], REDIRECT_IN) || !ft_strcmp(args[i], REDIRECT_OUT) || !ft_strcmp(args[i], REDIRECT_APPEND))
+		if (!ft_strcmp(ptr->redirects[i], REDIRECT_IN)
+			|| !ft_strcmp(ptr->redirects[i], REDIRECT_OUT)
+			|| !ft_strcmp(ptr->redirects[i], REDIRECT_APPEND))
 		{
-			handle_redirection(args[i], args[i + 1], fd);
-			args[i] = NULL;
+			handle_redirection(ptr->redirects[i], ptr->redirects[i + 1], fd);
+			ptr->redirects[i] = NULL;
 			break ;
 		}
 		i++;
@@ -32,26 +34,49 @@ void	check_redirection(char **args, int fd[2])
 int	process_input(char *input, t_env **env, int fd[2])
 {
 	char	**args;
+	int		**pipex;
+	int		i;
+	pid_t	process;
 
 	args = ft_split(input, ' ');
 	if (!args || !args[0])
+		return (free_mtx(args), 0);
+	//check sintassi
+	run_all_heredoc();
+	pipex = ft_calloc(cmd_nbr, sizeof(int *));
+	i = -1;
+	while (++i < cmd_nbr)
 	{
-		free_mtx(args);
-		return (0);
+		pipex[i] = ft_calloc(2, sizeof(int));
+		if (pipe(pipex[i]) == -1)
+		{
+			// free di tutto quello che ho allocato finora
+			return (0);
+		}
+		check_redirection(args, fd);
+		if (cmd_nbr > 1)
+		{
+			process = fork();
+			if (process == 0)
+			{
+				run_exec(*env, args, true);
+				//check free
+				exit(/* g_exit*/0);
+			}
+		}
+		else
+			run_exec(*env, args, false);
 	}
-	check_redirection(args, fd);
-	run_builtin(args, env);
-	// expansion(args[0], *env);
 	restore_fds(fd);
-	free_mtx(args);
+	//free
 	return (1);
 }
 
 void	minishell_loop(char *input, t_env *env)
 {
-	char **args;
-	int i;
-	int fd[2];
+	char	**args;
+	int		i;
+	int		fd[2];
 
 	fd[0] = dup(STDIN_FILENO);
 	fd[1] = dup(STDOUT_FILENO);
@@ -69,8 +94,12 @@ void	minishell_loop(char *input, t_env *env)
 			exit(0);
 		}
 		if (!process_input(input, &env, fd))
+		{
+			free(input);
 			continue ;
-		add_history(input);
+		}
+		if (ft_strlen(input) > 0)
+			add_history(input);
 		free(input);
 	}
 }

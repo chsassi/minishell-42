@@ -12,23 +12,23 @@
 
 #include "minishell.h"
 
-char	**get_path_from_env(void/* t_all *pAll */)
+char	**get_path_from_env(void)
 {
 	char	*env_path;
 	char	**new_path;
 
 	env_path = getenv("PATH");
 	if (!env_path)
-		return NULL;
+		return (NULL);
 	new_path = ft_split(env_path, ':');
-	return (new_path);	
+	return (new_path);
 }
 
 //da cambiare command con ptr a struct;
 char	*find_executable_in_env(char **paths, char *command)
 {
-	char		*str_tojoin;
-	const int	len = ft_strlen(command);
+	char		*full_path;
+	char		*tmp;
 
 	if (ft_strchr(command, '/'))
 	{
@@ -38,57 +38,90 @@ char	*find_executable_in_env(char **paths, char *command)
 	}
 	while (paths && *paths)
 	{
-		if (len > 0 && command[len - 1] == '/')
-			str_tojoin = ft_strjoin(*paths, command);
-		else
-		{
-			str_tojoin = ft_strjoin(*paths, "/");
-			str_tojoin = ft_strjoin_gnl(str_tojoin, command);
-		}
-		if (!access(str_tojoin, X_OK))
-			return (str_tojoin);
+		tmp = ft_strjoin(*paths, "/");
+		full_path = ft_strjoin(tmp, command);
+		free(tmp);
+		if (!access(full_path, X_OK))
+			return (full_path);
+		free(full_path);
 		paths++;
 	}
-	return (free(str_tojoin), NULL);
+	return (NULL);
 }
 
-void	fork_cmd_process(char *cmd, char **mtx, char **envp)
+void	fork_cmd(char *cmd, char **args, char **envp)
 {
-	//cerca path del comando; -se il comando non esiste, msg errore e g_exit = 127;
-	pid_t id = fork();
-	if (id == 0)
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	status = 0;
+	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		execve(cmd, mtx, envp);
+		if (execve(cmd, args, envp) == -1)
+			exit(g_exit = 127);
 		exit(0);
 	}
-	free(/*path*/NULL);
+	else if (pid < 0)
+		perror("Fork error");
+	else
+		waitpid(pid, &status, 0);
 }
 
-void	run_builtin(char	**args, t_env **env_list) //da cambiare: accettera' la struct concordata
+int	run_builtin(char **args, t_env **env_list) //da cambiare: accettera' la struct concordata
 {
 /* 	if (!ft_strcmp(args[0], "echo"))
-		bin_echo(args);
+		return (bin_echo(args), 1);
 	else  */if (!ft_strcmp(args[0], "cd"))
-		bin_cd(*env_list, args[1]);
+		return (bin_cd(*env_list, args[1]), 1);
 	else if (!ft_strcmp(args[0], "pwd"))
-		bin_pwd();
+		return (bin_pwd(), 1);
 	else if (!ft_strcmp(args[0], "export"))
-		bin_export(env_list, args);
+		return (bin_export(env_list, args), 1);
 	else if (!ft_strcmp(args[0], "unset"))
-		bin_unset(env_list, args[1]);
+		return (bin_unset(env_list, args[1]), 1);
 	else if (!ft_strcmp(args[0], "env"))
-		bin_env(*env_list);
+		return (bin_env(*env_list), 1);
 	else if (!ft_strcmp(args[0], HEREDOC))
-		handle_heredoc(args[1]);
+		return (handle_heredoc(args[1]), 1);
 	// else if (!ft_strcmp(args[0], "exit"))
-	// 	return (bin_exit();
+	// 	return (bin_exit(), 1);
 	else
-		return ;
+		return (0);
 }
 
-int	run_exec(t_all *pAll);
-/*{
+void	run_exec(t_env *env, char **args, bool inside_fork)
+{
+	char	*cmd_path;
+	char	**paths;
+	char	**env_mtx;
 
-} */
+	if (!args || !args[0])
+		return ;
+	
+	if (run_builtin(args, &env))
+	{
+		if (inside_fork)
+			exit(/*g_exit*/);
+		return ;
+	}
+	paths = get_path_from_env();
+	cmd_path = find_executable_in_env(paths, args[0]);
+	if (!cmd_path)
+	{
+		printf("%s: command not found\n", args[0]);
+		g_exit = 127;
+		free_mtx(paths);
+		return ;
+	}
+	env_mtx = create_env_mtx(env);
+	if (!inside_fork)
+		fork_cmd(cmd_path, args, env_mtx);
+	else
+		exec_cmd(cmd_path, args, env_mtx);
+	free(cmd_path);
+	free_mtx(env_mtx);
+	free_mtx(paths);
+}

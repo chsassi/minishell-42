@@ -18,14 +18,14 @@ void	restore_fds(int fd[2])
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
+	fd[0] = dup(STDIN_FILENO);
+	fd[1] = dup(STDOUT_FILENO);
 }
 
-void	handle_redirection(char *type, char *file, int fd[2])
+int	handle_redirection(/*t_shell *ptr */char *type, char *file, int fd[2])
 {
 	int	redirect_fd;
 
-	fd[0] = dup(STDIN_FILENO);
-	fd[1] = dup(STDOUT_FILENO);
 	if (!ft_strcmp(type, REDIRECT_IN))
 		redirect_fd = open(file, O_RDONLY);
 	else if (!ft_strcmp(type, REDIRECT_OUT))
@@ -33,15 +33,12 @@ void	handle_redirection(char *type, char *file, int fd[2])
 	else if (!ft_strcmp(type, REDIRECT_APPEND))
 		redirect_fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
-		return ;
+		return (0);
 	if (redirect_fd < 0)
-	{
-		printf("Invalid file descriptor");
-		return ;
-	}
+		return (printf("Invalid file descriptor"), 0);
 	if (!ft_strcmp(type, REDIRECT_IN))
-		dup2(redirect_fd, STDIN_FILENO);
+		ptr->fd_in = redirect_fd;
 	else
-		dup2(redirect_fd, STDOUT_FILENO);
-	close(redirect_fd);
+		ptr->fd_out = redirect_fd;
+	return (1);
 }
