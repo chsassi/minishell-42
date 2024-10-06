@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:01:19 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 12:04:11 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:18:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ int quote_token_length(char *input)
 	int i;
 
 	i = 0;
-	if (*input == '\'')
+	if (input && *input == '\'')
 	{
-		if (input[i + 1] == '\'')
+		if (input[i + 1] && input[i + 1] == '\'')
 			return(2);
 		i++;
-		while (input[i] != '\'')
+		while (input && input[i] && input[i] != '\'')
 			i++;
 		i++;
+		/**per risolvere l invalid read bisogna rimuovere l i++
+		 * perche altrimenti vai oltre il NULL char
+		 * ma hai detto che la funzione ti serve per fill mtx
+		 */
 		return(i);
 	}
 	else
