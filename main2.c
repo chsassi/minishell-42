@@ -61,7 +61,7 @@ int main(int ac, char **av, char **envp)
 		printf("Expanded string: %s\n", input);
 		mtx = create_mtx(input);
 		if (!mtx)
-			return(free(input), 0);
+			return(free(input), free_env_list(env), 0);
 		else
 		{
 			tokens = token_arr(mtx);
