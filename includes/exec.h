@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 08:57:34 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 08:57:36 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/07 16:38:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
 void	fork_cmd(char *cmd, char **args, char **envp);
-int		run_builtin(char **args, t_env **env_list);
+int		run_builtin(t_all *pAll, t_shell *pShell);
 void	run_exec(t_env *env, char **args, bool inside_fork);
 
 // Exec Utils

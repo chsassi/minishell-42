@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/01 13:40:07 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/07 16:43:50 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	process_input(t_all *pAll)
 	if (WIFEXITED(status))
 		pAll->status_code = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
-		pAll->status_code = 128 + WTERMSIG(status);
+		pAll->status_code = WTERMSIG(status);
 	return (restore_fds(pAll), /*free*/ 1);
 }
 
