@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/10/05 19:46:05 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/07 10:25:08 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =	./main.c \
 		./src/parsing/expander/expand_var.c \
 		./src/parsing/expander/expander_utils.c \
 		./src/parsing/assign_tokens.c \
+		./src/parsing/merger/quote_merger.c \
 		./src/parsing/merger/quote_merger_utils.c \
 		./src/parsing/merger/parse_struct.c \
 		./src/builtins/env.c 	\

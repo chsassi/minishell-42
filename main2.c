@@ -61,7 +61,7 @@ int main(int ac, char **av, char **envp)
 		printf("Expanded string: %s\n", input);
 		mtx = create_mtx(input);
 		if (!mtx)
-			return(free(input), 0);
+			return(free(input), free_env_list(env), 0);
 		else
 		{
 			tokens = token_arr(mtx);
@@ -71,13 +71,12 @@ int main(int ac, char **av, char **envp)
 			// write_arr_merge(mergers, mtx);
 			//printf("\n");
 			// write_arr_merge(pro_mergers, mtx);
-			write_mtx2(mtx, tokens);
+			//write_mtx2(mtx, tokens);
 			write_parse(parser);
 			// free(mergers);
 			// free(pro_mergers);
-			free(parser);
+			clear_parse(parser);
 			free(tokens);
-			free_mtx(mtx);
 			free(input);
 		}
 	}

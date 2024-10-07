@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/05 19:47:22 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:33:57 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,13 @@ char			*merge_string(int *arr, char **mtx, int *i);
 
 // Parse struct
 
-t_pars			*new_parse_node(char **mtx, int i, int tok, int *arr);
+int 			quot_tok_len(char *input);
+t_pars			*new_parse_node(char **mtx, int *i, int tok, int *arr);
 t_pars			*last_parse(t_pars *lst);
 void			add_back_parse(t_pars **lst, t_pars *new);
+void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
+char    		*joined_merger(char *str1, char *str2, int flag);
 
 // typedef struct s_elem
 // {
