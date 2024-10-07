@@ -31,24 +31,22 @@ void	fork_cmd(char *cmd, char **args, char **envp)
 		ft_putstr_fd("bash: fork: retry: Resource temporarily unavailable", 2);
 }
 
-int	run_builtin(char **args, t_env **env_list) //da cambiare: accettera' la struct concordata
+int	run_builtin(t_all *pAll, t_shell *pShell)
 {
-/* 	if (!ft_strcmp(args[0], "echo"))
-		return (bin_echo(args), 1);
-	else  */if (!ft_strcmp(args[0], "cd"))
-		return (bin_cd(*env_list, args[1]), 1);
-	else if (!ft_strcmp(args[0], "pwd"))
+	if (!ft_strcmp(pShell->cmd[0], "echo"))
+		return (bin_echo(pAll, pShell), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "cd"))
+		return (bin_cd(*pAll->env, pShell->cmd[1]), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "pwd"))
 		return (bin_pwd(), 1);
-	else if (!ft_strcmp(args[0], "export"))
-		return (bin_export(env_list, args), 1);
-	else if (!ft_strcmp(args[0], "unset"))
-		return (bin_unset(env_list, args[1]), 1);
-	else if (!ft_strcmp(args[0], "env"))
-		return (bin_env(*env_list), 1);
-	else if (!ft_strcmp(args[0], HEREDOC))
-		return (handle_heredoc(args[1]), 1);
-	// else if (!ft_strcmp(args[0], "exit"))
-	// 	return (bin_exit(), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "export"))
+		return (bin_export(pAll->env, pShell->cmd), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "unset"))
+		return (bin_unset(pAll->env, pShell->cmd[1]), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "env"))
+		return (bin_env(*pAll->env), 1);
+	else if (!ft_strcmp(pShell->cmd[0], "exit"))
+		return (bin_exit(pAll, pShell), 1);
 	else
 		return (0);
 }
