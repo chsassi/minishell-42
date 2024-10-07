@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 
 # define BUILTIN 9
+
 # define REDIRECT_IN "<"
 # define REDIRECT_OUT ">"
 # define REDIRECT_APPEND ">>"

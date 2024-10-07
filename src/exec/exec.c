@@ -65,8 +65,6 @@ void	fork_cmd(char *cmd, char **args, char **envp)
 	}
 	else if (pid < 0)
 		ft_putstr_fd("bash: fork: retry: Resource temporarily unavailable", 2);
-	else
-		waitpid(pid, &status, 0);
 }
 
 int	run_builtin(char **args, t_env **env_list) //da cambiare: accettera' la struct concordata
@@ -102,7 +100,7 @@ void	run_exec(t_env *env, char **args, bool inside_fork)
 	if (run_builtin(args, &env))
 	{
 		if (inside_fork)
-			exit(/*g_exit*/);
+			exit(/*g_exit*/0);
 		return ;
 	}
 	paths = get_path_from_env();
@@ -115,11 +113,10 @@ void	run_exec(t_env *env, char **args, bool inside_fork)
 		return ;
 	}
 	env_mtx = create_env_mtx(env);
-	
 	if (!inside_fork)
-		fork_cmd(cmd_path, args, env_mtx);
-	else
 		exec_cmd(cmd_path, args, env_mtx);
+	else
+		fork_cmd(cmd_path, args, env_mtx);
 	free(cmd_path);
 	free_mtx(env_mtx);
 	free_mtx(paths);

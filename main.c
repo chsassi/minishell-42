@@ -17,13 +17,11 @@ int	g_exit = 0;
 int	main(int ac, char **av, char **envp)
 {
 	t_env	*ptr;
-	char	*input;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
 	ptr = create_envp(envp);
-	input = NULL;
-	minishell_loop(input, ptr);
+	minishell_loop(ptr);
 	return (0);
 }

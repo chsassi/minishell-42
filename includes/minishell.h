@@ -31,6 +31,7 @@ typedef struct s_env
 
 typedef struct s_shell
 {
+	char			*input;
 	char			**cmd;
 	char			**redirects;
 	int				*pipe;
@@ -43,8 +44,8 @@ typedef struct s_shell
 
 typedef struct s_all
 {
-	t_shell	*shell;
-	t_env	**env; //controllare dbl ptr
+	t_shell	shell;
+	t_env	**env;
 	int		cmd_nbr;
 	int		restore_fd_in;
 	int		restore_fd_out;
@@ -53,8 +54,8 @@ typedef struct s_all
 
 // Init
 void	check_input_loop(t_all *pAll, t_shell *shell);
-int		process_input(char *input, t_env **env, int fd[2]);
-void	minishell_loop(char *input, t_env *env);
+int		process_input(char *input, t_env **env, int fd_in, int fd_out);
+void	minishell_loop(t_env *env);
 
 // Waste
 void	write_mtx2(char **mtx, int *arr);
