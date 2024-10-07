@@ -12,15 +12,38 @@
 
 #include "minishell.h"
 
-void	bin_exit(char **input/* t_all *pAll */)
+int	check_exit_params(t_shell *pShell)
 {
-	if (!ft_strcmp(*input, "exit"))
+	if (pShell->cmd[2])
+		return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
+	if (pShell->cmd[1] && !is_numeric(pShell->cmd[1]))
 	{
-		write(1, "exit\n", 5);
-		free(/*free struct*/NULL);
-		exit(0);
+		ft_putstr_fd("bash: exit: ", 2);
+		ft_putstr_fd(pShell->cmd[1], 2);
+		ft_putstr_fd(": numeric argument required\n", 2);
+		g_exit = 2;
+		return (0);
 	}
+	return (1);
 }
 
-// da leggere il funzionamento di exit con le pipe
-// da leggere il funzionamento degli exit status
+void	bin_exit(t_all *pAll, t_shell *pShell)
+{
+	if (!check_exit_params(pShell))
+		return ;
+	if (!pShell->cmd[1])
+	{
+		write(1, "exit\n", 5);
+		free_env_list(*pAll->env);
+		//free
+		exit(pAll->status_code);
+	}
+	if (pShell->cmd[1] && is_numeric(pShell->cmd[1]))
+	{
+		pAll->status_code = ft_atoi(pShell->cmd[1]);
+		write(1, "exit\n", 5);
+		free_env_list(*pAll->env);
+		//free
+		exit(pAll->status_code);
+	}
+}

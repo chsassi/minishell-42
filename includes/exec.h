@@ -21,8 +21,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define BUILTIN 9
-
 # define REDIRECT_IN "<"
 # define REDIRECT_OUT ">"
 # define REDIRECT_APPEND ">>"
@@ -33,24 +31,28 @@ typedef struct s_shell	t_shell;
 typedef struct s_all	t_all;
 
 // Builtins
-void	cd_home(t_env *env_list);
-void	cd_previous_dir(t_env *env_list);
-void	cd_upper_dir(t_env *env_list);
-void	cd_from_path(t_env *env_list, char *path);
-void	bin_cd(t_env *env_list, char *path);
-void	bin_echo(t_all *pAll);
-t_env	*bin_env(t_env *current_env);
-void	bin_exit(char **input);
-void	bin_export(t_env **env_list, char **args);
+void	cd_home(t_all *pAll);
+void	cd_previous_dir(t_all *pAll);
+void	cd_upper_dir(t_all *pAll);
+void	cd_from_path(t_all *pAll, char *path);
+int 	check_exit_params(t_shell *pShell);
+
+void	bin_cd(t_all *pAll, t_shell *pShell);
+void	bin_echo(t_all *pAll, t_shell *pShell);
+t_env	*bin_env(t_all *pAll);
+void	bin_exit(t_all *pAll, t_shell *pShell);
+void	bin_export(t_all *pAll, t_shell *pShell);
 void	bin_pwd(void);
-t_env	*bin_unset(t_env **head, char *var_name);
+t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
-char	**get_path_from_env(void);
-char	*find_executable_in_env(char **paths, char *command);
 void	fork_cmd(char *cmd, char **args, char **envp);
 int		run_builtin(char **args, t_env **env_list);
 void	run_exec(t_env *env, char **args, bool inside_fork);
+
+// Exec Utils
+char	**get_path_from_env(void);
+char	*find_executable_in_env(char **paths, char *command);
 
 // Heredoc
 void	heredoc_loop(char *delim, char *line, int fd);
@@ -59,7 +61,7 @@ void	exec_heredocs(t_shell *cmds);
 
 // Redirect
 void	restore_fds(t_all *pAll);
-int	handle_redirection(t_all *pAll, char *type, char *file);
+int 	handle_redirection(t_all *pAll, char *type, char *file);
 void	exec_redirection(t_all *pAll);
 
 // Signal

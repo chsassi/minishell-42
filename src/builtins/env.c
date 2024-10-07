@@ -12,16 +12,16 @@
 
 #include "minishell.h"
 
-t_env	*bin_env(t_env *env)
+t_env	*bin_env(t_all *pAll)
 {
 	t_env	*current;
 
-	current = env;
+	current = *pAll->env;
 	while (current)
 	{
 		print_env(current);
 		current = current->next;
 	}
 	g_exit = 0;
-	return (env);
+	return (*pAll->env);
 }

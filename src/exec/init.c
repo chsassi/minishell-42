@@ -12,18 +12,7 @@
 
 #include "minishell.h"
 
-int	input_check(char *input, t_env **env)
-{
-	if (!input)
-	{
-		write(1, "exit\n", 6);
-		free_env_list(env);
-		return (0);
-	}
-	return (1);
-}
-
-void	check_input_loop(t_all *pAll, t_shell *shell)
+void	check_input_loop(t_all *pAll)
 {
 	pid_t	pid;
 
@@ -31,24 +20,24 @@ void	check_input_loop(t_all *pAll, t_shell *shell)
 	if (pAll->cmd_nbr > 1)
 	{
 		pid = fork();
-		//check_cmd_order();
 		if (pid == 0)
 		{
-			run_exec(*pAll->env, shell->cmd, true);
+			run_exec(*pAll->env, pAll->shell->cmd, true);
 			//check free
 			exit(pAll->status_code);
 		}
 	}
 	else
-		run_exec(*pAll->env, shell->cmd, false);
+		run_exec(*pAll->env, pAll->shell->cmd, false);
 }
 
 int	process_input(t_all *pAll)
 {
 	int			**pipex;
+	int			status;
 	int			i;
 
-	pAll->shell = parse_input(pAll->shell.input, pAll->env);
+	pAll->shell = parse_input(pAll->shell->input, pAll->env);
 	if (!pAll)
 		return (/*free*/0);
 	pipex = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
@@ -64,15 +53,16 @@ int	process_input(t_all *pAll)
 		pipex[i] = ft_calloc(2, sizeof(int));
 		if (pipe(pipex[i]) == -1)
 			return (/*free*/0);
-		pAll->shell.pipe = pipex[i];
-		check_input_loop(pAll, &(pAll->shell));
+		pAll->shell->pipe = pipex[i];
+		check_input_loop(pAll);
 	}
-	waitpid(-1, pAll->status_code, 0);
-	if (WIFEXITED(pAll->status_code))
-		g_exit = WEXITSTATUS(pAll->status_code);
-	else if (WIFSIGNALED(pAll->status_code))
-		g_exit = pAll->status_code;
-
+	i = 0;
+	close_pipes_loop(pipex, pAll->cmd_nbr);
+	waitpid(-1, &status, 0);
+	if (WIFEXITED(status))
+		pAll->status_code = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+		pAll->status_code = 128 + WTERMSIG(status);
 	return (restore_fds(pAll), /*free*/ 1);
 }
 
@@ -90,22 +80,15 @@ void	minishell_loop(t_env *env)
 
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
-		ptr.shell.input = readline("minishell> ");
-		if (!input_check(ptr.shell.input, env))
-			exit (0);
-		// if (!input)
-		// {
-		// 	write(1, "exit\n", 5);
-		// 	free_env_list(env);
-		// 	exit(0);
-		// }
+		ptr.shell->input = readline("minishell> ");
+		input_check(ptr.shell->input);
 		if (!process_input(&ptr))
 		{
-			free(ptr.shell.input);
+			free(ptr.shell->input);
 			continue ;
 		}
-		if (ft_strlen(ptr.shell.input) > 0)
-			add_history(ptr.shell.input);
-		free(ptr.shell.input);
+		if (ft_strlen(ptr.shell->input) > 0)
+			add_history(ptr.shell->input);
+		free(ptr.shell->input);
 	}
 }

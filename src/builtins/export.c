@@ -13,14 +13,14 @@
 #include "minishell.h"
 
 //da fare join con lo spazio
-void	bin_export(t_env **env_list, char **args)
+void	bin_export(t_all *pAll, t_shell *pShell)
 {
 	t_env	*current;
 	int		i;
 
-	if (!args[1])
+	if (!pShell->cmd[1])
 	{
-		current = *env_list;
+		current = *pAll->env;
 		while (current)
 		{
 			print_export(current);
@@ -28,10 +28,7 @@ void	bin_export(t_env **env_list, char **args)
 		}
 		return ;
 	}
-	i = 1;
-	while (args[i])
-	{
-		export_var(env_list, args[i]);
-		i++;
-	}
+	i = 0;
+	while (pShell->cmd[++i])
+		export_var(pAll->env, pShell->cmd[i]);
 }

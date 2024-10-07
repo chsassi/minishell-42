@@ -20,9 +20,10 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main2.c \
+SRC =	./main.c \
 		./src/builtins/utils/mtx_from_env.c \
-		./src/init.c \
+		./src/exec/init.c \
+		./src/exec/init_utils.c \
 		./src/builtins/utils/list_utils.c \
 		./src/builtins/utils/env_utils.c \
 		./src/builtins/utils/export_utils.c \
@@ -44,6 +45,7 @@ SRC =	./main2.c \
 		./src/exec/redirect.c \
 		./src/exec/signals.c \
 		./src/exec/exec.c \
+		./src/exec/exec_utils.c \
 		./src/builtins/export.c \
 		./waste/write_tokens.c
 

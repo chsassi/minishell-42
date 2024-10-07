@@ -12,22 +12,22 @@
 
 #include "minishell.h"
 
-void	bin_echo(t_all *pAll)
+void	bin_echo(t_all *pAll, t_shell *pShell)
 {
 	int	i;
 	int	nl;
 
 	i = 1;
 	nl = 1;
-	if (pAll->prompt[1] && !ft_strcmp(pAll->prompt[1], "-n"))
+	if (pShell->cmd[1] && !ft_strcmp(pShell->cmd[1], "-n"))
 	{
 		nl = 0;
 		i = 2;
 	}
-	while (pAll->prompt[i])
+	while (pShell->cmd[i])
 	{
-		printf("%s", pAll->prompt[i]);
-		if (pAll->prompt[i + 1])
+		printf("%s", pShell->cmd[i]);
+		if (pShell->cmd[i + 1])
 			printf(" ");
 		i++;
 	}
@@ -35,4 +35,5 @@ void	bin_echo(t_all *pAll)
 		printf("\n");
 	g_exit = 0;
 }
+
 //da implementare il caso con "$?"

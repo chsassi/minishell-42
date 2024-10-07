@@ -12,20 +12,20 @@
 
 #include "minishell.h"
 
-t_env	*bin_unset(t_env **head, char *var_name)
+t_env	*bin_unset(t_all *pAll, t_shell *pShell)
 {
 	t_env	*tmp;
 	t_env	**original_head;
 
-	if (!head || !*head)
-		return (*head);
-	original_head = head;
-	while (*head && ft_strcmp((*head)->var, var_name))
-		head = &((*head)->next);
-	if (*head)
+	if (!pAll->env || !*pAll->env)
+		return (*pAll->env);
+	original_head = pAll->env;
+	while (*pAll->env && ft_strcmp((*pAll->env)->var, pShell->cmd[1]))
+		pAll->env = &((*pAll->env)->next);
+	if (*pAll->env)
 	{
-		tmp = *head;
-		*head = (*head)->next;
+		tmp = *pAll->env;
+		*pAll->env = (*pAll->env)->next;
 		free_env_node(tmp);
 	}
 	g_exit = 0;
