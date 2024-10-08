@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/07 11:33:57 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:08:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef	struct s_pars
 	char 			*str;
 	int				type;
 	struct s_pars	*next;
+	struct s_pars	*prev;
 }	t_pars;
 
 // Helper functions 
@@ -111,6 +112,12 @@ void			add_back_parse(t_pars **lst, t_pars *new);
 void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char    		*joined_merger(char *str1, char *str2, int flag);
+
+// Syntax
+
+int 			check_redir_error(t_pars *parser);
+int				check_pipe_error(t_pars *parser);
+int				check_all_errors(t_pars *parser);
 
 // typedef struct s_elem
 // {

@@ -29,6 +29,13 @@ static void		write_parse(t_pars *head)
 	}
 }
 
+static void	free_trash(t_pars *parser, int *tokens, char *input)
+{
+			clear_parse(parser);
+			free(tokens);
+			free(input);
+}
+
 int main(int ac, char **av, char **envp)
 {
     t_env	*env = NULL;
@@ -55,8 +62,8 @@ int main(int ac, char **av, char **envp)
 		// input = trimmed_quote_token(input);
 		// printf("String trimmed: [ %s ]\n", input);
 		// free(input);
-		if (!ft_strcmp(input, "env"))
-			env = bin_env(env);
+		// if (!ft_strcmp(input, "env"))
+		// 	env = bin_env(env);
 		input = expansion(input, env);
 		printf("Expanded string: %s\n", input);
 		mtx = create_mtx(input);
@@ -66,14 +73,20 @@ int main(int ac, char **av, char **envp)
 		{
 			tokens = token_arr(mtx);
 			parser = parse_struct_init(input, mtx, tokens);
-		// 	mergers = array_of_merges(input, mtx);
-		// 	pro_mergers = process_arr_merger(input, mtx);
+			if (!check_all_errors(parser))
+			{
+				free_trash(parser, tokens, input);
+				free_env_list(env);
+				return (0);
+			}
+			// 	mergers = array_of_merges(input, mtx);
+			// 	pro_mergers = process_arr_merger(input, mtx);
 			// write_arr_merge(mergers, mtx);
 			//printf("\n");
 			// write_arr_merge(pro_mergers, mtx);
 			//write_mtx2(mtx, tokens);
-			write_parse(parser);
 			// free(mergers);
+			write_parse(parser);
 			// free(pro_mergers);
 			clear_parse(parser);
 			free(tokens);
