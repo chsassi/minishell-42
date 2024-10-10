@@ -80,7 +80,7 @@ char *var_name, char *equal_sign);
 void	export_var(t_env **env_list, char *arg);
 void	print_export(t_env *var);
 
-// Mtx from Env
+// Mtx from ENV
 int		count_env_vars(t_env *env_list);
 void	strjoin_loop(t_env *current, char **env_mtx, char *tmp);
 char	**create_env_mtx(t_env *env_list);
