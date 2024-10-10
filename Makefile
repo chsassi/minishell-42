@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/10/08 18:06:58 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/10 15:53:41 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	./main2.c \
 		./src/parsing/merger/quote_merger.c \
 		./src/parsing/merger/quote_merger_utils.c \
 		./src/parsing/parse_struct/parse_struct.c \
+		./src/parsing/parse_struct/shell_args.c \
 		./src/parsing/syntax_error/syntax_error.c \
 		./src/builtins/utils/list_utils.c \
 		# ./src/builtins/utils/mtx_from_env.c \

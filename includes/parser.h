@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/09 19:34:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:28:26 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ typedef	struct s_pars
 	struct s_pars	*prev;
 }	t_pars;
 
+typedef struct s_helper
+{
+	char	*first_str;
+	char	*second_str;
+	char	*third_str;
+	char	*result;
+}	t_helper;
+
 // Helper functions 
 
 int				is_quote(char c);
@@ -64,12 +72,12 @@ void			count_normal_token(char *input, int *i, int *token);
 int				count_quote_token(char *input, int *i, int *token);
 int				count_single_quote_token(char *input, int *i, int *token);
 int				count_double_quote_token(char *input, int *i, int *token);
-//void			count_env_token(char *input, int *i, int *token);
 void			count_operator_token(char *input, int *i, int *token);
-//int			env_token_length(char *input);
 int				operator_token_length(char *input);
 int				quote_token_length(char *input);
 int				normal_token_length(char *input);
+//void			count_env_token(char *input, int *i, int *token);
+//int			env_token_length(char *input);
 
 // Matrix functions
 
@@ -113,7 +121,7 @@ void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char    		*joined_merger(char *str1, char *str2, int flag);
 char			**red_mtx(t_pars *parser);
-void			reorg_struct(t_pars *parser, char **mtx, int *i);
+void			reorg_struct(t_pars **parser, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);

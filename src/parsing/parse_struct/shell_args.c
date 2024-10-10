@@ -6,11 +6,11 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:07:24 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/09 19:29:46 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:47:42 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
 int	is_redirect(int type)
 {
@@ -36,25 +36,25 @@ int	len_red_mtx(t_pars *parser)
 	}
 	return (i);
 }
-void	reorg_struct(t_pars *parser, char **mtx, int *i)
+void	reorg_struct(t_pars **parser, char **mtx, int *i)
 {
 			t_pars *tmp;
 			
-			tmp = parser;
-			if (parser->prev != NULL)
-				parser->prev->next = parser->next->next;
-			if (parser->next->next != NULL)
-				parser->next->next->prev = parser->prev;
-			mtx[*i] = parser->str;
-			parser = parser->next;
+			tmp = *parser;
+			if ((*parser)->prev != NULL)
+				(*parser)->prev->next = (*parser)->next->next;
+			if ((*parser)->next->next != NULL)
+				(*parser)->next->next->prev = (*parser)->prev;
+			mtx[(*i)] = ft_strdup((*parser)->str);
+			(*parser) = (*parser)->next;
 			(*i)++;
 			free(tmp->str);
 			tmp->next = NULL;
 			tmp->prev = NULL;
 			free(tmp);
-			tmp = parser;
-			mtx[*i] = parser->str;
-			parser = parser->next;
+			tmp = *parser;
+			mtx[(*i)] = ft_strdup((*parser)->str);
+			(*parser) = (*parser)->next;
 			free(tmp->str);
 			tmp->next = NULL;
 			tmp->prev = NULL;
@@ -72,15 +72,16 @@ char	**red_mtx(t_pars *parser)
 	mtx = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!mtx)
 		return (NULL);
-	while (parser)
+	while (parser != NULL)
 	{
 		if (is_redirect(parser->type))
 		{
-			reorg_struct(parser, mtx, &i);
+			reorg_struct(&parser, mtx, &i);
+			i++;
 			continue ;
 		}
-		parser = parser->next;
-		i++;
+		if (parser != NULL)
+			parser = parser->next;
 	}
 	mtx[i] = NULL;
 	return (mtx);
@@ -103,7 +104,7 @@ char	**cmd_mtx(t_pars *parser)
 	n = 0;
 	while (parser && parser->type != PIPE_LINE)
 	{
-		mtx[n] = parser->str;
+		mtx[n] = ft_strdup(parser->str);
 		parser = parser->next;
 		n++;
 	}

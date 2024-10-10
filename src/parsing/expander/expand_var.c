@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/07 12:11:45 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:37:30 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 
 char	*exp_string(char *inp, t_env *env, int *i, enum e_state state)
 {
-	char	*first_str;
-	char	*second_str;
-	char	*third_str;
-	char	*result;
+	t_helper	tmp;
 
-	first_str = NULL;
-	second_str = NULL;
-	third_str = NULL;
-	result = NULL;
+	tmp = {0};
 	if ((*i) != 0)
-		first_str = ft_substr(inp, 0, (*i));
+		tmp.first_str = ft_substr(inp, 0, (*i));
 	else
-		first_str = ft_strdup("");
+		tmp.first_str = ft_strdup("");
 	if (state == GENERAL)
-		second_str = processed_str_exp(env_string(inp, i, env));
+		tmp.second_str = processed_str_exp(env_string(inp, i, env));
 	else
-		second_str = env_string(inp, i, env); 
-	third_str = ft_strdup(inp + (*i));
+		tmp.second_str = env_string(inp, i, env); 
+	tmp.third_str = ft_strdup(inp + (*i));
 	*i = 0;
-	result = ft_strjoin_gnl(first_str, second_str);
-	*i += ft_strlen(result);
-	free(second_str);
-	result= ft_strjoin_gnl(result, third_str);;
-	free(third_str);
-	return(free(inp), result);
+	tmp.result = ft_strjoin_gnl(tmp.first_str, tmp.second_str);
+	*i += ft_strlen(tmp.result);
+	free(tmp.second_str);
+	tmp.result= ft_strjoin_gnl(tmp.result, tmp.third_str);;
+	free(tmp.third_str);
+	return(free(inp), tmp.result);
 }
 
 char	*expansion(char *input, t_env *envp)
