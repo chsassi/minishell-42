@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/09 19:31:56 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:34:39 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ char			**cmd_mtx(t_pars *parser);
 int 			check_redir_error(t_pars *parser);
 int				check_pipe_error(t_pars *parser);
 int				check_all_errors(t_pars *parser);
-
 
 // typedef struct s_elem
 // {
