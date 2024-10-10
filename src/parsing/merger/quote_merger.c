@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 13:42:21 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/07 15:09:18 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:21:10 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,15 @@ char	*merge_string(int *arr, char **mtx, int *i)
 {
 	char	*str;
 	char	*trimm;
+	char	*tmp;
 
 	str = NULL;
 	trimm = NULL;
 	if (arr[*i] == NO)
 	{
-		
-		str = ft_strdup(trimm_quotes(mtx[*i]));
+		tmp = trimm_quotes(mtx[*i]);
+		str = ft_strdup(tmp);
+		free(tmp);
 	}
 	else
 	{

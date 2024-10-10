@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:55:25 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/06 18:30:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:18:52 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_pars	*new_parse_node(char **mtx, int *i, int tok, int *arr)
 	new->str = merge_string(arr, mtx, i);
 	new->type = tok;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
@@ -51,6 +52,7 @@ void	add_back_parse(t_pars **lst, t_pars *new)
 	}
 	tmp = last_parse(*lst);
 	tmp->next = new;
+	new->prev = tmp;
 }
 
 void	clear_parse(t_pars *parser)
@@ -64,6 +66,7 @@ void	clear_parse(t_pars *parser)
 		parser = parser->next;
 		free(tmp->str);
 		tmp->next = NULL;
+		tmp->prev = NULL;
 		free(tmp);
 	}
 }
@@ -90,5 +93,8 @@ t_pars	*parse_struct_init(char *input, char **mtx, int *token)
 	}
 	free(merge);
 	free_mtx(mtx);
+
+
+	
 	return (head);
 }

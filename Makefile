@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 09:14:04 by brulutaj          #+#    #+#              #
-#    Updated: 2024/10/07 10:25:08 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/08 18:06:58 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,35 +20,36 @@ RM = rm -f
 
 LIBFT_MAKE = ./Libft
 
-SRC =	./main.c \
-		./src/builtins/utils/mtx_from_env.c \
-		./src/exec/init.c \
-		./src/exec/init_utils.c \
-		./src/builtins/utils/list_utils.c \
-		./src/builtins/utils/env_utils.c \
-		./src/builtins/utils/export_utils.c \
-		./src/parsing/utils/mtx_utils3.c \
-		./src/parsing/utils/mtx_utils.c \
-		./src/parsing/utils/mtx_utils2.c \
-		./src/parsing/mtx_handler.c \
+SRC =	./main2.c \
+		./src/parsing/matrix/utils/mtx_utils3.c \
+		./src/parsing/matrix/utils/mtx_utils.c \
+		./src/parsing/matrix/utils/mtx_utils2.c \
+		./src/parsing/matrix/mtx_handler.c \
+		./src/parsing/matrix/assign_tokens.c \
 		./src/parsing/expander/expand_var.c \
 		./src/parsing/expander/expander_utils.c \
-		./src/parsing/assign_tokens.c \
 		./src/parsing/merger/quote_merger.c \
 		./src/parsing/merger/quote_merger_utils.c \
-		./src/parsing/merger/parse_struct.c \
-		./src/builtins/env.c 	\
-		./src/builtins/pwd.c \
-		./src/builtins/cd.c \
-		./src/builtins/unset.c \
-		./src/builtins/exit.c \
-		./src/exec/heredoc.c \
-		./src/exec/redirect.c \
-		./src/exec/signals.c \
-		./src/exec/exec.c \
-		./src/exec/exec_utils.c \
-		./src/builtins/export.c \
-		./waste/write_tokens.c
+		./src/parsing/parse_struct/parse_struct.c \
+		./src/parsing/syntax_error/syntax_error.c \
+		./src/builtins/utils/list_utils.c \
+		# ./src/builtins/utils/mtx_from_env.c \
+		# ./src/exec/init.c \
+		# ./src/exec/init_utils.c \
+		# ./src/builtins/utils/env_utils.c \
+		# ./src/builtins/utils/export_utils.c \
+		# ./src/builtins/env.c 	\
+		# ./src/builtins/pwd.c \
+		# ./src/builtins/cd.c \
+		# ./src/builtins/unset.c \
+		# ./src/builtins/exit.c \
+		# ./src/exec/heredoc.c \
+		# ./src/exec/redirect.c \
+		# ./src/exec/signals.c \
+		# ./src/exec/exec.c \
+		# ./src/exec/exec_utils.c \
+		# ./src/builtins/export.c \
+		# ./waste/write_tokens.c
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
