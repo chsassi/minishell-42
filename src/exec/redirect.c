@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:55:15 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/01 11:55:16 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/11 15:39:38 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	exec_redirection(t_all *pAll)
 		}
 		i++;
 	}
-	if (pAll->shell->fd_in != -1)
-		dup2(pAll->shell->fd_in, STDIN_FILENO);
-	if (pAll->shell->fd_out != -1)
-		dup2(pAll->shell->fd_out, STDOUT_FILENO);
+	// if (pAll->shell->fd_in != -1)
+	// 	dup2(pAll->shell->fd_in, STDIN_FILENO);
+	// if (pAll->shell->fd_out != -1)
+	// 	dup2(pAll->shell->fd_out, STDOUT_FILENO);
 }

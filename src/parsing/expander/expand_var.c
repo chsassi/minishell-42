@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/10 19:37:30 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:00:52 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*exp_string(char *inp, t_env *env, int *i, enum e_state state)
 {
 	t_helper	tmp;
 
-	tmp = {0};
+	tmp = (t_helper){0};
 	if ((*i) != 0)
 		tmp.first_str = ft_substr(inp, 0, (*i));
 	else

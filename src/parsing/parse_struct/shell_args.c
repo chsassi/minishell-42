@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:07:24 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/10 18:47:42 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:51:29 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**red_mtx(t_pars *parser)
 	mtx = (char **)malloc(sizeof(char *) * (len + 1));
 	if (!mtx)
 		return (NULL);
-	while (parser != NULL)
+	while (parser && parser->type != PIPE_LINE)
 	{
 		if (is_redirect(parser->type))
 		{

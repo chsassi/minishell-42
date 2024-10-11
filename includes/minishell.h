@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/08 15:21:07 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:33:54 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ typedef struct s_shell
 {
 	char			**cmd;
 	char			**redirects;
-	int				*pipe;
 	int				fd_in; // start from -1
 	int				fd_out; // start from -1
-	int				cmd_id;
 	char			*last_heredoc;
 	struct s_shell	*next;
 }	t_shell;
@@ -46,6 +44,7 @@ typedef struct s_all
 	char	*input;
 	t_shell	*shell;
 	t_env	**env;
+	int		**arr_pipe;
 	int		cmd_nbr;
 	int		restore_fd_in;
 	int		restore_fd_out;

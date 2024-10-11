@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:05:35 by chsassi           #+#    #+#             */
-/*   Updated: 2024/09/25 11:51:11 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/11 15:38:11 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	run_exec(t_env *env, char **args, bool inside_fork)
 	}
 	env_mtx = create_env_mtx(env);
 	if (!inside_fork)
-		exec_cmd(cmd_path, args, env_mtx);
-	else
 		fork_cmd(cmd_path, args, env_mtx);
+	else
+		exec_cmd(cmd_path, args, env_mtx);
 	free(cmd_path);
 	free_mtx(env_mtx);
 	free_mtx(paths);
