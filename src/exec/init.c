@@ -68,7 +68,6 @@ int	run_all_cmds(t_all *pAll)
 	t_shell *ptr;
 	int		i;
 
-	pAll->shell = parsing(pAll->input, pAll->env);
 	if (!pAll)
 		return (/*free*/0);
 	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
@@ -100,7 +99,6 @@ int	process_input(t_all *pAll)
 {
 	int	status;
 
-	pAll->shell = parsing(pAll->input, pAll->env);
 	if (!pAll->shell)
 		return (0);
 	run_all_cmds(pAll);
@@ -128,6 +126,7 @@ void	minishell_loop(t_env *env)
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
 		input_check(&ptr);
+		ptr.shell = parsing(&ptr);
 		if (!process_input(&ptr))
 		{
 			free(ptr.input);

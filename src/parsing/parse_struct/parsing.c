@@ -12,17 +12,24 @@
 
 #include "parser.h"
 
-t_shell	*parsing(char *input, char **env)
+void	free_trash(t_pars *parser, int *tokens, char *input)
+{
+			clear_parse(parser);
+			free(tokens);
+			free(input);
+}
+
+t_shell	*parsing(t_all *pAll)
 {
 	t_phelp	ptr;
 	t_shell	*shell;
 
 	shell = NULL;
 	ptr = (t_phelp){0};
-	ptr.input_exp = expansion(input, env);
+	ptr.input_exp = expansion(pAll, *pAll->env);
 	ptr.mtx = create_mtx(ptr.input_exp);
 	if (!ptr.mtx)
-		return (free(input), NULL);
+		return (free(pAll->input), NULL);
 	else
 	{
 		ptr.tokens = token_arr(ptr.mtx);
@@ -34,8 +41,6 @@ t_shell	*parsing(char *input, char **env)
 		}
 	}
 	shell = shell_init(ptr.parser);
-	clear_parse(ptr.parser);
-	free(ptr.tokens);
-	free(ptr.input_exp);
-	return (shell);
+	return (clear_parse(ptr.parser), free(ptr.tokens),
+		free(ptr.input_exp), shell);
 }

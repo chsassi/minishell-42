@@ -47,6 +47,11 @@ enum e_state
 	GENERAL,
 };
 
+typedef struct s_env	t_env;
+typedef struct s_shell	t_shell;
+typedef struct s_pars	t_pars;
+typedef struct s_all	t_all;
+
 typedef struct s_pars
 {
 	char			*str;
@@ -117,13 +122,15 @@ int				is_escaped_char(int c);
 char			*process_escaped(char *str, int *i);
 char			*create_escaped_str(char *content, int *i);
 char			*processed_str_exp(char *content);
+char			*expansion(t_all *all, t_env *envp);
 
 // Expansion function
 
 char			*find_env_string(char *input, t_env *envp, int len);
 char			*env_string(char *input, int *i, t_env *envp);
-char			*expansion(char *input, t_env *envp);
-char			*exp_string(char *inp, t_env *env, int *i, enum e_state state);
+void			free_trash(t_pars *parser, int *tokens, char *input);
+t_shell			*parsing(t_all *pAll);
+char			*exp_string(t_all *all, t_exp p);
 void			set_state(enum e_state *state);
 
 // Quote Trimming
@@ -148,7 +155,6 @@ void			reorg_struct(t_pars **parser, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);
-t_shell			*parsing(char *input, char **env);
 
 // Syntax
 

@@ -29,12 +29,6 @@ int g_exit = 0;
 // 	}
 // }
 
-static void	free_trash(t_pars *parser, int *tokens, char *input)
-{
-			clear_parse(parser);
-			free(tokens);
-			free(input);
-}
 
 int main(int ac, char **av, char **envp)
 {

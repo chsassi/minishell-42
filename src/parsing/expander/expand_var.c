@@ -17,6 +17,7 @@ char	*exp_string(t_all *all, t_exp p)
 	t_helper	tmp;
 
 	tmp = (t_helper){0};
+	(void)all;
 	if (*p.i != 0)
 		tmp.first_str = ft_substr(p.inp, 0, *p.i);
 	else
@@ -35,7 +36,7 @@ char	*exp_string(t_all *all, t_exp p)
 	return (free(p.inp), tmp.result);
 }
 
-char	*expansion(t_all *all, char *input, t_env *envp)
+char	*expansion(t_all *all, t_env *envp)
 {
 	char			*input_exp;
 	int				i;
@@ -43,7 +44,7 @@ char	*expansion(t_all *all, char *input, t_env *envp)
 
 	i = 0;
 	state = GENERAL;
-	input_exp = ft_strdup(input);
+	input_exp = ft_strdup(all->input);
 	while (input_exp && *input_exp && input_exp[i] != '\0')
 	{
 		if (input_exp && input_exp[i] && input_exp[i] == '\'')
