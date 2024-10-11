@@ -14,16 +14,21 @@
 
 int	count_pipes(t_pars *parser)
 {
-	int	i;
+	int		i;
+	bool	atleast_one;
 
 	i = 0;
+	atleast_one = false;
 	while (parser)
 	{
 		if (parser->type == PIPE_LINE)
 			i += 1;
 		parser = parser->next;
+		atleast_one = true;
 	}
-	return (i);
+	if (i == 0 && !atleast_one)
+		return (0);
+	return (i + 1);
 }
 
 t_shell	*shell_init(t_pars *parser)

@@ -23,7 +23,7 @@ t_all	*all_init(t_pars *parser, char *input)
 	new->shell = shell_init(parser);
 	new->env = NULL;
 	new->arr_pipe = NULL;
-	new->cmd_nbr = count_pipes(parser) + 1;
+	new->cmd_nbr = 0;
 	new->restore_fd_in = -1;
 	new->restore_fd_out = -1;
 	new->status_code = 0;

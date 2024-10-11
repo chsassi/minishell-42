@@ -75,7 +75,7 @@ bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 	char	*cmd_path;
 	char	**env_mtx;
 
-	if (!pShell->cmd || !pShell->cmd[0])
+	if (!pShell || !pShell->cmd || !pShell->cmd[0])
 		return (false);
 	if (run_builtin(pAll, pShell))
 	{

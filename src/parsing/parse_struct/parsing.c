@@ -35,10 +35,8 @@ t_shell	*parsing(t_all *pAll)
 		ptr.tokens = token_arr(ptr.mtx);
 		ptr.parser = parse_struct_init(ptr.input_exp, ptr.mtx, ptr.tokens);
 		if (!check_all_errors(ptr.parser))
-		{
-			free_trash(ptr.parser, ptr.tokens, ptr.input_exp);
-			return (NULL);
-		}
+			return (free_trash(ptr.parser, ptr.tokens, ptr.input_exp), NULL);
+		pAll->cmd_nbr = count_pipes(ptr.parser);
 	}
 	shell = shell_init(ptr.parser);
 	return (clear_parse(ptr.parser), free(ptr.tokens),

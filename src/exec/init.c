@@ -70,11 +70,12 @@ int	run_all_cmds(t_all *pAll)
 
 	if (!pAll)
 		return (/*free*/0);
-	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
+	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr, sizeof(int *));
 	if (!pAll->arr_pipe)
 		return (free_all(pAll, true, 1), 0);
 	exec_heredocs(pAll);
 	i = -1;
+	ptr = pAll->shell;
 	while (++i < pAll->cmd_nbr)
 	{
 		pAll->arr_pipe[i] = init_pipes();

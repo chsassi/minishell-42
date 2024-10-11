@@ -72,7 +72,7 @@ fclean: clean
 
 re: fclean all
 
-VALGRIND = valgrind --suppressions=ignore_readline.txt --leak-check=full --show-leak-kinds=all --track-origins=yes -s
+VALGRIND = valgrind --suppressions=ignore_readline.txt  --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes -s
 
 valgrind: all
 	$(VALGRIND) ./$(NAME)
