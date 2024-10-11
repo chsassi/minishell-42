@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/11 17:09:05 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:37:12 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	run_all_cmds(t_all *pAll)
 	t_shell *ptr;
 	int		i;
 
-	ptr = pAll->shell;
+	pAll->shell = parsing(pAll->input, pAll->env);
+	if (!pAll)
+		return (/*free*/0);
 	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
 	if (!pAll->arr_pipe)
 		return (free_all(pAll, true, 1), 0);

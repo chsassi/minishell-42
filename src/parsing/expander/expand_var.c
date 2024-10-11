@@ -6,36 +6,36 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 15:00:52 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:09:53 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*exp_string(char *inp, t_env *env, int *i, enum e_state state)
+char	*exp_string(t_all *all, t_exp p)
 {
 	t_helper	tmp;
 
 	tmp = (t_helper){0};
-	if ((*i) != 0)
-		tmp.first_str = ft_substr(inp, 0, (*i));
+	if (*p.i != 0)
+		tmp.first_str = ft_substr(p.inp, 0, *p.i);
 	else
 		tmp.first_str = ft_strdup("");
-	if (state == GENERAL)
-		tmp.second_str = processed_str_exp(env_string(inp, i, env));
+	if (p.state == GENERAL)
+		tmp.second_str = processed_str_exp(env_string(p.inp, p.i, p.env));
 	else
-		tmp.second_str = env_string(inp, i, env); 
-	tmp.third_str = ft_strdup(inp + (*i));
-	*i = 0;
+		tmp.second_str = env_string(p.inp, p.i, p.env);
+	tmp.third_str = ft_strdup(p.inp + (*p.i));
+	*p.i = 0;
 	tmp.result = ft_strjoin_gnl(tmp.first_str, tmp.second_str);
-	*i += ft_strlen(tmp.result);
+	*p.i += ft_strlen(tmp.result);
 	free(tmp.second_str);
-	tmp.result= ft_strjoin_gnl(tmp.result, tmp.third_str);;
+	tmp.result = ft_strjoin_gnl(tmp.result, tmp.third_str);
 	free(tmp.third_str);
-	return(free(inp), tmp.result);
+	return (free(p.inp), tmp.result);
 }
 
-char	*expansion(char *input, t_env *envp)
+char	*expansion(t_all *all, char *input, t_env *envp)
 {
 	char			*input_exp;
 	int				i;
@@ -51,13 +51,12 @@ char	*expansion(char *input, t_env *envp)
 		if (input_exp && input_exp[i] && input_exp[i] == '\"')
 			set_state(&state);
 		if (input_exp && input_exp[i] && input_exp[i] == '$')
-			input_exp = exp_string(input_exp, envp, &i, state);
+			input_exp = exp_string(all, (t_exp){input_exp, envp, &i, state});
 		if (input_exp && input_exp[i] && input_exp[i] == '\0')
-			break;
-		if(input_exp && input_exp[i] && input_exp[i] != '$')
+			break ;
+		if (input_exp && input_exp[i] && input_exp[i] != '$')
 			i++;
 	}
-	free(input);
 	return (input_exp);
 }
 
@@ -65,7 +64,7 @@ char	*find_env_string(char *input, t_env *envp, int len)
 {
 	t_env	*tmp;
 	char	*substring;
-	
+
 	tmp = envp;
 	while (tmp)
 	{
@@ -88,9 +87,9 @@ char	*env_string(char *input, int *i, t_env *envp)
 
 	j = (*i);
 	len = 0;
-    (*i)++;
-    if (input[*i] != '\0')
-    {
+	(*i)++;
+	if (input[*i] != '\0')
+	{
 		if (input[*i] == '?')
 		{
 			(*i)++;
@@ -100,11 +99,11 @@ char	*env_string(char *input, int *i, t_env *envp)
 		{
 			(*i)++;
 			while (input[*i] == '_' || ft_isalnum(input[*i]))
-			    (*i)++;
+				(*i)++;
 			len = ((*i) - j) - 1;
 			return (find_env_string(input + (j + 1), envp, len));
 		}
-    }
+	}
 	return (ft_strdup("$"));
 }
 
