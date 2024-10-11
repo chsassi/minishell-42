@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 17:14:21 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:37:55 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void			reorg_struct(t_pars **parser, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);
+t_shell			*parsing(char *input, char **env);
 
 // Syntax
 

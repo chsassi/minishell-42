@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 15:00:52 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:26:21 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*expansion(char *input, t_env *envp)
 		if(input_exp && input_exp[i] && input_exp[i] != '$')
 			i++;
 	}
-	free(input);
 	return (input_exp);
 }
 
