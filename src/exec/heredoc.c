@@ -12,15 +12,22 @@
 
 #include "minishell.h"
 
-void	heredoc_loop(char *delim, char *line, int fd)
+/**
+ * return `true` if everything is okay, `false` when ctrl + c was pressed
+ */
+bool	heredoc_loop(char *delim, char *line, int fd)
 {
 	int	i;
 
 	i = 0;
+	// add signal
 	while (1)
 	{
 		i++;
 		line = readline("> ");
+		// update status code from last signal
+		// check for status code == 130 -> stop all heredocs
+		// return (false);
 		if (!line || !ft_strcmp(line, delim))
 		{
 			free(line);
@@ -37,9 +44,10 @@ delimited by end-of-file (wanted `%s')\n", i, delim);
 		if (!ft_strcmp(line, delim))
 			break ;
 	}
+	return (true);
 }
 
-void	handle_heredoc(char *delim, char *filename)
+void	handle_heredoc(t_all *pAll, char *delim, char *filename)
 {
 	char	*line;
 	int		fd;
@@ -49,6 +57,7 @@ void	handle_heredoc(char *delim, char *filename)
 	if (fd == -1)
 	{
 		ft_putstr_fd("Error opening heredoc", 2);
+		free_all(pAll, true, 1);
 		return ;
 	}
 	heredoc_loop(delim, line, fd);
@@ -56,32 +65,57 @@ void	handle_heredoc(char *delim, char *filename)
 	g_exit = 0;
 }
 
-void	exec_heredocs(t_shell *cmds)
+bool is_last_heredoc(t_shell *shell, int red_idx)
+{
+	int	i;
+	int	last;
+
+	i = -1;
+	last = -1;
+	while (shell->redirects && shell->redirects[++i])
+	{
+		if (!ft_strcmp(shell->redirects[i], HEREDOC))
+			last = i;
+	}
+	return (red_idx == last);
+}
+
+bool parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx)
+{
+	char	*n;
+	char	*name;
+
+	name = NULL;
+	if (ft_strcmp(curr->redirects[red_idx], HEREDOC))
+	{
+		n = ft_itoa(red_idx);
+		name = ft_strjoin(".heredoc", n);
+		if (!n || !name)
+			return (free(n), free(name), free_all(pAll, true, 1), false);
+		free(n);
+		handle_heredoc(pAll, curr->redirects[red_idx + 1], name);
+		if (is_last_heredoc(curr, red_idx))
+			curr->last_heredoc = name;
+		else
+		{
+			unlink(name);
+			free(name);
+		}
+	}
+	return (true);
+}
+
+void	exec_heredocs(t_all *pAll)
 {
 	t_shell	*curr;
-	char	*name;
-	char	*n;
 	int		i;
 
-	curr = cmds;
-	name = NULL;
+	curr = pAll->shell;
 	while (curr)
 	{
 		i = -1;
 		while (curr->redirects && curr->redirects[++i])
-		{
-			if (ft_strcmp(curr->redirects[i], HEREDOC))
-			{
-				n = ft_itoa(i);
-				free(curr->last_heredoc);
-				curr->last_heredoc = ft_strjoin(".heredoc", n);
-				free(n);
-				// malloc failure check
-				handle_heredoc(curr->redirects[i + 1], name);
-				// check if it's the last input redirect
-				// unlink(name);
-			}
-		}
+			parse_shell_heredoc(pAll, curr, i);
 		curr = curr->next;
 	}
 }

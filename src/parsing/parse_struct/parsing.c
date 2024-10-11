@@ -17,5 +17,5 @@ t_shell	*parsing(char *input, char **env)
 	t_phelp ptr;
 	
 	ptr = (t_phelp){0};
-	ptr.input_exp = expansion(input, env)
+	ptr.input_exp = expansion(input, env);
 }

@@ -1,28 +1,26 @@
 #include "minishell.h"
 
-int	input_check(t_all *pAll)
+void	input_check(t_all *pAll)
 {
 	if (!pAll->input)
 	{
 		write(1, "exit\n", 6);
-		free_env_list(*pAll->env);
-		exit(pAll->status_code);
-		return (0);
+		free_all(pAll, true, pAll->status_code);
 	}
-	return (1);
 }
 
-void	close_pipes_loop(int **pipex, int cmd_nbr)
+void	close_pipes_loop(t_all *pAll)
 {
 	int	i;
 
 	i = 0;
-	while (i < cmd_nbr - 1)
+	while (i < pAll->cmd_nbr - 1)
 	{
-		close(pipex[i][0]);
-		close(pipex[i][1]);
-		free(pipex[i]);
+		close(pAll->arr_pipe[i][0]);
+		close(pAll->arr_pipe[i][1]);
+		free(pAll->arr_pipe[i]);
 		i++;
 	}
-	free(pipex);
+	free(pAll->arr_pipe);
+	pAll->arr_pipe = NULL;
 }

@@ -12,6 +12,19 @@
 
 #include "minishell.h"
 
+bool	is_numeric(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str && str[++i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+	}
+	return (true);
+}
+
 int	check_exit_params(t_shell *pShell)
 {
 	if (pShell->cmd[2])

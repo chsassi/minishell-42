@@ -55,7 +55,7 @@ SRC =	./main.c \
 		./src/parsing/parse_struct/parsing.c \
 		./src/parsing/parse_struct/shell_args.c \
 		./src/parsing/syntax_error/syntax_error.c \
-		./waste/write_tokens.c
+#		./waste/write_tokens.c
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)

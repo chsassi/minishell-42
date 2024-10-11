@@ -33,7 +33,6 @@ void	bin_echo(t_all *pAll, t_shell *pShell)
 	}
 	if (nl)
 		printf("\n");
-	g_exit = 0;
+	pAll->status_code = 0;
 }
 
-//da implementare il caso con "$?"

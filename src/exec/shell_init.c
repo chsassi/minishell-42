@@ -30,8 +30,8 @@ t_shell	*shell_init(t_pars *parser)
 {
 	t_shell	*shell;
 	t_pars	*ptr;
-	
-	shell =	NULL;
+
+	shell = NULL;
 	while (parser)
 	{
 		ptr = parser;

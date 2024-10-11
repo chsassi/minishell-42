@@ -17,7 +17,7 @@
 # include "minishell.h"
 # include "parser.h"
 # include <signal.h>
-# include <sys/ioctl.h> 
+# include <sys/ioctl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
@@ -28,6 +28,7 @@
 
 typedef struct s_env	t_env;
 typedef struct s_shell	t_shell;
+typedef struct s_pars	t_pars;
 typedef struct s_all	t_all;
 
 // Builtins
@@ -46,18 +47,21 @@ void	bin_pwd(t_all *pAll);
 t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
-void	fork_cmd(char *cmd, char **args, char **envp);
+void	fork_cmd(t_all *pAll, char *cmd, char **args, char **envp);
 int		run_builtin(t_all *pAll, t_shell *pShell);
-void	run_exec(t_env *env, char **args, bool inside_fork);
+char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork);
+bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork);
 
 // Exec Utils
 char	**get_path_from_env(void);
 char	*find_executable_in_env(char **paths, char *command);
 
 // Heredoc
-void	heredoc_loop(char *delim, char *line, int fd);
-void	handle_heredoc(char *delim, char *filename);
-void	exec_heredocs(t_shell *cmds);
+bool	heredoc_loop(char *delim, char *line, int fd);
+void	handle_heredoc(t_all *pAll, char *delim, char *filename);
+bool	is_last_heredoc(t_shell *shell, int red_idx);
+bool	parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx);
+void	exec_heredocs(t_all *pAll);
 
 // Redirect
 void	restore_fds(t_all *pAll);
