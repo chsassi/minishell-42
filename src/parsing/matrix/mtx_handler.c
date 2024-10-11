@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:33:54 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/03 14:19:35 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:18:57 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	count_number_of_tokens(char *input)
 {
-	int i;
+	int	i;
 	int	check;
-	int token;
+	int	token;
 
 	i = 0;
 	token = 0;
@@ -46,11 +46,11 @@ int	token_length(char *input)
 		if (is_special_char(*input))
 			return (operator_token_length(input));
 		else if (is_quote(*input))
-			return(quote_token_length(input));
+			return (quote_token_length(input));
 		else
 			return (normal_token_length(input));
 	}
-	return(0);
+	return (0);
 }
 
 char	**fill_mtx(char **mtx, char *input)
@@ -97,11 +97,3 @@ char	**create_mtx(char *input)
 	mtx = fill_mtx(mtx, input);
 	return (mtx);
 }
-
-// int	token_len(char *input, enum e_state *state)
-// {
-// 	int	i;
-
-// 	i = 0;
-	
-// }

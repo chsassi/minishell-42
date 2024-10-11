@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 13:42:21 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/08 18:21:10 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:26:14 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,30 +98,27 @@ char	*trimm_quotes(char *str)
 
 char	*merge_string(int *arr, char **mtx, int *i)
 {
-	char	*str;
-	char	*trimm;
-	char	*tmp;
+	t_merge	p;
 
-	str = NULL;
-	trimm = NULL;
+	p = (t_merge){0};
 	if (arr[*i] == NO)
 	{
-		tmp = trimm_quotes(mtx[*i]);
-		str = ft_strdup(tmp);
-		free(tmp);
+		p.tmp = trimm_quotes(mtx[*i]);
+		p.str = ft_strdup(p.tmp);
+		free(p.tmp);
 	}
 	else
 	{
 		while (arr[*i] == NEXT)
 		{
-			if (str == NULL)
-				str = joined_merger(mtx[(*i)], mtx[(*i) + 1], 1);
+			if (p.str == NULL)
+				p.str = joined_merger(mtx[(*i)], mtx[(*i) + 1], 1);
 			else
-				str = joined_merger(str, mtx[(*i) + 1], 0);
+				p.str = joined_merger(p.str, mtx[(*i) + 1], 0);
 			(*i)++;
 		}
 	}
 	if (mtx[*i] != NULL)
 		(*i)++;
-	return (str);
+	return (p.str);
 }

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:49:01 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 12:03:26 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:12:41 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_normal_letter(char *input, int i)
 
 void	count_normal_token(char *input, int *i, int *token)
 {
-	 while (is_normal_letter(input, *i) && input[*i] != '\0')
+	while (is_normal_letter(input, *i) && input[*i] != '\0')
 		(*i)++;
 	(*i)--;
 	(*token)++;
@@ -44,9 +44,9 @@ void	count_normal_token(char *input, int *i, int *token)
 
 int	count_quote_token(char *input, int *i, int *token)
 {
-	int check_1;
-	int check_2;
-	
+	int	check_1;
+	int	check_2;
+
 	check_1 = 0;
 	check_2 = 0;
 	if (input[*i] == '\'')

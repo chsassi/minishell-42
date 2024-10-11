@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:07:24 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 15:51:29 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:36:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_redirect(int type)
 int	len_red_mtx(t_pars *parser)
 {
 	int	i;
-	
+
 	i = 0;
 	while (parser)
 	{
@@ -36,29 +36,30 @@ int	len_red_mtx(t_pars *parser)
 	}
 	return (i);
 }
+
 void	reorg_struct(t_pars **parser, char **mtx, int *i)
 {
-			t_pars *tmp;
-			
-			tmp = *parser;
-			if ((*parser)->prev != NULL)
-				(*parser)->prev->next = (*parser)->next->next;
-			if ((*parser)->next->next != NULL)
-				(*parser)->next->next->prev = (*parser)->prev;
-			mtx[(*i)] = ft_strdup((*parser)->str);
-			(*parser) = (*parser)->next;
-			(*i)++;
-			free(tmp->str);
-			tmp->next = NULL;
-			tmp->prev = NULL;
-			free(tmp);
-			tmp = *parser;
-			mtx[(*i)] = ft_strdup((*parser)->str);
-			(*parser) = (*parser)->next;
-			free(tmp->str);
-			tmp->next = NULL;
-			tmp->prev = NULL;
-			free(tmp);
+	t_pars	*tmp;
+
+	tmp = *parser;
+	if ((*parser)->prev != NULL)
+		(*parser)->prev->next = (*parser)->next->next;
+	if ((*parser)->next->next != NULL)
+		(*parser)->next->next->prev = (*parser)->prev;
+	mtx[(*i)] = ft_strdup((*parser)->str);
+	(*parser) = (*parser)->next;
+	(*i)++;
+	free(tmp->str);
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	free(tmp);
+	tmp = *parser;
+	mtx[(*i)] = ft_strdup((*parser)->str);
+	(*parser) = (*parser)->next;
+	free(tmp->str);
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	free(tmp);
 }
 
 char	**red_mtx(t_pars *parser)
@@ -66,7 +67,7 @@ char	**red_mtx(t_pars *parser)
 	char	**mtx;
 	int		len;
 	int		i;
-	
+
 	i = 0;
 	len = len_red_mtx(parser);
 	mtx = (char **)malloc(sizeof(char *) * (len + 1));

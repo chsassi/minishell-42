@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:11:14 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/06 18:27:05 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:17:31 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int	assign_token(char *str)
 {
-		if (*str == '\'')
-			return (QUOTE);
-		else if (*str == '\"')
-			return (DOUBLE_QUOTE);
-		else if (*str == '|')
-			return (PIPE_LINE);
-		else if (*str == '<' && *(str + 1) == '<')
-			return (HERE_DOC);
-		else if (*str == '<')
-			return (REDIR_IN);
-		else if (*str == '>' && *(str + 1) == '>')
-			return (DREDIR_OUT);
-		else if (*str == '>')
-			return (REDIR_OUT);
-		return (WORD);
+	if (*str == '\'')
+		return (QUOTE);
+	else if (*str == '\"')
+		return (DOUBLE_QUOTE);
+	else if (*str == '|')
+		return (PIPE_LINE);
+	else if (*str == '<' && *(str + 1) == '<')
+		return (HERE_DOC);
+	else if (*str == '<')
+		return (REDIR_IN);
+	else if (*str == '>' && *(str + 1) == '>')
+		return (DREDIR_OUT);
+	else if (*str == '>')
+		return (REDIR_OUT);
+	return (WORD);
 }
 
 int	*token_arr(char **mtx)
@@ -51,4 +51,3 @@ int	*token_arr(char **mtx)
 	}
 	return (arr);
 }
-

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:25:57 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/26 11:56:24 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:13:32 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	count_single_quote_token(char *input, int *i, int *token)
 	if (input[*i] == '\0')
 		return (-1);
 	(*token)++;
-	return(1);
+	return (1);
 }
 
 int	count_double_quote_token(char *input, int *i, int *token)
 {
 	if (input[(*i) + 1] == '\"')
-	{	
+	{
 		(*i)++;
 		(*token)++;
 		return (0);
@@ -43,7 +43,7 @@ int	count_double_quote_token(char *input, int *i, int *token)
 	if (input[*i] == '\0')
 		return (-1);
 	(*token)++;
-	return(1);
+	return (1);
 }
 
 void	count_operator_token(char *input, int *i, int *token)
@@ -64,7 +64,7 @@ void	count_operator_token(char *input, int *i, int *token)
 		{
 			(*i)++;
 			(*token)++;
-			return;
+			return ;
 		}
 		(*token)++;
 	}

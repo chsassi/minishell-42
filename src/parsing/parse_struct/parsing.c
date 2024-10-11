@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:04:53 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 17:36:23 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:32:53 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_shell	*parsing(char *input, char **env)
 {
-	t_phelp ptr;
+	t_phelp	ptr;
 	t_shell	*shell;
-	
+
 	shell = NULL;
 	ptr = (t_phelp){0};
 	ptr.input_exp = expansion(input, env);

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 17:37:55 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:24:15 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,21 @@ typedef struct s_phelp
 	int		*tokens;
 	t_pars	*parser;	
 }	t_phelp;
+
+typedef struct s_exp
+{
+	char		*inp;
+	t_env		*env;
+	int			*i;
+	enum e_state state;
+}	t_exp;
+
+typedef struct s_merge
+{
+	char	*str;
+	char	*trimm;
+	char	*tmp;
+}	t_merge;
 
 // Helper functions 
 

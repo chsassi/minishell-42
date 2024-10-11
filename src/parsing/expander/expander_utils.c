@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/09/23 13:37:51 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:11:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*process_escaped(char *str, int *i)
 {
 	char	*tmp;
 	int		len;
-	
+
 	tmp = NULL;
 	len = 0;
 	tmp = malloc(sizeof(char) * 4);
@@ -69,7 +69,7 @@ char	*create_escaped_str(char *content, int *i)
 	free(escaped_str);
 	result = ft_strjoin_gnl(result, back_str);
 	free(back_str);
-	return(result);
+	return (result);
 }
 
 char	*processed_str_exp(char *content)
@@ -90,7 +90,7 @@ char	*processed_str_exp(char *content)
 		if (content[i] == '\0')
 		{
 			free(content);
-			break;
+			break ;
 		}
 		i++;
 	}
