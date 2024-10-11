@@ -27,8 +27,8 @@ bool	is_numeric(char *str)
 
 int	check_exit_params(t_shell *pShell)
 {
-	if (pShell->cmd[2])
-		return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
+	// if (pShell->cmd[2])
+	// 	return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
 	if (pShell->cmd[1] && !is_numeric(pShell->cmd[1]))
 	{
 		ft_putstr_fd("bash: exit: ", 2);

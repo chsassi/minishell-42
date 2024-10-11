@@ -2,6 +2,8 @@
     "files.associations": {
         "minishell.h": "c",
         "history.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "parser.h": "c",
+        "*.tcc": "c"
     }
 }
