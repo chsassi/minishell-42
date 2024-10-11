@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	bin_pwd(void)
+void	bin_pwd(t_all *pAll)
 {
 	char	*directory;
 
@@ -20,11 +20,12 @@ void	bin_pwd(void)
 	if (directory)
 	{
 		ft_printf("%s\n", directory);
-		g_exit = 0;
+		pAll->status_code = 0;
 	}
 	else
 	{
 		ft_putstr_fd("pwd: error retrieving current directory\n", 2);
+		pAll->status_code = 1;
 		return ;
 	}
 	free(directory);
