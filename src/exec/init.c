@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/07 16:43:50 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:09:05 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,28 @@ void	check_input_loop(t_all *pAll)
 
 int	process_input(t_all *pAll)
 {
-	int			**pipex;
 	int			status;
 	int			i;
 
-	pAll->shell = parse_input(pAll->shell->input, pAll->env);
+	pAll->shell = parse_input(pAll->input, pAll->env);
 	if (!pAll)
 		return (/*free*/0);
-	pipex = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
-	if (!pipex)
-		return (free(pipex), 0);
-	//check sintassi
+	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr - 1, sizeof(int *));
+	if (!pAll->arr_pipe)
+		return (free(pAll->arr_pipe)/*clean_all()*/, 0);
 	exec_heredocs(&pAll);
 	i = -1;
 	while (++i < pAll->cmd_nbr)
 	{
 		// check su fd se c'e' un'unica pipe, se c'e' piu di un comando e, se si, quale id sono
 		//in base a questo devo reindirizzare l'output delle pipe chiudendole e rinizializzandole
-		pipex[i] = ft_calloc(2, sizeof(int));
-		if (pipe(pipex[i]) == -1)
+		pAll->arr_pipe[i] = init_pipes();
+		if (pipe(pAll->arr_pipe[i]) == -1)
 			return (/*free*/0);
-		pAll->shell->pipe = pipex[i];
 		check_input_loop(pAll);
 	}
 	i = 0;
-	close_pipes_loop(pipex, pAll->cmd_nbr);
+	close_pipes_loop(pAll->arr_pipe, pAll->cmd_nbr);
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status))
 		pAll->status_code = WEXITSTATUS(status);
@@ -80,15 +77,15 @@ void	minishell_loop(t_env *env)
 
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
-		ptr.shell->input = readline("minishell> ");
-		input_check(ptr.shell->input);
+		ptr.input = readline("minishell> ");
+		input_check(ptr.input);
 		if (!process_input(&ptr))
 		{
-			free(ptr.shell->input);
+			free(ptr.input);
 			continue ;
 		}
-		if (ft_strlen(ptr.shell->input) > 0)
-			add_history(ptr.shell->input);
-		free(ptr.shell->input);
+		if (ft_strlen(ptr.input) > 0)
+			add_history(ptr.input);
+		free(ptr.input);
 	}
 }

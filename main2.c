@@ -20,14 +20,14 @@ int g_exit = 0;
 // 	}
 // }
 
-static void		write_parse(t_pars *head)
-{
-	while (head)
-	{
-		printf("[strig %s ]__[int %i]\n", head->str, head->type);
-		head = head->next;
-	}
-}
+// static void		write_parse(t_pars *head)
+// {
+// 	while (head)
+// 	{
+// 		printf("[strig %s ]__[int %i]\n", head->str, head->type);
+// 		head = head->next;
+// 	}
+// }
 
 static void	free_trash(t_pars *parser, int *tokens, char *input)
 {
@@ -43,6 +43,8 @@ int main(int ac, char **av, char **envp)
 	char	**mtx = NULL;
 	int		*tokens = NULL;
 	t_pars	*parser = NULL;	
+	char	**cmd = NULL;
+	char	**red = NULL;
 	// int		*mergers = NULL;
 	// int		*pro_mergers = NULL;
 
@@ -79,6 +81,12 @@ int main(int ac, char **av, char **envp)
 				free_env_list(env);
 				return (0);
 			}
+			red = red_mtx(parser);
+			cmd = cmd_mtx(parser);
+			printf ("[Redirection mtx]\n");
+			write_mtx(red);
+			printf("\n[Command mtx]\n");
+			write_mtx(cmd);
 			// 	mergers = array_of_merges(input, mtx);
 			// 	pro_mergers = process_arr_merger(input, mtx);
 			// write_arr_merge(mergers, mtx);
@@ -86,8 +94,10 @@ int main(int ac, char **av, char **envp)
 			// write_arr_merge(pro_mergers, mtx);
 			//write_mtx2(mtx, tokens);
 			// free(mergers);
-			write_parse(parser);
+			//write_parse(parser);
 			// free(pro_mergers);
+			free_mtx(red);
+			free_mtx(cmd);
 			clear_parse(parser);
 			free(tokens);
 			free(input);
