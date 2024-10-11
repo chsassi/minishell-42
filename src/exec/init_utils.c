@@ -2,14 +2,13 @@
 
 int	input_check(t_all *pAll)
 {
-	if (!pAll->shell->input)
+	if (!pAll->input)
 	{
 		write(1, "exit\n", 6);
 		free_env_list(*pAll->env);
 		exit(pAll->status_code);
 		return (0);
 	}
-
 	return (1);
 }
 

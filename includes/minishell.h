@@ -59,8 +59,18 @@ void	minishell_loop(t_env *env);
 // Init Utils
 int		input_check(t_all *pAll);
 void	close_pipes_loop(int **pipex, int cmd_nbr);
-// Waste
-void	write_mtx2(char **mtx, int *arr);
-char	*arr_int_str(int i);
+
+// Shell Init
+
+int		count_pipes(t_pars *parser);
+t_shell	*shell_init(t_pars *parser);
+
+// Shell Utils
+
+int		*init_pipes();
+t_shell	*new_shell_node(t_pars *parser);
+t_shell	*shell_last(t_shell *shell);
+void	shell_add_back(t_shell **shell, t_shell *new);
+
 
 #endif

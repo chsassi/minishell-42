@@ -42,7 +42,7 @@ void	bin_echo(t_all *pAll, t_shell *pShell);
 t_env	*bin_env(t_all *pAll);
 void	bin_exit(t_all *pAll, t_shell *pShell);
 void	bin_export(t_all *pAll, t_shell *pShell);
-void	bin_pwd(void);
+void	bin_pwd(t_all *pAll);
 t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
