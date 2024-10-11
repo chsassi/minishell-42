@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:24:15 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:41:21 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ enum e_state
 	GENERAL,
 };
 
-typedef	struct s_pars
+typedef struct s_pars
 {
-	char 			*str;
+	char			*str;
 	int				type;
 	struct s_pars	*next;
 	struct s_pars	*prev;
@@ -73,10 +73,10 @@ typedef struct s_phelp
 
 typedef struct s_exp
 {
-	char		*inp;
-	t_env		*env;
-	int			*i;
-	enum e_state state;
+	char			*inp;
+	t_env			*env;
+	int				*i;
+	enum e_state	state;
 }	t_exp;
 
 typedef struct s_merge
@@ -136,13 +136,13 @@ char			*merge_string(int *arr, char **mtx, int *i);
 
 // Parse struct
 
-int 			quot_tok_len(char *input);
+int				quot_tok_len(char *input);
 t_pars			*new_parse_node(char **mtx, int *i, int tok, int *arr);
 t_pars			*last_parse(t_pars *lst);
 void			add_back_parse(t_pars **lst, t_pars *new);
 void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
-char    		*joined_merger(char *str1, char *str2, int flag);
+char			*joined_merger(char *str1, char *str2, int flag);
 char			**red_mtx(t_pars *parser);
 void			reorg_struct(t_pars **parser, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
@@ -152,7 +152,7 @@ t_shell			*parsing(char *input, char **env);
 
 // Syntax
 
-int 			check_redir_error(t_pars *parser);
+int				check_redir_error(t_pars *parser);
 int				check_pipe_error(t_pars *parser);
 int				check_all_errors(t_pars *parser);
 
