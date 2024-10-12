@@ -57,10 +57,11 @@ char	**get_path_from_env(void);
 char	*find_executable_in_env(char **paths, char *command);
 
 // Heredoc
-bool	heredoc_loop(char *delim, char *line, int fd);
+bool	heredoc_loop(char *delim, int fd);
 void	handle_heredoc(t_all *pAll, char *delim, char *filename);
 bool	is_last_heredoc(t_shell *shell, int red_idx);
-bool	parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx);
+bool	parse_shell_heredoc(t_all *pAll, t_shell *curr,
+			int red_idx, int shell_idx);
 void	exec_heredocs(t_all *pAll);
 
 // Redirect

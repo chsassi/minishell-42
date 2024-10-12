@@ -27,8 +27,8 @@ bool	is_numeric(char *str)
 
 int	check_exit_params(t_shell *pShell)
 {
-	// if (pShell->cmd[2])
-	// 	return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
+	 if (pShell->args_nbr > 2)
+	 	return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
 	if (pShell->cmd[1] && !is_numeric(pShell->cmd[1]))
 	{
 		ft_putstr_fd("bash: exit: ", 2);
@@ -44,19 +44,15 @@ void	bin_exit(t_all *pAll, t_shell *pShell)
 {
 	if (!check_exit_params(pShell))
 		return ;
-	if (!pShell->cmd[1])
+	if (pShell->args_nbr == 1)
 	{
 		write(1, "exit\n", 5);
-		free_env_list(*pAll->env);
-		//free
-		exit(pAll->status_code);
+		free_all(pAll, true, pAll->status_code);
 	}
-	if (pShell->cmd[1] && is_numeric(pShell->cmd[1]))
+	if (pShell->args_nbr == 2 && is_numeric(pShell->cmd[1]))
 	{
 		pAll->status_code = ft_atoi(pShell->cmd[1]);
 		write(1, "exit\n", 5);
-		free_env_list(*pAll->env);
-		//free
-		exit(pAll->status_code);
+		free_all(pAll, true, pAll->status_code);
 	}
 }

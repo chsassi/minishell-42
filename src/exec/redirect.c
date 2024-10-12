@@ -34,12 +34,19 @@ int	handle_redirection(t_all *pAll, char *type, char *file)
 		redirect_fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		return (0);
+	// Gestire gli errori quando non riesco ad aprire il file
 	if (redirect_fd < 0)
 		return (ft_putstr_fd("bash: fd: Bad file descriptor\n", 2), 0);
 	if (!ft_strcmp(type, REDIRECT_IN))
+	{
+		if (pAll->shell->fd_in != -1)
+			close(pAll->shell->fd_in);
 		pAll->shell->fd_in = redirect_fd;
-	else
-		pAll->shell->fd_out = redirect_fd;
+		return (1);
+	}
+	if (pAll->shell->fd_out != -1)
+		close(pAll->shell->fd_out);
+	pAll->shell->fd_out = redirect_fd;
 	return (1);
 }
 

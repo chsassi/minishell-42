@@ -15,9 +15,10 @@
 /**
  * return `true` if everything is okay, `false` when ctrl + c was pressed
  */
-bool	heredoc_loop(char *delim, char *line, int fd)
+bool	heredoc_loop(char *delim, int fd)
 {
-	int	i;
+	char	*line;
+	int		i;
 
 	i = 0;
 	// add signal
@@ -28,13 +29,6 @@ bool	heredoc_loop(char *delim, char *line, int fd)
 		// update status code from last signal
 		// check for status code == 130 -> stop all heredocs
 		// return (false);
-		if (!line || !ft_strcmp(line, delim))
-		{
-			free(line);
-			break ;
-		}
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
 		if (!line)
 		{
 			printf("bash: warning: here-document at line %i \
@@ -43,16 +37,18 @@ delimited by end-of-file (wanted `%s')\n", i, delim);
 		}
 		if (!ft_strcmp(line, delim))
 			break ;
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
 	}
+	free(line);
 	return (true);
 }
 
 void	handle_heredoc(t_all *pAll, char *delim, char *filename)
 {
-	char	*line;
 	int		fd;
 
-	line = NULL;
 	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd == -1)
 	{
@@ -60,12 +56,11 @@ void	handle_heredoc(t_all *pAll, char *delim, char *filename)
 		free_all(pAll, true, 1);
 		return ;
 	}
-	heredoc_loop(delim, line, fd);
-	free(line);
+	heredoc_loop(delim, fd);
 	g_exit = 0;
 }
 
-bool is_last_heredoc(t_shell *shell, int red_idx)
+bool	is_last_heredoc(t_shell *shell, int red_idx)
 {
 	int	i;
 	int	last;
@@ -74,21 +69,23 @@ bool is_last_heredoc(t_shell *shell, int red_idx)
 	last = -1;
 	while (shell->redirects && shell->redirects[++i])
 	{
-		if (!ft_strcmp(shell->redirects[i], HEREDOC))
+		if (!ft_strcmp(shell->redirects[i], HEREDOC)
+			|| !ft_strcmp(shell->redirects[i], REDIRECT_IN))
 			last = i;
 	}
 	return (red_idx == last);
 }
 
-bool parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx)
+bool	parse_shell_heredoc(t_all *pAll, t_shell *curr,
+	int red_idx, int shell_idx)
 {
 	char	*n;
 	char	*name;
 
 	name = NULL;
-	if (ft_strcmp(curr->redirects[red_idx], HEREDOC))
+	if (!ft_strcmp(curr->redirects[red_idx], HEREDOC))
 	{
-		n = ft_itoa(red_idx);
+		n = ft_itoa(shell_idx);
 		name = ft_strjoin(".heredoc", n);
 		if (!n || !name)
 			return (free(n), free(name), free_all(pAll, true, 1), false);
@@ -109,13 +106,16 @@ void	exec_heredocs(t_all *pAll)
 {
 	t_shell	*curr;
 	int		i;
+	int		shell_idx;
 
 	curr = pAll->shell;
+	shell_idx = 0;
 	while (curr)
 	{
 		i = -1;
 		while (curr->redirects && curr->redirects[++i])
-			parse_shell_heredoc(pAll, curr, i);
+			parse_shell_heredoc(pAll, curr, i, shell_idx);
+		shell_idx++;
 		curr = curr->next;
 	}
 }

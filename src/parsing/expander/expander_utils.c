@@ -94,5 +94,6 @@ char	*processed_str_exp(char *content)
 		}
 		i++;
 	}
+	free(content);
 	return (new);
 }

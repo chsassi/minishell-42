@@ -12,16 +12,17 @@
 
 #include "minishell.h"
 
-int	*init_pipes()
+/// create a pipe for each command
+int	*init_pipes(t_all *pAll)
 {
 	int	*arr;
 
-	arr = (int *)malloc(2 * sizeof(int));
+	arr = (int *)ft_calloc(2, sizeof(int));
 	if (!arr)
-		return (NULL);
-	arr[0] = dup(STDIN_FILENO);
-	arr[1] = dup(STDOUT_FILENO);
-	return(arr);
+		return (free(arr), free_all(pAll, true, 1), NULL);
+	if (pipe(arr) == -1)
+		return (free(arr), free_all(pAll, true, 1), NULL);
+	return (arr);
 }
 
 t_shell	*new_shell_node(t_pars *parser)
@@ -30,8 +31,10 @@ t_shell	*new_shell_node(t_pars *parser)
 
 	new = (t_shell *)malloc(sizeof(t_shell));
 	if (!new)
-		return(NULL);
+		return (NULL);
 	new->cmd = cmd_mtx(parser);
+	/// count the number of arguments
+	new->args_nbr = ft_rowlen(new->cmd);
 	new->redirects = red_mtx(parser);
 	new->fd_in = -1;
 	new->fd_out = -1;
@@ -55,8 +58,8 @@ t_shell	*shell_last(t_shell *shell)
 
 void	shell_add_back(t_shell **shell, t_shell *new)
 {
-	t_shell *tmp;
-	
+	t_shell	*tmp;
+
 	if (!shell | !new)
 		return ;
 	if (!(*shell))

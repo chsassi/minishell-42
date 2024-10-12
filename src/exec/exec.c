@@ -58,11 +58,11 @@ char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 
 	paths = get_path_from_env();
 	cmd_path = find_executable_in_env(paths, pShell->cmd[0]);
+	free_mtx(paths);
 	if (!cmd_path)
 	{
 		printf("%s: command not found\n", pShell->cmd[0]);
 		pAll->status_code = 127;
-		free_mtx(paths);
 		if (inside_fork)
 			exit(pAll->status_code);
 		return (NULL);

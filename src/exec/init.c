@@ -65,11 +65,9 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 
 int	run_all_cmds(t_all *pAll)
 {
-	t_shell *ptr;
+	t_shell	*ptr;
 	int		i;
 
-	if (!pAll)
-		return (/*free*/0);
 	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr, sizeof(int *));
 	if (!pAll->arr_pipe)
 		return (free_all(pAll, true, 1), 0);
@@ -78,9 +76,7 @@ int	run_all_cmds(t_all *pAll)
 	ptr = pAll->shell;
 	while (++i < pAll->cmd_nbr)
 	{
-		pAll->arr_pipe[i] = init_pipes();
-		if (pipe(pAll->arr_pipe[i]) == -1)
-			return (free_all(pAll, true, 1), 0);
+		pAll->arr_pipe[i] = init_pipes(pAll);
 		check_input_loop(pAll, ptr);
 		ptr = ptr->next;
 	}
@@ -123,6 +119,8 @@ void	minishell_loop(t_env *env)
 	ptr.restore_fd_out = dup(STDOUT_FILENO);
 	while (1)
 	{
+		/// always reset the number of commands
+		ptr.cmd_nbr = 0;
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
