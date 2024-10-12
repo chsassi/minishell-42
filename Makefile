@@ -30,9 +30,10 @@ SRC =	./main.c \
 		./src/builtins/unset.c \
 		./src/builtins/utils/env_utils.c \
 		./src/builtins/utils/export_utils.c \
+		./src/builtins/utils/free.c \
+		./src/builtins/utils/generic_utils.c \
 		./src/builtins/utils/list_utils.c \
 		./src/builtins/utils/mtx_from_env.c \
-		./src/builtins/utils/free.c \
 		./src/exec/exec_utils.c \
 		./src/exec/exec.c \
 		./src/exec/heredoc.c \
@@ -57,7 +58,6 @@ SRC =	./main.c \
 		./src/parsing/parse_struct/shell_args.c \
 		./src/parsing/syntax_error/is_valid_variable.c \
 		./src/parsing/syntax_error/syntax_error.c \
-		./src/fd_utils.c
 
 $(NAME): $(SRC)
 	@make all -s -C $(LIBFT_MAKE)
