@@ -76,8 +76,7 @@ bool	is_last_heredoc(t_shell *shell, int red_idx)
 	return (red_idx == last);
 }
 
-bool	parse_shell_heredoc(t_all *pAll, t_shell *curr,
-	int red_idx, int shell_idx)
+bool	parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx)
 {
 	char	*n;
 	char	*name;
@@ -85,7 +84,7 @@ bool	parse_shell_heredoc(t_all *pAll, t_shell *curr,
 	name = NULL;
 	if (!ft_strcmp(curr->redirects[red_idx], HEREDOC))
 	{
-		n = ft_itoa(shell_idx);
+		n = ft_itoa(curr->cmd_idx);
 		name = ft_strjoin(".heredoc", n);
 		if (!n || !name)
 			return (free(n), free(name), free_all(pAll, true, 1), false);
@@ -114,7 +113,7 @@ void	exec_heredocs(t_all *pAll)
 	{
 		i = -1;
 		while (curr->redirects && curr->redirects[++i])
-			parse_shell_heredoc(pAll, curr, i, shell_idx);
+			parse_shell_heredoc(pAll, curr, i);
 		shell_idx++;
 		curr = curr->next;
 	}

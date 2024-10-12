@@ -33,6 +33,7 @@ typedef struct s_env
 
 typedef struct s_shell
 {
+	int				cmd_idx;
 	char			**cmd;
 	int				args_nbr;
 
@@ -72,7 +73,7 @@ t_shell	*shell_init(t_pars **parser);
 // Shell Utils
 
 int		*init_pipes(t_all *pAll);
-t_shell	*new_shell_node(t_pars **parser);
+t_shell	*new_shell_node(t_pars **parser, int idx);
 t_shell	*shell_last(t_shell *shell);
 void	shell_add_back(t_shell **shell, t_shell *new);
 

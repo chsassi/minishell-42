@@ -56,12 +56,15 @@ t_shell	*shell_init(t_pars **parser)
 {
 	t_shell	*shell;
 	t_pars	*ptr;
+	int		i;
 
 	shell = NULL;
+	i = 0;
 	while (*parser)
 	{
 		ptr = *parser;
-		shell_add_back(&shell, new_shell_node(&ptr));
+		shell_add_back(&shell, new_shell_node(&ptr, i));
+		i++;
 		ptr = free_parse_until_pipe(ptr);
 		*parser = ptr;
 	}
