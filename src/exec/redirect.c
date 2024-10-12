@@ -22,10 +22,10 @@ void	restore_fds(t_all *pAll)
 	pAll->restore_fd_out = dup(STDOUT_FILENO);
 }
 
-int	handle_redirection(t_all *pAll, char *type, char *file)
+static int	handle_redirection_open(char *type, char *file)
 {
 	int	redirect_fd;
-	/* devo fare un loop per gestire tutte le redirection */
+
 	if (!ft_strcmp(type, REDIRECT_IN))
 		redirect_fd = open(file, O_RDONLY);
 	else if (!ft_strcmp(type, REDIRECT_OUT))
@@ -33,10 +33,21 @@ int	handle_redirection(t_all *pAll, char *type, char *file)
 	else if (!ft_strcmp(type, REDIRECT_APPEND))
 		redirect_fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
+		return (-1);
+	return (redirect_fd);
+}
+
+int	handle_redirection(t_all *pAll, char *type, char *file)
+{
+	const int	redirect_fd = handle_redirection_open(type, file);
+
+	if (redirect_fd == -1)
+	{
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		pAll->status_code = 1;
 		return (0);
-	// Gestire gli errori quando non riesco ad aprire il file
-	if (redirect_fd < 0)
-		return (ft_putstr_fd("bash: fd: Bad file descriptor\n", 2), 0);
+	}
 	if (!ft_strcmp(type, REDIRECT_IN))
 	{
 		if (pAll->shell->fd_in != -1)
@@ -50,26 +61,22 @@ int	handle_redirection(t_all *pAll, char *type, char *file)
 	return (1);
 }
 
-void	exec_redirection(t_all *pAll)
+bool	exec_redirection(t_all *pAll, t_shell *pShell)
 {
 	int	i;
 
 	i = 0;
-	while (pAll->shell->redirects && pAll->shell->redirects[i])
+	while (pShell->redirects && pShell->redirects[i])
 	{
-		if (!ft_strcmp(pAll->shell->redirects[i], REDIRECT_IN)
-			|| !ft_strcmp(pAll->shell->redirects[i], REDIRECT_OUT)
-			|| !ft_strcmp(pAll->shell->redirects[i], REDIRECT_APPEND))
+		if (!ft_strcmp(pShell->redirects[i], REDIRECT_IN)
+			|| !ft_strcmp(pShell->redirects[i], REDIRECT_OUT)
+			|| !ft_strcmp(pShell->redirects[i], REDIRECT_APPEND))
 		{
-			handle_redirection(pAll, pAll->shell->redirects[i],
-				pAll->shell->redirects[i + 1]);
-			pAll->shell->redirects[i] = NULL;
-			break ;
+			if (!handle_redirection(pAll, pShell->redirects[i],
+					pShell->redirects[i + 1]))
+				return (false);
 		}
 		i++;
 	}
-	// if (pAll->shell->fd_in != -1)
-	// 	dup2(pAll->shell->fd_in, STDIN_FILENO);
-	// if (pAll->shell->fd_out != -1)
-	// 	dup2(pAll->shell->fd_out, STDOUT_FILENO);
+	return (true);
 }

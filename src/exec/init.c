@@ -12,16 +12,33 @@
 
 #include "minishell.h"
 
+static void	handle_pipe_dups(t_all *pAll, t_shell *pShell)
+{
+	close_fd(pShell->fd_in);
+	close_fd(pShell->fd_out);
+	if (pShell->fd_in == -1 && pShell->cmd_idx > 0)
+		dup2(pAll->arr_pipe[pShell->cmd_idx - 1][0], STDIN_FILENO);
+	if (pShell->fd_out == -1 && pShell->cmd_idx < pAll->cmd_nbr - 1)
+		dup2(pAll->arr_pipe[pShell->cmd_idx][1], STDOUT_FILENO);
+}
+
 void	check_input_loop(t_all *pAll, t_shell *pShell)
 {
 	pid_t	pid;
 
-	exec_redirection(pAll);
+	if (!exec_redirection(pAll, pShell))
+		return ;
+	if (pShell->fd_in != -1)
+		dup2(pShell->fd_in, STDIN_FILENO);
+	if (pShell->fd_out != -1)
+		dup2(pShell->fd_out, STDOUT_FILENO);
 	if (pAll->cmd_nbr > 1)
 	{
 		pid = fork();
 		if (pid == 0)
 		{
+			handle_pipe_dups(pAll, pShell);
+			close_pipes_loop(pAll);
 			run_exec(pAll, pShell, true);
 			free_all(pAll, true, pAll->status_code);
 		}
