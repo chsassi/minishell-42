@@ -25,13 +25,14 @@ int	*init_pipes(t_all *pAll)
 	return (arr);
 }
 
-t_shell	*new_shell_node(t_pars **parser)
+t_shell	*new_shell_node(t_pars **parser, int idx)
 {
 	t_shell	*new;
 
 	new = (t_shell *)ft_calloc(1, sizeof(t_shell));
 	if (!new)
 		return (NULL);
+	new->cmd_idx = idx;
 	new->redirects = red_mtx(parser);
 	new->cmd = cmd_mtx(*parser);
 	/// count the number of arguments
