@@ -71,7 +71,7 @@ void	exec_redirection(t_all *pAll);
 
 // Signal
 void	set_status_from_sig(t_all *pAll, int sig);
-void	handle_sigint(int signal)
+void	handle_sigint(int signal);
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);
