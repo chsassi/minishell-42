@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:09:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 16:49:27 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:00:36 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	*init_pipes(t_all *pAll)
 	return (arr);
 }
 
-t_shell	*new_shell_node(t_pars *parser)
+t_shell	*new_shell_node(t_pars **parser)
 {
 	t_shell	*new;
 
-	new = (t_shell *)malloc(sizeof(t_shell));
+	new = (t_shell *)ft_calloc(1, sizeof(t_shell));
 	if (!new)
 		return (NULL);
-	new->cmd = cmd_mtx(parser);
+	new->redirects = red_mtx(parser);
+	new->cmd = cmd_mtx(*parser);
 	/// count the number of arguments
 	new->args_nbr = ft_rowlen(new->cmd);
-	new->redirects = red_mtx(parser);
 	new->fd_in = -1;
 	new->fd_out = -1;
 	new->last_heredoc = NULL;

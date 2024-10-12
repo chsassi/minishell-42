@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:23:04 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:37:47 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:33:07 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_redir_error(t_pars *parser)
 	else if (parser->next->type == REDIR_IN || parser->next->type == REDIR_OUT
 		|| parser->next->type == HERE_DOC || parser->next->type == DREDIR_OUT)
 		return (0);
-	else if (parser->prev->type == PIPE_LINE)
+	else if (parser->prev && parser->prev->type == PIPE_LINE)
 		return (0);
 	return (1);
 }

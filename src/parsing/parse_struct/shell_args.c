@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:07:24 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:36:17 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:08:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	len_red_mtx(t_pars *parser)
 			i += 2;
 			parser = parser->next;
 		}
-		parser = parser->next;
+		if (parser)
+			parser = parser->next;
 	}
 	return (i);
 }
@@ -62,29 +63,31 @@ void	reorg_struct(t_pars **parser, char **mtx, int *i)
 	free(tmp);
 }
 
-char	**red_mtx(t_pars *parser)
+char	**red_mtx(t_pars **parser)
 {
 	char	**mtx;
 	int		len;
 	int		i;
+	t_pars	*tmp;
 
 	i = 0;
-	len = len_red_mtx(parser);
-	mtx = (char **)malloc(sizeof(char *) * (len + 1));
+	tmp = *parser;
+	len = len_red_mtx(*parser);
+	mtx = (char **)ft_calloc(sizeof(char *), (len + 1));
 	if (!mtx)
 		return (NULL);
-	while (parser && parser->type != PIPE_LINE)
+	while (tmp && tmp->type != PIPE_LINE)
 	{
-		if (is_redirect(parser->type))
+		if (is_redirect(tmp->type))
 		{
-			reorg_struct(&parser, mtx, &i);
+			reorg_struct(&tmp, mtx, &i);
+			*parser = tmp;
 			i++;
 			continue ;
 		}
-		if (parser != NULL)
-			parser = parser->next;
+		if (tmp != NULL)
+			tmp = tmp->next;
 	}
-	mtx[i] = NULL;
 	return (mtx);
 }
 
@@ -102,6 +105,8 @@ char	**cmd_mtx(t_pars *parser)
 		n++;
 	}
 	mtx = (char **)malloc((n + 1) * sizeof(char *));
+	if (!mtx)
+		return (NULL);
 	n = 0;
 	while (parser && parser->type != PIPE_LINE)
 	{

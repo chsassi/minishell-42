@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:55:25 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:29:20 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:35:10 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_pars	*new_parse_node(char **mtx, int *i, int tok, int *arr)
 {
 	t_pars	*new;
 
-	new = (t_pars *)malloc(sizeof(t_pars));
+	new = (t_pars *)ft_calloc(1, sizeof(t_pars));
 	if (!new)
 		return (NULL);
 	new->str = merge_string(arr, mtx, i);

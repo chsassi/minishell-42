@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:01:55 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/11 15:33:54 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:02:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	close_pipes_loop(t_all *pAll);
 // Shell Init
 
 int		count_pipes(t_pars *parser);
-t_shell	*shell_init(t_pars *parser);
+t_shell	*shell_init(t_pars **parser);
 
 // Shell Utils
 
 int		*init_pipes(t_all *pAll);
-t_shell	*new_shell_node(t_pars *parser);
+t_shell	*new_shell_node(t_pars **parser);
 t_shell	*shell_last(t_shell *shell);
 void	shell_add_back(t_shell **shell, t_shell *new);
 

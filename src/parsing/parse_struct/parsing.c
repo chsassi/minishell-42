@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:04:53 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:32:53 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:03:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,12 @@ t_shell	*parsing(t_all *pAll)
 	ptr.mtx = create_mtx(ptr.input_exp);
 	if (!ptr.mtx)
 		return (free(pAll->input), NULL);
-	else
-	{
-		ptr.tokens = token_arr(ptr.mtx);
-		ptr.parser = parse_struct_init(ptr.input_exp, ptr.mtx, ptr.tokens);
-		if (!check_all_errors(ptr.parser))
-			return (free_trash(ptr.parser, ptr.tokens, ptr.input_exp), NULL);
-		pAll->cmd_nbr = count_pipes(ptr.parser);
-	}
-	shell = shell_init(ptr.parser);
+	ptr.tokens = token_arr(ptr.mtx);
+	ptr.parser = parse_struct_init(ptr.input_exp, ptr.mtx, ptr.tokens);
+	if (!check_all_errors(ptr.parser))
+		return (free_trash(ptr.parser, ptr.tokens, ptr.input_exp), NULL);
+	pAll->cmd_nbr = count_pipes(ptr.parser);
+	shell = shell_init(&ptr.parser);
 	return (clear_parse(ptr.parser), free(ptr.tokens),
 		free(ptr.input_exp), shell);
 }

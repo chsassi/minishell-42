@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/11 20:41:21 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:55:06 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void			add_back_parse(t_pars **lst, t_pars *new);
 void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char			*joined_merger(char *str1, char *str2, int flag);
-char			**red_mtx(t_pars *parser);
+char			**red_mtx(t_pars **parser);
 void			reorg_struct(t_pars **parser, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
