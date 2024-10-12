@@ -22,7 +22,7 @@
 	],
 	"C_Cpp.default.includePath": [
 		"${workspaceFolder}/includes",
-		"${workspaceFolder}/Libftx/Headers"
+		"${workspaceFolder}/Libft/Headers"
 	],
 	"C_Cpp.default.intelliSenseMode": "linux-clang-x64",
 	"editor.rulers": [80]

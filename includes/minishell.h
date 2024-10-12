@@ -35,7 +35,6 @@ typedef struct s_shell
 {
 	char			**cmd;
 	int				args_nbr;
-
 	char			**redirects;
 	int				fd_in; // start from -1
 	int				fd_out; // start from -1

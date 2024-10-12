@@ -23,7 +23,7 @@ LIBFT_MAKE = ./Libft
 SRC =	./main.c \
 		./src/builtins/cd.c \
 		./src/builtins/echo.c \
-		./src/builtins/env.c 	\
+		./src/builtins/env.c \
 		./src/builtins/exit.c \
 		./src/builtins/export.c \
 		./src/builtins/pwd.c \
