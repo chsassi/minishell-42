@@ -65,12 +65,10 @@ void	input_check(t_all *pAll);
 void	close_pipes_loop(t_all *pAll);
 
 // Shell Init
-
 int		count_pipes(t_pars *parser);
 t_shell	*shell_init(t_pars **parser);
 
 // Shell Utils
-
 int		*init_pipes(t_all *pAll);
 t_shell	*new_shell_node(t_pars **parser, int idx);
 t_shell	*shell_last(t_shell *shell);

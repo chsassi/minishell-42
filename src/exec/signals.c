@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+void	handle_heredoc_sigint(int sig)
+{
+	g_exit = sig; 
+	ioctl(0, TIOCSTI, "\n");
+	// write(2, "\n", 1);
+	// if (sig == SIGINT)
+	// {
+	// 	rl_replace_line("", 0);
+	// 	rl_redisplay();
+	// }
+}
+
 void	set_status_from_sig(t_all *pAll, int sig)
 {
 	if (sig == SIGINT)
@@ -25,11 +37,13 @@ void	set_status_from_sig(t_all *pAll, int sig)
 
 void	handle_sigint(int signal)
 {
+	g_exit = signal;
 	if (signal == SIGINT)
 	{
+		ioctl(0, TIOCSTI, "\n");
 		rl_replace_line("", 0);
-		write(1, "\nminishell> ", 12);
-		rl_redisplay();
-		g_exit = 130;
+		rl_on_new_line();
+		// write(1, "\nminishell> ", 12);
+		// rl_redisplay();
 	}
 }

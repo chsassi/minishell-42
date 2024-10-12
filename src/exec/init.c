@@ -37,6 +37,7 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 		pid = fork();
 		if (pid == 0)
 		{
+			signal(SIGINT, SIG_DFL);
 			handle_pipe_dups(pAll, pShell);
 			close_pipes_loop(pAll);
 			run_exec(pAll, pShell, true);
@@ -45,6 +46,13 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 	}
 	else
 		run_exec(pAll, pShell, false);
+}
+
+void	print_nl_on_sigint(int sig)
+{
+	g_exit = sig;
+	if (sig == SIGINT)
+		write(2, "\n", 1);
 }
 
 int	run_all_cmds(t_all *pAll)
@@ -60,6 +68,7 @@ int	run_all_cmds(t_all *pAll)
 	ptr = pAll->shell;
 	while (++i < pAll->cmd_nbr)
 	{
+		signal(SIGINT, print_nl_on_sigint);
 		pAll->arr_pipe[i] = init_pipes(pAll);
 		check_input_loop(pAll, ptr);
 		ptr = ptr->next;

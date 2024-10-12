@@ -25,5 +25,10 @@
 		"${workspaceFolder}/Libft/Headers"
 	],
 	"C_Cpp.default.intelliSenseMode": "linux-clang-x64",
-	"editor.rulers": [80]
+	"editor.rulers": [
+		80
+	],
+	"files.associations": {
+		"minishell.h": "c"
+	}
 }

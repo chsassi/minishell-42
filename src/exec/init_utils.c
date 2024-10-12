@@ -26,7 +26,7 @@ void	close_pipes_loop(t_all *pAll)
 	int	i;
 
 	i = 0;
-	while (i < pAll->cmd_nbr && pAll->arr_pipe[i])
+	while (i < pAll->cmd_nbr && pAll->arr_pipe && pAll->arr_pipe[i])
 	{
 		close(pAll->arr_pipe[i][0]);
 		close(pAll->arr_pipe[i][1]);
