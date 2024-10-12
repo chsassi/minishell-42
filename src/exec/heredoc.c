@@ -57,7 +57,7 @@ void	handle_heredoc(t_all *pAll, char *delim, char *filename)
 		return ;
 	}
 	heredoc_loop(delim, fd);
-	g_exit = 0;
+	pAll->status_code = 0;
 }
 
 bool	is_last_heredoc(t_shell *shell, int red_idx)

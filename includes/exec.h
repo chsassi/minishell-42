@@ -36,7 +36,7 @@ void	cd_home(t_all *pAll);
 void	cd_previous_dir(t_all *pAll);
 void	cd_upper_dir(t_all *pAll);
 void	cd_from_path(t_all *pAll, char *path);
-int 	check_exit_params(t_shell *pShell);
+int 	check_exit_params(t_all *pAll, t_shell *pShell);
 
 void	bin_cd(t_all *pAll, t_shell *pShell);
 void	bin_echo(t_all *pAll, t_shell *pShell);
@@ -96,6 +96,5 @@ void	set_var_content(t_env *new_node, char *equal_sign);
 t_env	*new_env_node(char *env_var);
 void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 t_env	*create_envp(char **envp);
-
 
 #endif

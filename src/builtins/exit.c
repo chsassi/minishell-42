@@ -25,7 +25,7 @@ bool	is_numeric(char *str)
 	return (true);
 }
 
-int	check_exit_params(t_shell *pShell)
+int	check_exit_params(t_all *pAll, t_shell *pShell)
 {
 	if (pShell->args_nbr > 2)
 		return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
@@ -34,7 +34,7 @@ int	check_exit_params(t_shell *pShell)
 		ft_putstr_fd("bash: exit: ", 2);
 		ft_putstr_fd(pShell->cmd[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
-		g_exit = 2;
+		pAll->status_code = 2;
 		return (0);
 	}
 	return (1);
@@ -42,7 +42,7 @@ int	check_exit_params(t_shell *pShell)
 
 void	bin_exit(t_all *pAll, t_shell *pShell)
 {
-	if (!check_exit_params(pShell))
+	if (!check_exit_params(pAll, pShell))
 		return ;
 	if (pShell->args_nbr == 1)
 	{

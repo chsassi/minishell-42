@@ -61,7 +61,8 @@ void	exec_redirection(t_all *pAll)
 			|| !ft_strcmp(pAll->shell->redirects[i], REDIRECT_OUT)
 			|| !ft_strcmp(pAll->shell->redirects[i], REDIRECT_APPEND))
 		{
-			handle_redirection(pAll, pAll->shell->redirects[i], pAll->shell->redirects[i + 1]);
+			handle_redirection(pAll, pAll->shell->redirects[i],
+				pAll->shell->redirects[i + 1]);
 			pAll->shell->redirects[i] = NULL;
 			break ;
 		}

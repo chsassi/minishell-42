@@ -22,6 +22,6 @@ t_env	*bin_env(t_all *pAll)
 		print_env(current);
 		current = current->next;
 	}
-	g_exit = 0;
+	pAll->status_code = 0;
 	return (*pAll->env);
 }
