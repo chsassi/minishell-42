@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
 t_pars	*new_parse_node(char **mtx, int *i, int tok, int *arr)
