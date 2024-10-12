@@ -104,16 +104,16 @@ char	**cmd_mtx(t_pars *parser)
 		tmp = tmp->next;
 		n++;
 	}
-	mtx = (char **)malloc((n + 1) * sizeof(char *));
+	mtx = (char **)ft_calloc((n + 1), sizeof(char *));
 	if (!mtx)
 		return (NULL);
 	n = 0;
 	while (parser && parser->type != PIPE_LINE)
 	{
-		mtx[n] = ft_strdup(parser->str);
+		mtx[n] = parser->str;
+		parser->str = NULL;
 		parser = parser->next;
 		n++;
 	}
-	mtx[n] = NULL;
 	return (mtx);
 }

@@ -31,6 +31,27 @@ int	count_pipes(t_pars *parser)
 	return (i + 1);
 }
 
+t_pars	*free_parse_until_pipe(t_pars *parser)
+{
+	t_pars	*node;
+	t_pars	*tmp;
+
+	node = parser;
+	while (node && node->type != PIPE_LINE)
+	{
+		tmp = node->next;
+		free_parse_node(node);
+		node = tmp;
+	}
+	if (node && node->type == PIPE_LINE)
+	{
+		tmp = node->next;
+		free_parse_node(node);
+		node = tmp;
+	}
+	return (node);
+}
+
 t_shell	*shell_init(t_pars **parser)
 {
 	t_shell	*shell;
@@ -41,10 +62,7 @@ t_shell	*shell_init(t_pars **parser)
 	{
 		ptr = *parser;
 		shell_add_back(&shell, new_shell_node(&ptr));
-		while (ptr && ptr->type != PIPE_LINE)
-			ptr = ptr->next;
-		if (ptr && ptr->type == PIPE_LINE)
-			ptr = ptr->next;
+		ptr = free_parse_until_pipe(ptr);
 		*parser = ptr;
 	}
 	return (shell);

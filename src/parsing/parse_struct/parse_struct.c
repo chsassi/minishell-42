@@ -55,6 +55,16 @@ void	add_back_parse(t_pars **lst, t_pars *new)
 	new->prev = tmp;
 }
 
+void	free_parse_node(t_pars *parser)
+{
+	if (!parser)
+		return ;
+	free(parser->str);
+	parser->next = NULL;
+	parser->prev = NULL;
+	free(parser);
+}
+
 void	clear_parse(t_pars *parser)
 {
 	t_pars	*tmp;
@@ -62,12 +72,9 @@ void	clear_parse(t_pars *parser)
 	tmp = NULL;
 	while (parser)
 	{
-		tmp = parser;
-		parser = parser->next;
-		free(tmp->str);
-		tmp->next = NULL;
-		tmp->prev = NULL;
-		free(tmp);
+		tmp = parser->next;
+		free_parse_node(parser);
+		parser = tmp;
 	}
 }
 

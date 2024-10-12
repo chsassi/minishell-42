@@ -147,6 +147,7 @@ int				quot_tok_len(char *input);
 t_pars			*new_parse_node(char **mtx, int *i, int tok, int *arr);
 t_pars			*last_parse(t_pars *lst);
 void			add_back_parse(t_pars **lst, t_pars *new);
+void			free_parse_node(t_pars *parser);
 void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char			*joined_merger(char *str1, char *str2, int flag);
