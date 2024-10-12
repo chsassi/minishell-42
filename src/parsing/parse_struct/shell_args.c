@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:07:24 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:40 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:52:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	reorg_struct(t_pars **parser, char **mtx, int *i)
 	t_pars	*tmp;
 
 	tmp = *parser;
-	if ((*parser)->prev != NULL)
+	if ((*parser)->prev != NULL && (*parser)->next->next)
 		(*parser)->prev->next = (*parser)->next->next;
 	if ((*parser)->next->next != NULL)
 		(*parser)->next->next->prev = (*parser)->prev;
