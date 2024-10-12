@@ -27,6 +27,7 @@ void	free_shell(t_all *pAll)
 			close(shell->fd_in);
 		if (shell->fd_in != -1)
 			close(shell->fd_out);
+		free(shell->last_heredoc);
 		free(shell);
 		shell = next;
 	}
