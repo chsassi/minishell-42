@@ -6,13 +6,12 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:09:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 15:00:36 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/// create a pipe for each command
 int	*init_pipes(t_all *pAll)
 {
 	int	*arr;

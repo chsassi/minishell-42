@@ -47,6 +47,7 @@ void	bin_pwd(t_all *pAll);
 t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
+void	exec_cmd(t_all *pAll, char *cmd, char **args, char **envp);
 void	fork_cmd(t_all *pAll, char *cmd, char **args, char **envp);
 int		run_builtin(t_all *pAll, t_shell *pShell);
 char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork);

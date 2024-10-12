@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:52:27 by chsassi           #+#    #+#             */
-/*   Updated: 2024/07/30 10:19:00 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ void	bin_echo(t_all *pAll, t_shell *pShell)
 		printf("\n");
 	pAll->status_code = 0;
 }
-

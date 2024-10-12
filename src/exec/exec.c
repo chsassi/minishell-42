@@ -6,11 +6,19 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:05:35 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/11 15:38:11 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	exec_cmd(t_all *pAll, char *cmd, char **args, char **envp)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	execve(cmd, args, envp);
+	free_all(pAll, true, 127);
+}
 
 void	fork_cmd(t_all *pAll, char *cmd, char **args, char **envp)
 {
@@ -91,7 +99,7 @@ bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 	env_mtx = create_env_mtx(*pAll->env);
 	if (!inside_fork)
 		fork_cmd(pAll, cmd_path, pShell->cmd, env_mtx);
-	// else
-	// 	exec_cmd(pAll, cmd_path, pShell->cmd, env_mtx);
+	else
+		exec_cmd(pAll, cmd_path, pShell->cmd, env_mtx);
 	return (free(cmd_path), free_mtx(env_mtx), true);
 }

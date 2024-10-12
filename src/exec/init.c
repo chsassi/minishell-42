@@ -6,44 +6,11 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/12 16:26:44 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_shell(t_all *pAll)
-{
-	t_shell	*shell;
-	t_shell	*next;
-
-	shell = pAll->shell;
-	while (shell)
-	{
-		next = shell->next;
-		free_mtx(shell->cmd);
-		free_mtx(shell->redirects);
-		if (shell->fd_in != -1)
-			close(shell->fd_in);
-		if (shell->fd_in != -1)
-			close(shell->fd_out);
-		free(shell);
-		shell = next;
-	}
-	pAll->shell = NULL;
-}
-
-void	free_all(t_all *pAll, bool should_exit, int status_code)
-{
-	free(pAll->input);
-	free_env_list(*pAll->env);
-	free_shell(pAll);
-	close_pipes_loop(pAll);
-	close(pAll->restore_fd_in);
-	close(pAll->restore_fd_out);
-	if (should_exit)
-		exit(status_code);
-}
 
 void	check_input_loop(t_all *pAll, t_shell *pShell)
 {
@@ -84,14 +51,6 @@ int	run_all_cmds(t_all *pAll)
 	return (1);
 }
 
-void	set_status_from_sig(t_all *pAll, int sig)
-{
-	if (sig == SIGINT)
-		pAll->status_code = 130;
-	else if (sig == SIGQUIT)
-		pAll->status_code = 131;
-}
-
 int	process_input(t_all *pAll)
 {
 	int	status;
@@ -119,7 +78,6 @@ void	minishell_loop(t_env *env)
 	ptr.restore_fd_out = dup(STDOUT_FILENO);
 	while (1)
 	{
-		/// always reset the number of commands
 		ptr.cmd_nbr = 0;
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
