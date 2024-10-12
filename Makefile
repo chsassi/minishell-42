@@ -56,6 +56,7 @@ SRC =	./main.c \
 		./src/parsing/parse_struct/shell_args.c \
 		./src/parsing/syntax_error/is_valid_variable.c \
 		./src/parsing/syntax_error/syntax_error.c \
+		./src/fd_utils.c
 #		./waste/write_tokens.c
 
 $(NAME): $(SRC)
