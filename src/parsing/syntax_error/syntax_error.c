@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:23:04 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:40 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:48:36 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 int	check_pipe_error(t_pars *parser)
 {
-	if (parser->prev == NULL || parser->next->str == NULL)
+	if (parser->prev == NULL || parser->prev->str == NULL)
 		return (0);
-	else if (parser->next->type == PIPE_LINE)
+	if (parser->next == NULL || parser->next->str == NULL)
 		return (0);
-	else if (parser->prev->type == REDIR_IN || parser->next->type == REDIR_IN)
+	if (parser->next->type == PIPE_LINE)
 		return (0);
-	else if (parser->prev->type == REDIR_OUT || parser->next->type == REDIR_OUT)
+	if (parser->prev->type == REDIR_IN)
 		return (0);
-	else if (parser->prev->type == HERE_DOC || parser->next->type == HERE_DOC)
+	if (parser->prev->type == REDIR_OUT)
 		return (0);
-	else if (parser->prev->type == DREDIR_OUT
-		|| parser->next->type == DREDIR_OUT)
+	if (parser->prev->type == HERE_DOC)
+		return (0);
+	if (parser->prev->type == DREDIR_OUT)
 		return (0);
 	return (1);
 }
