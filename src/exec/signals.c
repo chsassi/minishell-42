@@ -17,7 +17,10 @@ void	set_status_from_sig(t_all *pAll, int sig)
 	if (sig == SIGINT)
 		pAll->status_code = 130;
 	else if (sig == SIGQUIT)
+	{
+		ft_putstr_fd("Quit (core dumped)\n", 2);
 		pAll->status_code = 131;
+	}
 }
 
 void	handle_sigint(int signal)

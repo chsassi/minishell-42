@@ -52,6 +52,7 @@ SRC =	./main.c \
 		./src/parsing/merger/quote_merger_utils.c \
 		./src/parsing/merger/quote_merger.c \
 		./src/parsing/parse_struct/parse_struct.c \
+		./src/parsing/parse_struct/parse_struct_utils.c \
 		./src/parsing/parse_struct/parsing.c \
 		./src/parsing/parse_struct/shell_args.c \
 		./src/parsing/syntax_error/is_valid_variable.c \

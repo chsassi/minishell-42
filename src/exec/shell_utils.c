@@ -34,7 +34,6 @@ t_shell	*new_shell_node(t_pars **parser, int idx)
 	new->cmd_idx = idx;
 	new->redirects = red_mtx(parser);
 	new->cmd = cmd_mtx(*parser);
-	/// count the number of arguments
 	new->args_nbr = ft_rowlen(new->cmd);
 	new->fd_in = -1;
 	new->fd_out = -1;

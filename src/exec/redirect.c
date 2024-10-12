@@ -44,7 +44,7 @@ int	handle_redirection(t_all *pAll, char *type, char *file)
 	if (redirect_fd == -1)
 	{
 		ft_putstr_fd(file, 2);
-		ft_putstr_fd("Permission denied\n", 2);
+		ft_putstr_fd(": Permission denied\n", 2);
 		pAll->status_code = 1;
 		return (0);
 	}
