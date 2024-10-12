@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/11 17:37:12 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:26:44 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	minishell_loop(t_env *env)
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
 		input_check(&ptr);
+		free_shell(&ptr);
 		ptr.shell = parsing(&ptr);
 		if (!process_input(&ptr))
 		{
