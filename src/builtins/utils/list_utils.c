@@ -54,9 +54,10 @@ void	set_env_head(t_env **head, t_env *new_node, t_env **current)
 	if (!(*head))
 	{
 		(*head) = new_node;
-		(*current) = (*head);
+		if (current)
+			(*current) = (*head);
 	}
-	else
+	else if (current)
 	{
 		(*current)->next = new_node;
 		(*current) = new_node;

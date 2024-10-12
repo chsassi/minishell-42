@@ -39,7 +39,7 @@ char *var_name, char *equal_sign)
 	if (existing_var)
 	{
 		if (equal_sign)
-			update_env_var(*env_list, var_name, equal_sign + 1);
+			update_env_var(env_list, var_name, equal_sign + 1);
 		existing_var->is_hidden = false;
 	}
 	else

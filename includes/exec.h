@@ -73,7 +73,7 @@ void	handle_sigint(int signal);
 
 // Env Utils
 t_env	*find_env_var(t_env *env_list, char *var);
-void	update_env_var(t_env *env_list, char *var_name, char *new_value);
+bool	update_env_var(t_env **env_list, char *var_name, char *new_value);
 char	*get_env_var(t_env *env_list, char *var_name);
 void	print_env(t_env *var);
 

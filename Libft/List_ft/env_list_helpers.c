@@ -44,3 +44,20 @@ void	free_env_list(t_env *head)
 		free_env_node(tmp);
 	}
 }
+
+void	env_add_back(t_env **head, t_env *new)
+{
+	t_env	*last;
+
+	if (!head)
+		return ;
+	if (!(*head))
+	{
+		*head = new;
+		return ;
+	}
+	last = *head;
+	while (last && last->next)
+		last = last->next;
+	last->next = new;
+}

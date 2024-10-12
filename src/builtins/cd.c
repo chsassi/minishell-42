@@ -24,11 +24,11 @@ void	cd_home(t_all *pAll)
 	}
 	if (chdir(home->content))
 	{
-		ft_putstr_fd("bash: cd: /home/user: No such file or directory", 2);
+		ft_putstr_fd("bash: cd: /home/user: No such file or directory\n", 2);
 		return ;
 	}
-	update_env_var(*pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
-	update_env_var(*pAll->env, "PWD", home->content);
+	update_env_var(pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
+	update_env_var(pAll->env, "PWD", home->content);
 }
 
 void	cd_previous_dir(t_all *pAll)
@@ -43,18 +43,19 @@ void	cd_previous_dir(t_all *pAll)
 		ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
 		return ;
 	}
-	printf("%s\n", oldpwd->content);
+	if (oldpwd->content && oldpwd->content[0])
+		printf("%s\n", oldpwd->content);
 	if (chdir(oldpwd->content))
 	{
 		ft_putstr_fd("bash: cd: /previous/directory:\
- No such file or directory", 2);
+ No such file or directory\n", 2);
 		return ;
 	}
-	update_env_var(*pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
+	update_env_var(pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
 	new_dir = getcwd(NULL, 0);
 	if (new_dir)
 	{
-		update_env_var(*pAll->env, "PWD", new_dir);
+		update_env_var(pAll->env, "PWD", new_dir);
 		free(new_dir);
 	}
 }
@@ -67,14 +68,14 @@ void	cd_upper_dir(t_all *pAll)
 	if (chdir(".."))
 	{
 		ft_putstr_fd("bash: cd: /previous/directory:\
- No such file or directory", 2);
+ No such file or directory\n", 2);
 		return ;
 	}
-	update_env_var(*pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
+	update_env_var(pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
 	new_dir = getcwd(NULL, 0);
 	if (new_dir)
 	{
-		update_env_var(*pAll->env, "PWD", new_dir);
+		update_env_var(pAll->env, "PWD", new_dir);
 		free(new_dir);
 	}
 }
@@ -90,11 +91,11 @@ void	cd_from_path(t_all *pAll, char *path)
  No such file or directory\n", 2);
 		return ;
 	}
-	update_env_var(*pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
+	update_env_var(pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
 	new_dir = getcwd(NULL, 0);
 	if (new_dir)
 	{
-		update_env_var(*pAll->env, "PWD", new_dir);
+		update_env_var(pAll->env, "PWD", new_dir);
 		free(new_dir);
 	}
 }

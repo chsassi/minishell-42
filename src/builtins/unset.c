@@ -12,22 +12,60 @@
 
 #include "minishell.h"
 
-t_env	*bin_unset(t_all *pAll, t_shell *pShell)
+static bool	unset_check_head(t_all *pAll, char *variable)
 {
 	t_env	*tmp;
-	t_env	**original_head;
 
-	if (!pAll->env || !*pAll->env)
-		return (*pAll->env);
-	original_head = pAll->env;
-	while (*pAll->env && ft_strcmp((*pAll->env)->var, pShell->cmd[1]))
-		pAll->env = &((*pAll->env)->next);
-	if (*pAll->env)
+	if (!pAll->env)
+		return (true);
+	if (!is_valid_var(variable))
+		return (false);
+	if ((*pAll->env)->var && !ft_strcmp((*pAll->env)->var, variable))
 	{
 		tmp = *pAll->env;
 		*pAll->env = (*pAll->env)->next;
 		free_env_node(tmp);
 	}
-	g_exit = 0;
-	return (*original_head);
+	return (true);
+}
+
+static bool	unset_check_all(t_all *pAll, char *variable)
+{
+	t_env	*tmp;
+	t_env	*next;
+
+	if (!is_valid_var(variable))
+		return (false);
+	tmp = *pAll->env;
+	while (tmp)
+	{
+		next = tmp->next;
+		if (next && !ft_strcmp(next->var, variable))
+		{
+			tmp->next = next->next;
+			free_env_node(next);
+		}
+		tmp = tmp->next;
+	}
+	return (true);
+}
+
+t_env	*bin_unset(t_all *pAll, t_shell *pShell)
+{
+	int		i;
+	bool	check;
+
+	if (!pAll->env)
+		return (NULL);
+	i = 0;
+	check = true;
+	while (pShell->cmd && pShell->cmd[++i])
+	{
+		check = check && unset_check_head(pAll, pShell->cmd[i]);
+		check = check && unset_check_all(pAll, pShell->cmd[i]);
+	}
+	pAll->status_code = 0;
+	if (!check)
+		pAll->status_code = 1;
+	return (NULL);
 }

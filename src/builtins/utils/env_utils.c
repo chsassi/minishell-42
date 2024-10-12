@@ -23,16 +23,30 @@ t_env	*find_env_var(t_env *env_list, char *var)
 	return (NULL);
 }
 
-void	update_env_var(t_env *env_list, char *var_name, char *new_value)
+bool	update_env_var(t_env **env_list, char *var_name, char *new_value)
 {
 	t_env	*var;
 
-	var = find_env_var(env_list, var_name);
+	var = find_env_var(*env_list, var_name);
 	if (var)
 	{
 		free(var->content);
 		var->content = ft_strdup(new_value);
 	}
+	else
+	{
+		var = ft_calloc(1, sizeof(t_env));
+		if (!var)
+			return (false);
+		var->var = ft_strdup(var_name);
+		if (!var->var)
+			return (free(var), false);
+		var->content = ft_strdup(new_value);
+		if (!var->content)
+			return (free(var->var), free(var), false);
+		env_add_back(env_list, var);
+	}
+	return (true);
 }
 
 char	*get_env_var(t_env *env_list, char *var_name)
