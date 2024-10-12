@@ -23,9 +23,9 @@ char	*exp_string(t_all *all, t_exp p)
 	else
 		tmp.first_str = ft_strdup("");
 	if (p.state == GENERAL)
-		tmp.second_str = processed_str_exp(env_string(p.inp, p.i, p.env));
+		tmp.second_str = processed_str_exp(env_string(all, p.inp, p.i, p.env));
 	else
-		tmp.second_str = env_string(p.inp, p.i, p.env);
+		tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	tmp.third_str = ft_strdup(p.inp + (*p.i));
 	*p.i = 0;
 	tmp.result = ft_strjoin_gnl(tmp.first_str, tmp.second_str);
@@ -81,7 +81,7 @@ char	*find_env_string(char *input, t_env *envp, int len)
 	return (ft_strdup(""));
 }
 
-char	*env_string(char *input, int *i, t_env *envp)
+char	*env_string(t_all *all, char *input, int *i, t_env *envp)
 {
 	int	j;
 	int	len;
@@ -94,7 +94,7 @@ char	*env_string(char *input, int *i, t_env *envp)
 		if (input[*i] == '?')
 		{
 			(*i)++;
-			return (ft_itoa(g_exit));
+			return (ft_itoa(all->status_code));
 		}
 		else if (input[*i] == '_' || ft_isalpha(input[*i]))
 		{
