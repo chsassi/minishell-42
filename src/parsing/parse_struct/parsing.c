@@ -33,7 +33,11 @@ t_shell	*parsing(t_all *pAll)
 	ptr.tokens = token_arr(ptr.mtx);
 	ptr.parser = parse_struct_init(ptr.input_exp, ptr.mtx, ptr.tokens);
 	if (!check_all_errors(ptr.parser))
+	{
+		ft_putstr_fd("Syntax error!\n", 2);
+		pAll->status_code = 2;
 		return (free_trash(ptr.parser, ptr.tokens, ptr.input_exp), NULL);
+	}
 	pAll->cmd_nbr = count_pipes(ptr.parser);
 	shell = shell_init(&ptr.parser);
 	return (free_trash(ptr.parser, ptr.tokens, ptr.input_exp), shell);
