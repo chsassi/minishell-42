@@ -63,7 +63,8 @@ int	run_all_cmds(t_all *pAll)
 	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr, sizeof(int *));
 	if (!pAll->arr_pipe)
 		return (free_all(pAll, true, 1), 0);
-	exec_heredocs(pAll);
+	if (!exec_heredocs(pAll))
+		return (free(pAll->arr_pipe), 0);
 	i = -1;
 	ptr = pAll->shell;
 	while (++i < pAll->cmd_nbr)
@@ -104,10 +105,17 @@ void	minishell_loop(t_env *env)
 	ptr.restore_fd_out = dup(STDOUT_FILENO);
 	while (1)
 	{
+		g_exit = -42;
 		ptr.cmd_nbr = 0;
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
+		set_status_from_sig(&ptr, g_exit);
+		if (ptr.status_code == 130)
+		{
+			free(ptr.input);
+			continue ;
+		}
 		input_check(&ptr);
 		free_shell(&ptr);
 		ptr.shell = parsing(&ptr);

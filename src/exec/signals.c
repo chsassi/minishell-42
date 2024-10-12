@@ -26,6 +26,8 @@ void	handle_heredoc_sigint(int sig)
 
 void	set_status_from_sig(t_all *pAll, int sig)
 {
+	if (g_exit == -42)
+		return ;
 	if (sig == SIGINT)
 		pAll->status_code = 130;
 	else if (sig == SIGQUIT)
