@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 15:41:28 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 18:59:37 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 21:05:41 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	if (!s)
 		return (NULL);
 	i = -1;
-	while (++i < s1len)
+	while (++i < s1len && s1)
 		s[i] = s1[i];
 	j = -1;
 	while (s2 && s2[++j])

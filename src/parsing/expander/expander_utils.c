@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:40 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/12 21:37:49 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,9 @@ char	*processed_str_exp(char *content)
 		if (content[i] == '\0')
 		{
 			free(content);
-			break ;
+			return (new);
 		}
 		i++;
 	}
-	free(content);
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 20:22:41 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/12 21:23:26 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*exp_string(t_all *all, t_exp p)
 		tmp.first_str = ft_strdup("");
 	if (p.state == GENERAL)
 		tmp.second_str = processed_str_exp(env_string(all, p.inp, p.i, p.env));
+		// tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	else
 		tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	tmp.third_str = ft_strdup(p.inp + (*p.i));
@@ -70,7 +71,7 @@ char	*find_env_string(char *input, t_env *envp, int len)
 	while (tmp)
 	{
 		substring = ft_substr(input, 0, len);
-		if (!ft_strncmp(substring, tmp->var, ft_strlen(substring) + 1))
+		if (!ft_strncmp(substring, tmp->var, ft_strlen(tmp->var)))
 		{
 			free(substring);
 			return (ft_strdup(tmp->content));
