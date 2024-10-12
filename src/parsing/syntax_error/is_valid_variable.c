@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-bool	is_valid_var(char *var)
+bool	is_valid_var(char *cmd, char *var)
 {
 	int		i;
 	bool	is_valid;
@@ -30,7 +30,8 @@ bool	is_valid_var(char *var)
 	}
 	if (!is_valid)
 	{
-		ft_putstr_fd("unset: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(var, 2);
 		ft_putstr_fd(": not a valid identifier\n", 2);
 	}

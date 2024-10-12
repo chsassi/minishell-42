@@ -53,7 +53,7 @@ char *var_name, char *equal_sign)
 	}
 }
 
-void	export_var(t_env **env_list, char *arg)
+bool	export_var(t_all *pAll, char *arg)
 {
 	t_env	*existing_var;
 	char	*equal_sign;
@@ -68,9 +68,14 @@ void	export_var(t_env **env_list, char *arg)
 		var_name = ft_substr(arg, 0, var_name_len);
 	else
 		var_name = ft_strdup(arg);
-	existing_var = find_env_var(*env_list, var_name);
-	handle_env_var(env_list, existing_var, var_name, equal_sign);
-	free(var_name);
+	if (!is_valid_var("export", var_name))
+	{
+		pAll->status_code = 1;
+		return (free(var_name), false);
+	}
+	existing_var = find_env_var(*pAll->env, var_name);
+	handle_env_var(pAll->env, existing_var, var_name, equal_sign);
+	return (free(var_name), true);
 }
 
 void	print_export(t_env *var)

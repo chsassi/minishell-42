@@ -30,5 +30,5 @@ void	bin_export(t_all *pAll, t_shell *pShell)
 	}
 	i = 0;
 	while (pShell->cmd[++i])
-		export_var(pAll->env, pShell->cmd[i]);
+		export_var(pAll, pShell->cmd[i]);
 }

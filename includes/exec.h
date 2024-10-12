@@ -83,7 +83,7 @@ void	print_env(t_env *var);
 void	add_node_to_list(t_env **env_list, t_env *new_node);
 void	handle_env_var(t_env **env_list, t_env *existing_var, \
 char *var_name, char *equal_sign);
-void	export_var(t_env **env_list, char *arg);
+bool	export_var(t_all *pAll, char *arg);
 void	print_export(t_env *var);
 
 // Mtx from ENV

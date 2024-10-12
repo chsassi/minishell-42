@@ -41,6 +41,7 @@ void	cd_previous_dir(t_all *pAll)
 	if (!oldpwd || !oldpwd->content)
 	{
 		ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
+		pAll->status_code = 1;
 		return ;
 	}
 	if (oldpwd->content && oldpwd->content[0])

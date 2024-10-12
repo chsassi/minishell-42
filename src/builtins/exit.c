@@ -35,6 +35,8 @@ int	check_exit_params(t_all *pAll, t_shell *pShell)
 		ft_putstr_fd(pShell->cmd[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		pAll->status_code = 2;
+		if (pShell->args_nbr == 2)
+			free_all(pAll, true, pAll->status_code);
 		return (0);
 	}
 	return (1);

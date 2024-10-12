@@ -12,18 +12,37 @@
 
 #include "minishell.h"
 
+int	newline_check(t_shell *pShell, int i, bool *nl)
+{
+	int	j;
+
+	while (pShell->cmd[i] && !ft_strncmp(pShell->cmd[i], "-", 1)
+		&& ft_strlen(pShell->cmd[i]) > 1)
+	{
+		j = 1;
+		while (pShell->cmd[i][j] == 'n')
+			j++;
+		if (!pShell->cmd[i][j])
+		{
+			*nl = false;
+			i++;
+		}
+		else
+			break ;
+	}
+	return (i);
+}
+
 void	bin_echo(t_all *pAll, t_shell *pShell)
 {
-	int	i;
-	int	nl;
+	int		i;
+	int		j;
+	bool	nl;
 
 	i = 1;
-	nl = 1;
-	if (pShell->cmd[1] && !ft_strcmp(pShell->cmd[1], "-n"))
-	{
-		nl = 0;
-		i = 2;
-	}
+	j = 0;
+	nl = true;
+	i = newline_check(pShell, i, &nl);
 	while (pShell->cmd[i])
 	{
 		printf("%s", pShell->cmd[i]);

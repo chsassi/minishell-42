@@ -18,7 +18,7 @@ static bool	unset_check_head(t_all *pAll, char *variable)
 
 	if (!pAll->env)
 		return (true);
-	if (!is_valid_var(variable))
+	if (!is_valid_var("unset", variable))
 		return (false);
 	if ((*pAll->env)->var && !ft_strcmp((*pAll->env)->var, variable))
 	{
@@ -34,7 +34,7 @@ static bool	unset_check_all(t_all *pAll, char *variable)
 	t_env	*tmp;
 	t_env	*next;
 
-	if (!is_valid_var(variable))
+	if (!is_valid_var("unset", variable))
 		return (false);
 	tmp = *pAll->env;
 	while (tmp)
