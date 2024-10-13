@@ -99,4 +99,5 @@ t_env	*new_env_node(char *env_var);
 void	set_env_head(t_env **head, t_env *new_node, t_env **current);
 t_env	*create_envp(char **envp);
 
+void	handle_pipe_dups(t_all *pAll, t_shell *pShell);
 #endif

@@ -45,18 +45,18 @@ int	*array_of_merges(char *input, char **mtx)
 
 	i = 0;
 	j = 0;
-	arr = ft_calloc(sizeof(int), len + 1);
+	arr = ft_calloc(sizeof(int), len);
 	if (!arr)
 		return (NULL);
+	arr[0] = NO;
 	if (len == 1)
-	{
-		arr[0] = NO;
 		return (arr);
-	}
 	while (input[i] != '\0')
 	{
 		while (input[i] == 32)
 			i++;
+		if (input[i] == '\0')
+			break ;
 		arr[j] = type_of_merge(input, i, (i + ft_strlen(mtx[j])));
 		i += ft_strlen(mtx[j]);
 		j++;

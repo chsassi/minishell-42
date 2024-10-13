@@ -17,3 +17,13 @@ void	close_fd(int fd)
 	if (fd != -1)
 		close(fd);
 }
+
+void	handle_pipe_dups(t_all *pAll, t_shell *pShell)
+{
+	close_fd(pShell->fd_in);
+	close_fd(pShell->fd_out);
+	if (pShell->fd_in == -1 && pShell->cmd_idx > 0)
+		dup2(pAll->arr_pipe[pShell->cmd_idx - 1][0], STDIN_FILENO);
+	if (pShell->fd_out == -1 && pShell->cmd_idx < pAll->cmd_nbr - 1)
+		dup2(pAll->arr_pipe[pShell->cmd_idx][1], STDOUT_FILENO);
+}

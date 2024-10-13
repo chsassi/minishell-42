@@ -36,6 +36,7 @@ SRC =	./main.c \
 		./src/builtins/utils/mtx_from_env.c \
 		./src/exec/exec_utils.c \
 		./src/exec/exec.c \
+		./src/exec/heredoc_utils.c \
 		./src/exec/heredoc.c \
 		./src/exec/init_utils.c \
 		./src/exec/init.c \

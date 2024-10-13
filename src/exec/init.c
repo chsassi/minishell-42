@@ -12,16 +12,6 @@
 
 #include "minishell.h"
 
-static void	handle_pipe_dups(t_all *pAll, t_shell *pShell)
-{
-	close_fd(pShell->fd_in);
-	close_fd(pShell->fd_out);
-	if (pShell->fd_in == -1 && pShell->cmd_idx > 0)
-		dup2(pAll->arr_pipe[pShell->cmd_idx - 1][0], STDIN_FILENO);
-	if (pShell->fd_out == -1 && pShell->cmd_idx < pAll->cmd_nbr - 1)
-		dup2(pAll->arr_pipe[pShell->cmd_idx][1], STDOUT_FILENO);
-}
-
 void	check_input_loop(t_all *pAll, t_shell *pShell)
 {
 	pid_t	pid;
@@ -104,6 +94,25 @@ int	process_input(t_all *pAll)
 	return (free_shell(pAll), 1);
 }
 
+bool	process_loop(t_all *pAll)
+{
+	set_status_from_sig(pAll, g_exit);
+	if (ft_strlen(pAll->input) == 0 && pAll->status_code == 130)
+	{
+		free(pAll->input);
+		return (false);
+	}
+	pAll->shell = parsing(pAll);
+	if (!process_input(pAll))
+	{
+		free(pAll->input);
+		return (false);
+	}
+	if (ft_strlen(pAll->input) > 0)
+		add_history(pAll->input);
+	return (true);
+}
+
 void	minishell_loop(t_env *env)
 {
 	t_all	ptr;
@@ -120,20 +129,8 @@ void	minishell_loop(t_env *env)
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
 		input_check(&ptr);
-		set_status_from_sig(&ptr, g_exit);
-		if (ft_strlen(ptr.input) == 0 && ptr.status_code == 130)
-		{
-			free(ptr.input);
+		if (!process_loop(&ptr))
 			continue ;
-		}
-		ptr.shell = parsing(&ptr);
-		if (!process_input(&ptr))
-		{
-			free(ptr.input);
-			continue ;
-		}
-		if (ft_strlen(ptr.input) > 0)
-			add_history(ptr.input);
 		free(ptr.input);
 	}
 }

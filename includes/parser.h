@@ -132,6 +132,7 @@ char			*process_escaped(char *str, int *i);
 char			*create_escaped_str(char *content, int *i);
 char			*processed_str_exp(char *content);
 char			*expansion(t_all *all, t_env *envp);
+char			*heredoc_expansion(t_all *all, char *value);
 
 // Expansion function
 

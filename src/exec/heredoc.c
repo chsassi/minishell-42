@@ -33,6 +33,7 @@ delimited by end-of-file (wanted `%s')\n", i, delim);
 		}
 		if (!ft_strcmp(line, delim))
 			break ;
+		line = heredoc_expansion(pAll, line);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);

@@ -43,7 +43,6 @@ t_pars	*reorg_struct(t_pars **parser_head, t_pars *curr_redirect,
 {
 	t_pars	*tmp;
 
-
 	if (parser_head && curr_redirect == *parser_head)
 		*parser_head = (*parser_head)->next->next;
 	if (curr_redirect->prev)
