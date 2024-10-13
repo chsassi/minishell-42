@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:40:05 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/13 14:52:07 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	process_input(t_all *pAll)
 
 	if (!pAll->shell)
 		return (0);
+	pAll->status_code = 0;
 	run_all_cmds(pAll);
 	while (waitpid(-1, &status, 0) != -1)
 	{
@@ -103,13 +104,13 @@ void	minishell_loop(t_env *env)
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
 		ptr.input = readline("minishell> ");
+		input_check(&ptr);
 		set_status_from_sig(&ptr, g_exit);
-		if (ptr.status_code == 130)
+		if (ft_strlen(ptr.input) == 0 && ptr.status_code == 130)
 		{
 			free(ptr.input);
 			continue ;
 		}
-		input_check(&ptr);
 		free_shell(&ptr);
 		ptr.shell = parsing(&ptr);
 		if (!process_input(&ptr))

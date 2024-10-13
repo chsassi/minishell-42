@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:05:35 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/13 14:56:10 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	fork_cmd(t_all *pAll, char *cmd, char **args, char **envp)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		execve(cmd, args, envp);
+		free_mtx(envp);
 		free_all(pAll, true, 127);
 	}
 	else if (pid < 0)

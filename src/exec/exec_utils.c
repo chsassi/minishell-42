@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 18:40:15 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/12 18:40:20 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/13 14:58:54 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*find_executable_in_env(char **paths, char *command)
 			return (ft_strdup(command));
 		return (NULL);
 	}
+	if (ft_strlen(command) == 0)
+		return (NULL);
 	while (paths && *paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
