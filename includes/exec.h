@@ -54,7 +54,7 @@ char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork);
 bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork);
 
 // Exec Utils
-char	**get_path_from_env(void);
+char	**get_path_from_env(t_all *pAll);
 char	*find_executable_in_env(char **paths, char *command);
 
 // Heredoc

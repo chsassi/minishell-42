@@ -65,7 +65,7 @@ char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 	char	**paths;
 	char	*cmd_path;
 
-	paths = get_path_from_env();
+	paths = get_path_from_env(pAll);
 	cmd_path = find_executable_in_env(paths, pShell->cmd[0]);
 	free_mtx(paths);
 	if (!cmd_path)

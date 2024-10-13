@@ -19,7 +19,7 @@ bool	is_numeric(char *str)
 	i = -1;
 	while (str && str[++i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (str[i] == '+' && !ft_isdigit(str[i + 1]))
 			return (false);
 	}
 	return (true);
@@ -51,7 +51,7 @@ void	bin_exit(t_all *pAll, t_shell *pShell)
 		write(1, "exit\n", 5);
 		free_all(pAll, true, pAll->status_code);
 	}
-	if (pShell->args_nbr == 2 && is_numeric(pShell->cmd[1]))
+	if ((pShell->args_nbr == 2 && is_numeric(pShell->cmd[1])))
 	{
 		pAll->status_code = ft_atoi(pShell->cmd[1]);
 		write(1, "exit\n", 5);

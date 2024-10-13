@@ -53,11 +53,13 @@ int	run_all_cmds(t_all *pAll)
 	t_shell	*ptr;
 	int		i;
 
+	if (!exec_heredocs(pAll))
+		return (free(pAll->arr_pipe), 0);
+	if (pAll->cmd_nbr == 0)
+		return (1);
 	pAll->arr_pipe = ft_calloc(pAll->cmd_nbr, sizeof(int *));
 	if (!pAll->arr_pipe)
 		return (free_all(pAll, true, 1), 0);
-	if (!exec_heredocs(pAll))
-		return (free(pAll->arr_pipe), 0);
 	i = -1;
 	ptr = pAll->shell;
 	while (++i < pAll->cmd_nbr)
@@ -73,12 +75,14 @@ int	run_all_cmds(t_all *pAll)
 
 int	process_input(t_all *pAll)
 {
-	int	status;
+	int		status;
+	t_shell	*ptr;
 
 	if (!pAll->shell)
 		return (0);
 	pAll->status_code = 0;
 	run_all_cmds(pAll);
+	ptr = pAll->shell;
 	while (waitpid(-1, &status, 0) != -1)
 	{
 		if (WIFEXITED(status))
@@ -86,7 +90,13 @@ int	process_input(t_all *pAll)
 		else if (WIFSIGNALED(status))
 			set_status_from_sig(pAll, WTERMSIG(status));
 	}
-	return (restore_fds(pAll), 1);
+	while (ptr)
+	{
+		if (ptr->last_heredoc)
+			unlink(ptr->last_heredoc);
+		ptr = ptr->next;
+	}
+	return (free_shell(pAll), restore_fds(pAll), 1);
 }
 
 void	minishell_loop(t_env *env)
@@ -111,7 +121,6 @@ void	minishell_loop(t_env *env)
 			free(ptr.input);
 			continue ;
 		}
-		free_shell(&ptr);
 		ptr.shell = parsing(&ptr);
 		if (!process_input(&ptr))
 		{
