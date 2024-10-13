@@ -18,7 +18,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-// typedef struct s_all	t_all;
 typedef struct s_env	t_env;
 
 enum e_token
@@ -92,15 +91,7 @@ typedef struct s_merge
 	char	*tmp;
 }	t_merge;
 
-// typedef struct s_expstruct
-// {
-// 	char			*input_exp;
-// 	int				i;
-// 	enum e_state	state;
-// }	t_expstruct;
-
-// Helper functions 
-
+// Helper functions
 int				is_quote(char c);
 int				is_special_char(char c);
 int				is_normal_letter(char *input, int i);
@@ -112,11 +103,8 @@ void			count_operator_token(char *input, int *i, int *token);
 int				operator_token_length(char *input);
 int				quote_token_length(char *input);
 int				normal_token_length(char *input);
-//void			count_env_token(char *input, int *i, int *token);
-//int			env_token_length(char *input);
 
 // Matrix functions
-
 int				count_number_of_tokens(char *input);
 int				token_length(char *input);
 char			**fill_mtx(char **mtx, char *input);
@@ -125,7 +113,6 @@ int				assign_token(char *str);
 int				*token_arr(char **mtx);
 
 //Expansion utils
-
 int				is_escaped_char(int c);
 int				check_expansion(char *input, int *i);
 char			*process_escaped(char *str, int *i);
@@ -135,7 +122,6 @@ char			*expansion(t_all *all, t_env *envp);
 char			*heredoc_expansion(t_all *all, char *value);
 
 // Expansion function
-
 char			*find_env_string(char *input, t_env *envp, int len);
 char			*env_string(t_all *all, char *input, int *i, t_env *envp);
 void			free_trash(t_phelp *ptr);
@@ -144,7 +130,6 @@ char			*exp_string(t_all *all, t_exp p);
 void			set_state(enum e_state *state);
 
 // Quote Trimming
-
 int				type_of_merge(char *str, int start, int end);
 int				*array_of_merges(char *input, char **mtx);
 int				*process_arr_merger(char *input, char **mtx);
@@ -152,7 +137,6 @@ char			*trimm_quotes(char *str);
 char			*merge_string(int *arr, char **mtx, int *i);
 
 // Parse struct
-
 int				quot_tok_len(char *input);
 t_pars			*new_parse_node(char **mtx, int *i, int tok, int *arr);
 t_pars			*last_parse(t_pars *lst);
@@ -169,53 +153,8 @@ int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);
 
 // Syntax
-
 int				check_redir_error(t_pars *parser);
 int				check_pipe_error(t_pars *parser);
 int				check_all_errors(t_pars *parser);
-
-// typedef struct s_elem
-// {
-// 	char			*content;
-// 	int				len;
-// 	int				pipe[2];
-// 	enum e_token	type;
-// 	enum e_state	state;
-// 	struct s_elem	*next;
-// 	struct s_elem	*prev;
-// }	t_elem;
-
-// typedef struct s_parsing
-// {
-// 	t_elem			*head;
-// 	t_elem			*tail;
-// 	int				size;
-// }	t_parsing;
-
-// // Token utils
-
-// enum e_token	get_quote_token(char c);
-// enum e_token	get_special_token(const char *input, int *index);
-// enum e_token	input_red_token(const char *input, int *index);
-// enum e_token	output_red_token(const char *input, int *index);
-// enum e_token	find_token_type(const char *input, int *index);
-
-// // Process input
-
-// void			process_words(t_parsing *all, char *input, int *index,
-// 					enum e_state state);
-// void			process_quote(t_parsing *all, char *input, int *index,
-// 					enum e_state state);
-
-// // Structure initialization
-
-// t_parsing			*init_all(void);
-// t_elem			*create_elem(char *content, int len, enum e_token type);
-// void			add_token(t_parsing *all, t_elem *new_elem);
-
-// // Lexer
-
-// const char		*token_to_string(enum e_token token);
-// t_parsing			*assign_tokens(char *input);
 
 #endif
