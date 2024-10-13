@@ -12,15 +12,15 @@
 
 #include "minishell.h"
 
-char	**get_path_from_env(void)
+char	**get_path_from_env(t_all *pAll)
 {
-	char	*env_path;
+	t_env	*ptr;
 	char	**new_path;
 
-	env_path = getenv("PATH");
-	if (!env_path)
+	ptr = find_env_var(*pAll->env, "PATH");
+	if (!ptr)
 		return (NULL);
-	new_path = ft_split(env_path, ':');
+	new_path = ft_split(ptr->content, ':');
 	return (new_path);
 }
 
