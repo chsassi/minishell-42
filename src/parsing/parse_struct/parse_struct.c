@@ -25,7 +25,7 @@ t_pars	*parse_struct_init(char *input, char **mtx, int *token)
 	else
 		merge = process_arr_merger(input, mtx);
 	if (!token)
-		return (NULL);
+		return (free_mtx(mtx), NULL);
 	head = new_parse_node(mtx, &i, token[i], merge);
 	while (mtx[i] != NULL)
 	{

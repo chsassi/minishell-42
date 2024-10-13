@@ -137,7 +137,7 @@ char			*expansion(t_all *all, t_env *envp);
 
 char			*find_env_string(char *input, t_env *envp, int len);
 char			*env_string(t_all *all, char *input, int *i, t_env *envp);
-void			free_trash(t_pars *parser, int *tokens, char *input);
+void			free_trash(t_phelp *ptr);
 t_shell			*parsing(t_all *pAll);
 char			*exp_string(t_all *all, t_exp p);
 void			set_state(enum e_state *state);
