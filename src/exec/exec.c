@@ -17,6 +17,7 @@ void	exec_cmd(t_all *pAll, char *cmd, char **args, char **envp)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	execve(cmd, args, envp);
+	free_mtx(envp);
 	free_all(pAll, true, 127);
 }
 
@@ -73,7 +74,7 @@ char	*access_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 		printf("%s: command not found\n", pShell->cmd[0]);
 		pAll->status_code = 127;
 		if (inside_fork)
-			exit(pAll->status_code);
+			return (free_all(pAll, true, pAll->status_code), NULL);
 		return (NULL);
 	}
 	return (cmd_path);
@@ -89,7 +90,7 @@ bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 	if (run_builtin(pAll, pShell))
 	{
 		if (inside_fork)
-			exit(pAll->status_code);
+			free_all(pAll, true, pAll->status_code);
 		return (true);
 	}
 	cmd_path = access_exec(pAll, pShell, inside_fork);

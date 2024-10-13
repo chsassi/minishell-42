@@ -68,6 +68,7 @@ int	run_all_cmds(t_all *pAll)
 		pAll->arr_pipe[i] = init_pipes(pAll);
 		check_input_loop(pAll, ptr);
 		ptr = ptr->next;
+		restore_fds(pAll);
 	}
 	close_pipes_loop(pAll);
 	return (1);
@@ -96,7 +97,7 @@ int	process_input(t_all *pAll)
 			unlink(ptr->last_heredoc);
 		ptr = ptr->next;
 	}
-	return (free_shell(pAll), restore_fds(pAll), 1);
+	return (free_shell(pAll), 1);
 }
 
 void	minishell_loop(t_env *env)
