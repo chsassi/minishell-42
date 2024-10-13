@@ -18,14 +18,13 @@ int	main(int ac, char **av, char **envp)
 {
 	t_env	*ptr;
 
-	if (ac != 1)
-	{
-		ft_putstr_fd("Error: command line arguments not supported\n", 2);
-		return (1);
-	}
 	(void)av;
-	(void)envp;
-	ptr = create_envp(envp);
-	minishell_loop(ptr);
-	return (0);
+	if (ac == 1)
+	{
+		ptr = create_envp(envp);
+		minishell_loop(ptr);
+		return (0);
+	}
+	ft_putstr_fd("Error: command line arguments not supported\n", 2);
+	return (1);
 }

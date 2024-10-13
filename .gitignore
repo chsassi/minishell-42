@@ -2,6 +2,4 @@
 minishell
 libft.a
 .vscode
-!.vscode/settings.json
-!.vscode/launch.json
 .nfs*
