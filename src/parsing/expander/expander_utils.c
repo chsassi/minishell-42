@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/13 17:29:15 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:25:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*processed_str_exp(char *content)
 	int		i;
 
 	i = 0;
-	new = ft_strdup(content);
+	new = content;
 	while (content[i] != '\0')
 	{
 		if (is_escaped_char(content[i]))
@@ -88,10 +88,7 @@ char	*processed_str_exp(char *content)
 			content = new;
 		}
 		if (content[i] == '\0')
-		{
-			free(content);
 			return (new);
-		}
 		i++;
 	}
 	return (new);

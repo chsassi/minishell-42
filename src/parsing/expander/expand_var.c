@@ -26,7 +26,6 @@ char	*exp_string(t_all *all, t_exp p)
 	{
 		tmp.env_str = env_string(all, p.inp, p.i, p.env);
 		tmp.second_str = processed_str_exp(tmp.env_str);
-		free(tmp.env_str);
 	}
 	else
 		tmp.second_str = env_string(all, p.inp, p.i, p.env);
