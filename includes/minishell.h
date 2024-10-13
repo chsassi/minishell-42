@@ -19,7 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int	g_exit;
+extern int				g_exit;
 
 typedef struct s_pars	t_pars;
 

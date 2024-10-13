@@ -94,8 +94,6 @@ bool	run_exec(t_all *pAll, t_shell *pShell, bool inside_fork)
 	cmd_path = access_exec(pAll, pShell, inside_fork);
 	if (!cmd_path)
 		return (false);
-	// free(pShell->cmd[0]);
-	// pShell->cmd[0] = cmd_path;
 	env_mtx = create_env_mtx(*pAll->env);
 	if (!inside_fork)
 		fork_cmd(pAll, cmd_path, pShell->cmd, env_mtx);

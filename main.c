@@ -18,7 +18,11 @@ int	main(int ac, char **av, char **envp)
 {
 	t_env	*ptr;
 
-	(void)ac;
+	if (ac != 1)
+	{
+		ft_putstr_fd("Error: command line arguments not supported\n", 2);
+		return (1);
+	}
 	(void)av;
 	(void)envp;
 	ptr = create_envp(envp);

@@ -28,7 +28,4 @@
 	"editor.rulers": [
 		80
 	],
-	"files.associations": {
-		"minishell.h": "c"
-	}
 }

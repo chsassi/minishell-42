@@ -48,13 +48,6 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 		run_exec(pAll, pShell, false);
 }
 
-void	print_nl_on_sigint(int sig)
-{
-	g_exit = sig;
-	if (sig == SIGINT)
-		write(2, "\n", 1);
-}
-
 int	run_all_cmds(t_all *pAll)
 {
 	t_shell	*ptr;

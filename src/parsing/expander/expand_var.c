@@ -24,7 +24,6 @@ char	*exp_string(t_all *all, t_exp p)
 		tmp.first_str = ft_strdup("");
 	if (p.state == GENERAL)
 		tmp.second_str = processed_str_exp(env_string(all, p.inp, p.i, p.env));
-		// tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	else
 		tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	tmp.third_str = ft_strdup(p.inp + (*p.i));
