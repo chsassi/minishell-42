@@ -45,7 +45,7 @@ int	*array_of_merges(char *input, char **mtx)
 
 	i = 0;
 	j = 0;
-	arr = (int *)malloc(sizeof(int) * len);
+	arr = ft_calloc(sizeof(int), len + 1);
 	if (!arr)
 		return (NULL);
 	if (len == 1)
