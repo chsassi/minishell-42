@@ -38,6 +38,7 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 		if (pid == 0)
 		{
 			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			handle_pipe_dups(pAll, pShell);
 			close_pipes_loop(pAll);
 			run_exec(pAll, pShell, true);
@@ -84,12 +85,15 @@ int	process_input(t_all *pAll)
 	pAll->status_code = 0;
 	run_all_cmds(pAll);
 	ptr = pAll->shell;
-	while (waitpid(-1, &status, 0) != -1)
+	while (wait(&status) != -1)
 	{
 		if (WIFEXITED(status))
 			pAll->status_code = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
-			set_status_from_sig(pAll, WTERMSIG(status));
+		{
+			g_exit = WTERMSIG(status);
+			set_status_from_sig(pAll, g_exit);
+		}
 	}
 	while (ptr)
 	{
