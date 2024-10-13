@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:51:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/08/21 11:16:24 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:28:02 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_isspace(int c);
 int		len_cmp(char *s1, char *s2);
 int		ft_colen(char **mtx);
 int		ft_rowlen(char **mtx);

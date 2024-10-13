@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 21:23:26 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:48:59 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ char	*expansion(t_all *all, t_env *envp)
 			i += quot_tok_len(input_exp + i);
 		if (input_exp && input_exp[i] && input_exp[i] == '\"')
 			set_state(&state);
-		if (input_exp && input_exp[i] && input_exp[i] == '$')
+		if (input_exp && input_exp[i] && input_exp[i] == '$'
+			&& check_expansion(input_exp, &i))
 			input_exp = exp_string(all, (t_exp){input_exp, envp, &i, state});
 		if (input_exp && input_exp[i] && input_exp[i] == '\0')
 			break ;

@@ -6,7 +6,7 @@
 #    By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 14:05:40 by brulutaj          #+#    #+#              #
-#    Updated: 2024/09/13 18:45:13 by brulutaj         ###   ########.fr        #
+#    Updated: 2024/10/13 15:29:06 by brulutaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS			= ./Booleans/ft_isalnum.c 			\
 					./Booleans/ft_isascii.c 		\
 					./Booleans/ft_isdigit.c 		\
 					./Booleans/ft_isprint.c 		\
+					./Booleans/ft_isspace.c			\
 					./Booleans/len_cmp.c 			\
 					./Strings_ft/ft_atoi.c 			\
 					./Strings_ft/ft_atol.c			\
