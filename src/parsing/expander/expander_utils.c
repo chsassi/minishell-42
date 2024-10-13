@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:05 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 21:37:49 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:25:45 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,24 @@ char	*processed_str_exp(char *content)
 		i++;
 	}
 	return (new);
+}
+
+int	check_expansion(char *input, int *i)
+{
+	int	j;
+
+	j = (*i);
+	while ((*i) != 0 && input[(*i) - 1] && ft_isspace(input[(*i) - 1]))
+		(*i)--;
+	if ((*i) != 0 && input[(*i) - 1] == '<')
+	{
+		(*i)--;
+		if ((*i) != 0 && input[(*i) - 1] == '<')
+		{
+			(*i) = j + 1;
+			return (0);
+		}
+	}
+	(*i) = j;
+	return (1);
 }

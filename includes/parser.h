@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/12 14:55:06 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:07:46 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ typedef struct s_merge
 	char	*tmp;
 }	t_merge;
 
+// typedef struct s_expstruct
+// {
+// 	char			*input_exp;
+// 	int				i;
+// 	enum e_state	state;
+// }	t_expstruct;
+
 // Helper functions 
 
 int				is_quote(char c);
@@ -119,6 +126,7 @@ int				*token_arr(char **mtx);
 //Expansion utils
 
 int				is_escaped_char(int c);
+int				check_expansion(char *input, int *i);
 char			*process_escaped(char *str, int *i);
 char			*create_escaped_str(char *content, int *i);
 char			*processed_str_exp(char *content);
