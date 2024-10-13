@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:25:34 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/13 16:07:46 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:18:04 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_helper
 	char	*second_str;
 	char	*third_str;
 	char	*result;
+	char	*env_str;
 }	t_helper;
 
 typedef struct s_phelp

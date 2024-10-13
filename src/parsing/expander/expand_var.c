@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:52:46 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/10/13 16:48:59 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:21:49 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ char	*exp_string(t_all *all, t_exp p)
 	else
 		tmp.first_str = ft_strdup("");
 	if (p.state == GENERAL)
-		tmp.second_str = processed_str_exp(env_string(all, p.inp, p.i, p.env));
+	{
+		tmp.env_str = env_string(all, p.inp, p.i, p.env);
+		tmp.second_str = processed_str_exp(tmp.env_str);
+		free(tmp.env_str);
+	}
 	else
 		tmp.second_str = env_string(all, p.inp, p.i, p.env);
 	tmp.third_str = ft_strdup(p.inp + (*p.i));
