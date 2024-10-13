@@ -12,14 +12,18 @@
 
 #include "minishell.h"
 
-bool	is_numeric(char *str)
+static bool	is_numeric(char *str)
 {
 	int	i;
 
 	i = -1;
+	if (str && (str[0] == '+' || str[0] == '-'))
+		i++;
+	if (str && (str[0] == '+' || str[0] == '-') && str[1] == '\0')
+		return (false);
 	while (str && str[++i])
 	{
-		if (str[i] == '+' && !ft_isdigit(str[i + 1]))
+		if (str[i] == '+' || str[i] == '-' || !ft_isdigit(str[i]))
 			return (false);
 	}
 	return (true);
@@ -29,7 +33,7 @@ int	check_exit_params(t_all *pAll, t_shell *pShell)
 {
 	if (pShell->args_nbr > 2)
 		return (ft_putstr_fd("bash: exit: too many arguments\n", 2), 0);
-	if (pShell->cmd[1] && !is_numeric(pShell->cmd[1]))
+	if (pShell->args_nbr == 2 && !is_numeric(pShell->cmd[1]))
 	{
 		ft_putstr_fd("bash: exit: ", 2);
 		ft_putstr_fd(pShell->cmd[1], 2);
