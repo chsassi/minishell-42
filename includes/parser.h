@@ -152,7 +152,8 @@ void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char			*joined_merger(char *str1, char *str2, int flag);
 char			**red_mtx(t_pars **parser);
-void			reorg_struct(t_pars **parser, char **mtx, int *i);
+t_pars			*reorg_struct(t_pars **parser_head, t_pars *curr_redirect,
+					char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);

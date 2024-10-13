@@ -78,5 +78,11 @@ bool	exec_redirection(t_all *pAll, t_shell *pShell)
 		}
 		i++;
 	}
+	if (pShell->last_heredoc)
+	{
+		pShell->fd_in = open(pShell->last_heredoc, O_RDONLY);
+		if (pShell->fd_in == -1)
+			return (false);
+	}
 	return (true);
 }

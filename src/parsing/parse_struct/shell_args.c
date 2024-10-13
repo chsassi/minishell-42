@@ -38,51 +38,46 @@ int	len_red_mtx(t_pars *parser)
 	return (i);
 }
 
-void	reorg_struct(t_pars **parser, char **mtx, int *i)
+t_pars	*reorg_struct(t_pars **parser_head, t_pars *curr_redirect,
+	char **mtx, int *i)
 {
 	t_pars	*tmp;
 
-	tmp = *parser;
-	if ((*parser)->prev != NULL && (*parser)->next->next)
-		(*parser)->prev->next = (*parser)->next->next;
-	if ((*parser)->next->next != NULL)
-		(*parser)->next->next->prev = (*parser)->prev;
-	mtx[(*i)] = ft_strdup((*parser)->str);
-	(*parser) = (*parser)->next;
-	(*i)++;
-	free(tmp->str);
-	tmp->next = NULL;
-	tmp->prev = NULL;
-	free(tmp);
-	tmp = *parser;
-	mtx[(*i)] = ft_strdup((*parser)->str);
-	(*parser) = (*parser)->next;
-	free(tmp->str);
-	tmp->next = NULL;
-	tmp->prev = NULL;
-	free(tmp);
+
+	if (parser_head && curr_redirect == *parser_head)
+		*parser_head = (*parser_head)->next->next;
+	if (curr_redirect->prev)
+		curr_redirect->prev->next = curr_redirect->next->next;
+	if (curr_redirect->next->next)
+		curr_redirect->next->next->prev = curr_redirect->prev;
+	mtx[(*i)++] = ft_strdup(curr_redirect->str);
+	tmp = curr_redirect;
+	curr_redirect = curr_redirect->next;
+	free_parse_node(tmp);
+	mtx[(*i)++] = ft_strdup(curr_redirect->str);
+	tmp = curr_redirect;
+	curr_redirect = curr_redirect->next;
+	free_parse_node(tmp);
+	return (curr_redirect);
 }
 
 char	**red_mtx(t_pars **parser)
 {
-	char	**mtx;
-	int		len;
-	int		i;
-	t_pars	*tmp;
+	const int	len = len_red_mtx(*parser);
+	char		**mtx;
+	int			i;
+	t_pars		*tmp;
 
-	i = 0;
 	tmp = *parser;
-	len = len_red_mtx(*parser);
 	mtx = (char **)ft_calloc(sizeof(char *), (len + 1));
 	if (!mtx)
 		return (NULL);
+	i = 0;
 	while (tmp && tmp->type != PIPE_LINE)
 	{
 		if (is_redirect(tmp->type))
 		{
-			reorg_struct(&tmp, mtx, &i);
-			*parser = tmp;
-			i++;
+			tmp = reorg_struct(parser, tmp, mtx, &i);
 			continue ;
 		}
 		if (tmp != NULL)
