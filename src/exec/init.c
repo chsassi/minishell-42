@@ -39,7 +39,7 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 		run_exec(pAll, pShell, false);
 }
 
-int	run_all_cmds(t_all *pAll)
+int	run_commands(t_all *pAll)
 {
 	t_shell	*ptr;
 	int		i;
@@ -73,7 +73,7 @@ int	process_input(t_all *pAll)
 	if (!pAll->shell)
 		return (0);
 	pAll->status_code = 0;
-	run_all_cmds(pAll);
+	run_commands(pAll);
 	ptr = pAll->shell;
 	while (wait(&status) != -1)
 	{

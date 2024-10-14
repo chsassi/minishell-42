@@ -57,7 +57,9 @@ typedef struct s_all
 
 // Init
 void	check_input_loop(t_all *pAll, t_shell *pShell);
+int		run_commands(t_all *pAll);
 int		process_input(t_all *pAll);
+bool	process_loop(t_all *pAll);
 void	minishell_loop(t_env *env);
 
 // Init Utils
@@ -66,6 +68,7 @@ void	close_pipes_loop(t_all *pAll);
 
 // Shell Init
 int		count_pipes(t_pars *parser);
+t_pars	*free_parse_until_pipe(t_pars *parser);
 t_shell	*shell_init(t_pars **parser);
 
 // Shell Utils
@@ -73,9 +76,10 @@ int		*init_pipes(t_all *pAll);
 t_shell	*new_shell_node(t_pars **parser, int idx);
 t_shell	*shell_last(t_shell *shell);
 void	shell_add_back(t_shell **shell, t_shell *new);
+
 void	free_shell(t_all *pAll);
 void	free_all(t_all *pAll, bool should_exit, int status_code);
-int		run_all_cmds(t_all *pAll);
+
 bool	is_valid_var(char *cmd, char *var);
 void	close_fd(int fd);
 

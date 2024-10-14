@@ -27,6 +27,7 @@
 # define HEREDOC "<<"
 
 typedef struct s_env	t_env;
+typedef struct s_exp	t_exp;
 typedef struct s_shell	t_shell;
 typedef struct s_pars	t_pars;
 typedef struct s_all	t_all;
@@ -36,14 +37,17 @@ void	cd_home(t_all *pAll);
 void	cd_previous_dir(t_all *pAll);
 void	cd_upper_dir(t_all *pAll);
 void	cd_from_path(t_all *pAll, char *path);
-int		check_exit_params(t_all *pAll, t_shell *pShell);
-
 void	bin_cd(t_all *pAll, t_shell *pShell);
+int 	newline_check(t_shell *pShell, int i, bool *nl);
 void	bin_echo(t_all *pAll, t_shell *pShell);
 t_env	*bin_env(t_all *pAll);
+bool	is_numeric(char *str);
+int		check_exit_params(t_all *pAll, t_shell *pShell);
 void	bin_exit(t_all *pAll, t_shell *pShell);
 void	bin_export(t_all *pAll, t_shell *pShell);
 void	bin_pwd(t_all *pAll);
+bool	unset_check_head(t_all *pAll, char *variable);
+bool	unset_check_all(t_all *pAll, char *variable);
 t_env	*bin_unset(t_all *pAll, t_shell *pShell);
 
 // Exec
@@ -64,8 +68,14 @@ bool	is_last_heredoc(t_shell *shell, int red_idx);
 bool	parse_shell_heredoc(t_all *pAll, t_shell *curr, int red_idx);
 bool	exec_heredocs(t_all *pAll);
 
+// Heredoc Utils
+
+char	*heredoc_expand(t_all *pAll, t_exp pExp);
+char	*heredoc_expansion(t_all *pAll, char *value);
+
 // Redirect
 void	restore_fds(t_all *pAll);
+int 	handle_redirection_open(char *type, char *file);
 int		handle_redirection(t_all *pAll, char *type, char *file);
 bool	exec_redirection(t_all *pAll, t_shell *pShell);
 

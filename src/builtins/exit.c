@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static bool	is_numeric(char *str)
+bool	is_numeric(char *str)
 {
 	int	i;
 
