@@ -38,7 +38,7 @@ void	cd_previous_dir(t_all *pAll);
 void	cd_upper_dir(t_all *pAll);
 void	cd_from_path(t_all *pAll, char *path);
 void	bin_cd(t_all *pAll, t_shell *pShell);
-int 	newline_check(t_shell *pShell, int i, bool *nl);
+int		newline_check(t_shell *pShell, int i, bool *nl);
 void	bin_echo(t_all *pAll, t_shell *pShell);
 t_env	*bin_env(t_all *pAll);
 bool	is_numeric(char *str);
@@ -75,7 +75,7 @@ char	*heredoc_expansion(t_all *pAll, char *value);
 
 // Redirect
 void	restore_fds(t_all *pAll);
-int 	handle_redirection_open(char *type, char *file);
+int		handle_redirection_open(char *type, char *file);
 int		handle_redirection(t_all *pAll, char *type, char *file);
 bool	exec_redirection(t_all *pAll, t_shell *pShell);
 
