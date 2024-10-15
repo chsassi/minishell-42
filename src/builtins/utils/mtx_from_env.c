@@ -57,13 +57,11 @@ void	strjoin_loop(t_env *current, char **env_mtx, char *tmp)
 char	**create_env_mtx(t_env *env_list)
 {
 	int		count;
-	int		i;
 	char	*tmp;
 	char	**env_mtx;
 	t_env	*current;
 
 	count = count_env_vars(env_list);
-	i = 0;
 	tmp = NULL;
 	env_mtx = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!env_mtx)

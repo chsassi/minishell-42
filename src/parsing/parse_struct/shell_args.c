@@ -38,25 +38,12 @@ int	len_red_mtx(t_pars *parser)
 	return (i);
 }
 
-t_pars	*reorg_struct(t_pars **parser_head, t_pars *curr_redirect,
-	char **mtx, int *i)
+t_pars	*reorg_struct(t_pars *curr_redirect, char **mtx, int *i)
 {
-	t_pars	*tmp;
-
-	if (parser_head && curr_redirect == *parser_head)
-		*parser_head = (*parser_head)->next->next;
-	if (curr_redirect->prev)
-		curr_redirect->prev->next = curr_redirect->next->next;
-	if (curr_redirect->next->next)
-		curr_redirect->next->next->prev = curr_redirect->prev;
 	mtx[(*i)++] = ft_strdup(curr_redirect->str);
-	tmp = curr_redirect;
 	curr_redirect = curr_redirect->next;
-	free_parse_node(tmp);
 	mtx[(*i)++] = ft_strdup(curr_redirect->str);
-	tmp = curr_redirect;
 	curr_redirect = curr_redirect->next;
-	free_parse_node(tmp);
 	return (curr_redirect);
 }
 
@@ -76,7 +63,7 @@ char	**red_mtx(t_pars **parser)
 	{
 		if (is_redirect(tmp->type))
 		{
-			tmp = reorg_struct(parser, tmp, mtx, &i);
+			tmp = reorg_struct(tmp, mtx, &i);
 			continue ;
 		}
 		if (tmp != NULL)
@@ -91,8 +78,8 @@ char	**cmd_mtx(t_pars *parser)
 	t_pars	*tmp;
 	char	**mtx;
 
-	n = 0;
 	tmp = parser;
+	n = 0;
 	while (tmp)
 	{
 		tmp = tmp->next;
@@ -104,10 +91,12 @@ char	**cmd_mtx(t_pars *parser)
 	n = 0;
 	while (parser && parser->type != PIPE_LINE)
 	{
-		mtx[n] = parser->str;
-		parser->str = NULL;
+		if (parser->type == -1)
+		{
+			mtx[n++] = parser->str;
+			parser->str = NULL;
+		}
 		parser = parser->next;
-		n++;
 	}
 	return (mtx);
 }

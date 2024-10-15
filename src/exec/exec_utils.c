@@ -24,26 +24,39 @@ char	**get_path_from_env(t_all *pAll)
 	return (new_path);
 }
 
-char	*find_executable_in_env(char **paths, char *command)
+static char	*check_relative_path(char *command)
 {
-	char		*full_path;
-	char		*tmp;
+	int			fd;
 
 	if (ft_strchr(command, '/'))
 	{
+		fd = open(command, O_DIRECTORY);
+		if (fd != -1)
+			return (close(fd), NULL);
 		if (!access(command, X_OK))
 			return (ft_strdup(command));
 		return (NULL);
 	}
-	if (ft_strlen(command) == 0)
+	return (command);
+}
+
+char	*find_executable_in_env(char **paths, char *command)
+{
+	int			fd;
+	char		*full_path;
+	char		*tmp;
+
+	if (ft_strlen(command) == 0 || !check_relative_path(command))
 		return (NULL);
 	while (paths && *paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
 		full_path = ft_strjoin(tmp, command);
 		free(tmp);
-		if (!access(full_path, X_OK))
+		fd = open(full_path, O_DIRECTORY);
+		if (!access(full_path, X_OK) && !access(full_path, F_OK) && fd == -1)
 			return (full_path);
+		close(fd);
 		free(full_path);
 		paths++;
 	}
