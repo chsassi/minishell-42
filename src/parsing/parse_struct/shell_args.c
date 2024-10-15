@@ -75,22 +75,19 @@ char	**red_mtx(t_pars **parser)
 char	**cmd_mtx(t_pars *parser)
 {
 	int		n;
-	t_pars	*tmp;
 	char	**mtx;
 
-	tmp = parser;
-	n = 0;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		n++;
-	}
-	mtx = (char **)ft_calloc((n + 1), sizeof(char *));
+	mtx = (char **)ft_calloc((count_pars(parser) + 1), sizeof(char *));
 	if (!mtx)
 		return (NULL);
 	n = 0;
 	while (parser && parser->type != PIPE_LINE)
 	{
+		if (is_redirect(parser->type))
+		{
+			parser = parser->next->next;
+			continue ;
+		}
 		if (parser->type == -1)
 		{
 			mtx[n++] = parser->str;

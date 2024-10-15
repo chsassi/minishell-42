@@ -73,7 +73,7 @@ typedef struct s_phelp
 	char	*input_exp;
 	char	**mtx;
 	int		*tokens;
-	t_pars	*parser;	
+	t_pars	*parser;
 }	t_phelp;
 
 typedef struct s_exp
@@ -111,6 +111,7 @@ char			**fill_mtx(char **mtx, char *input);
 char			**create_mtx(char *input);
 int				assign_token(char *str);
 int				*token_arr(char **mtx);
+int				count_pars(t_pars *p);
 
 //Expansion utils
 int				is_escaped_char(int c);
