@@ -60,6 +60,10 @@ void	free_parse_node(t_pars *parser)
 	if (!parser)
 		return ;
 	free(parser->str);
+	if (parser->prev)
+		parser->prev->next = NULL;
+	if (parser->next)
+		parser->next->prev = NULL;
 	parser->next = NULL;
 	parser->prev = NULL;
 	free(parser);
