@@ -32,7 +32,6 @@ void	check_input_loop(t_all *pAll, t_shell *pShell)
 			handle_pipe_dups(pAll, pShell);
 			close_pipes_loop(pAll);
 			run_exec(pAll, pShell, true);
-			printf("x\n");
 			free_all(pAll, true, pAll->status_code);
 		}
 	}

@@ -37,7 +37,7 @@ static int	handle_redirection_open(char *type, char *file)
 	return (redirect_fd);
 }
 
-int	handle_redirection(t_all *pAll, char *type, char *file)
+int	handle_redirection(t_all *pAll, t_shell *pShell, char *type, char *file)
 {
 	const int	redirect_fd = handle_redirection_open(type, file);
 
@@ -50,14 +50,15 @@ int	handle_redirection(t_all *pAll, char *type, char *file)
 	}
 	if (!ft_strcmp(type, REDIRECT_IN))
 	{
-		if (pAll->shell->fd_in != -1)
-			close(pAll->shell->fd_in);
-		pAll->shell->fd_in = redirect_fd;
+		if (pShell->fd_in != -1)
+			close(pShell->fd_in);
+		pShell->fd_in = redirect_fd;
+		printf("for [%s] got [%d]\n", file, pShell->fd_in);
 		return (1);
 	}
-	if (pAll->shell->fd_out != -1)
-		close(pAll->shell->fd_out);
-	pAll->shell->fd_out = redirect_fd;
+	if (pShell->fd_out != -1)
+		close(pShell->fd_out);
+	pShell->fd_out = redirect_fd;
 	return (1);
 }
 
@@ -72,7 +73,7 @@ bool	exec_redirection(t_all *pAll, t_shell *pShell)
 			|| !ft_strcmp(pShell->redirects[i], REDIRECT_OUT)
 			|| !ft_strcmp(pShell->redirects[i], REDIRECT_APPEND))
 		{
-			if (!handle_redirection(pAll, pShell->redirects[i],
+			if (!handle_redirection(pAll, pShell, pShell->redirects[i],
 					pShell->redirects[i + 1]))
 				return (false);
 		}

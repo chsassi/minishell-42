@@ -66,7 +66,7 @@ bool	exec_heredocs(t_all *pAll);
 
 // Redirect
 void	restore_fds(t_all *pAll);
-int		handle_redirection(t_all *pAll, char *type, char *file);
+int		handle_redirection(t_all *pAll, t_shell *pShell, char *type, char *file);
 bool	exec_redirection(t_all *pAll, t_shell *pShell);
 
 // Signal
