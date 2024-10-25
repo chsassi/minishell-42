@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-//da fare join con lo spazio
 void	bin_export(t_all *pAll, t_shell *pShell)
 {
 	t_env	*current;

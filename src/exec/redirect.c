@@ -22,7 +22,7 @@ void	restore_fds(t_all *pAll)
 	pAll->restore_fd_out = dup(STDOUT_FILENO);
 }
 
-static int	handle_redirection_open(char *type, char *file)
+int	handle_redirection_open(char *type, char *file)
 {
 	int	redirect_fd;
 
