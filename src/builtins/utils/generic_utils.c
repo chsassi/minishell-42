@@ -48,3 +48,16 @@ void	handle_pipe_dups(t_all *pAll, t_shell *pShell)
 	if (pShell->fd_out == -1 && pShell->cmd_idx < pAll->cmd_nbr - 1)
 		dup2(pAll->arr_pipe[pShell->cmd_idx][1], STDOUT_FILENO);
 }
+
+int	count_pars(t_pars *p)
+{
+	int	n;
+
+	n = 0;
+	while (p)
+	{
+		n++;
+		p = p->next;
+	}
+	return (n);
+}

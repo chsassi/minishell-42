@@ -83,10 +83,8 @@ char	**fill_mtx(char **mtx, char *input)
 char	**create_mtx(char *input)
 {
 	char	**mtx;
-	int		i;
 	int		number_of_tokens;
 
-	i = 0;
 	mtx = NULL;
 	number_of_tokens = count_number_of_tokens(input);
 	if (number_of_tokens == -1)

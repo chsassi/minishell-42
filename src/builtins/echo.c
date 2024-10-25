@@ -15,11 +15,9 @@
 void	bin_echo(t_all *pAll, t_shell *pShell)
 {
 	int		i;
-	int		j;
 	bool	nl;
 
 	i = 1;
-	j = 0;
 	nl = true;
 	i = newline_check(pShell, i, &nl);
 	while (pShell->cmd[i])

@@ -19,11 +19,13 @@ void	cd_home(t_all *pAll)
 	home = find_env_var(*pAll->env, "HOME");
 	if (!home || !home->content)
 	{
+		pAll->status_code = 2;
 		ft_putstr_fd("bash: cd: HOME not set\n", 2);
 		return ;
 	}
 	if (chdir(home->content))
 	{
+		pAll->status_code = 2;
 		ft_putstr_fd("bash: cd: /home/user: No such file or directory\n", 2);
 		return ;
 	}
@@ -31,7 +33,7 @@ void	cd_home(t_all *pAll)
 	update_env_var(pAll->env, "PWD", home->content);
 }
 
-void	cd_previous_dir(t_all *pAll)
+void	*cd_previous_dir(t_all *pAll)
 {
 	t_env	*oldpwd;
 	char	*new_dir;
@@ -40,17 +42,15 @@ void	cd_previous_dir(t_all *pAll)
 	new_dir = NULL;
 	if (!oldpwd || !oldpwd->content)
 	{
-		ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
 		pAll->status_code = 1;
-		return ;
+		return (ft_putstr_fd("bash: cd: OLDPWD not set\n", 2), NULL);
 	}
 	if (oldpwd->content && oldpwd->content[0])
 		printf("%s\n", oldpwd->content);
 	if (chdir(oldpwd->content))
 	{
-		ft_putstr_fd("bash: cd: /previous/directory:\
- No such file or directory\n", 2);
-		return ;
+		pAll->status_code = 2;
+		return (ft_putstr_fd("bash: cd: No such file or directory\n", 2), NULL);
 	}
 	update_env_var(pAll->env, "OLDPWD", get_env_var(*pAll->env, "PWD"));
 	new_dir = getcwd(NULL, 0);
@@ -59,6 +59,7 @@ void	cd_previous_dir(t_all *pAll)
 		update_env_var(pAll->env, "PWD", new_dir);
 		free(new_dir);
 	}
+	return (NULL);
 }
 
 void	cd_upper_dir(t_all *pAll)
@@ -68,6 +69,7 @@ void	cd_upper_dir(t_all *pAll)
 	new_dir = NULL;
 	if (chdir(".."))
 	{
+		pAll->status_code = 2;
 		ft_putstr_fd("bash: cd: /previous/directory:\
  No such file or directory\n", 2);
 		return ;
@@ -88,6 +90,7 @@ void	cd_from_path(t_all *pAll, char *path)
 	new_dir = NULL;
 	if (chdir(path))
 	{
+		pAll->status_code = 2;
 		ft_putstr_fd("bash: cd: /absolute/path:\
  No such file or directory\n", 2);
 		return ;

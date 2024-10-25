@@ -18,6 +18,7 @@ void	exec_cmd(t_all *pAll, char *cmd, char **args, char **envp)
 	signal(SIGQUIT, SIG_DFL);
 	execve(cmd, args, envp);
 	free_mtx(envp);
+	free(cmd);
 	free_all(pAll, true, 127);
 }
 

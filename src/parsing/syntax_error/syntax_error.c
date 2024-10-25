@@ -46,7 +46,7 @@ int	check_all_errors(t_pars *parser)
 	int	check;
 
 	check = 1;
-	while (parser)
+	while (parser && check)
 	{
 		if (parser->type == PIPE_LINE)
 			check = check_pipe_error(parser);

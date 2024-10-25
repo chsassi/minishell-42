@@ -73,7 +73,7 @@ typedef struct s_phelp
 	char	*input_exp;
 	char	**mtx;
 	int		*tokens;
-	t_pars	*parser;	
+	t_pars	*parser;
 }	t_phelp;
 
 typedef struct s_exp
@@ -111,6 +111,7 @@ char			**fill_mtx(char **mtx, char *input);
 char			**create_mtx(char *input);
 int				assign_token(char *str);
 int				*token_arr(char **mtx);
+int				count_pars(t_pars *p);
 
 //Expansion utils
 int				is_escaped_char(int c);
@@ -146,8 +147,7 @@ void			clear_parse(t_pars *parser);
 t_pars			*parse_struct_init(char *input, char **mtx, int *token);
 char			*joined_merger(char *str1, char *str2, int flag);
 char			**red_mtx(t_pars **parser);
-t_pars			*reorg_struct(t_pars **parser_head, t_pars *curr_redirect,
-					char **mtx, int *i);
+t_pars			*reorg_struct(t_pars *curr_redirect, char **mtx, int *i);
 int				len_red_mtx(t_pars *parser);
 int				is_redirect(int type);
 char			**cmd_mtx(t_pars *parser);

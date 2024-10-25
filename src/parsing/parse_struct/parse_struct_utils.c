@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_struct_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 19:05:46 by chsassi           #+#    #+#             */
-/*   Updated: 2024/10/12 19:05:48 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/10/15 15:12:41 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	free_parse_node(t_pars *parser)
 		return ;
 	free(parser->str);
 	if (parser->prev)
-		parser->prev->next = NULL;
+		parser->prev->next = parser->next;
 	if (parser->next)
-		parser->next->prev = NULL;
+		parser->next->prev = parser->prev;
 	parser->next = NULL;
 	parser->prev = NULL;
 	free(parser);

@@ -56,6 +56,7 @@ t_shell	*shell_init(t_pars **parser)
 {
 	t_shell	*shell;
 	t_pars	*ptr;
+	t_shell	*node;
 	int		i;
 
 	shell = NULL;
@@ -63,7 +64,8 @@ t_shell	*shell_init(t_pars **parser)
 	while (*parser)
 	{
 		ptr = *parser;
-		shell_add_back(&shell, new_shell_node(&ptr, i));
+		node = new_shell_node(&ptr, i);
+		shell_add_back(&shell, node);
 		i++;
 		ptr = free_parse_until_pipe(ptr);
 		*parser = ptr;
