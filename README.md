@@ -25,9 +25,13 @@ This command starts your Minishell, ready to interpret user commands in a manner
 Features:
 
 Built-in Commands: Implement basic commands like cd, echo, pwd, export, unset, env, and exit.
+
 Redirections: Handle redirections such as >, <, >>, and << (heredoc).
+
 Pipes: Enable piping between commands to allow for complex command chaining.
+
 Environment Variables: Support environment variable expansion within commands.
+
 Signal Handling: Manage signals like CTRL+C, CTRL+D, and CTRL+\ gracefully, ensuring a responsive user experience.
 
 Example Usage
