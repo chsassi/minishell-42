@@ -22,7 +22,7 @@ Evaluation: 95/100
 
 This command starts your Minishell, ready to interpret user commands in a manner similar to Bash or Zsh.
 
-Features:
+# Features:
 
 Built-in Commands: Implement basic commands like cd, echo, pwd, export, unset, env, and exit.
 
@@ -34,7 +34,7 @@ Environment Variables: Support environment variable expansion within commands.
 
 Signal Handling: Manage signals like CTRL+C, CTRL+D, and CTRL+\ gracefully, ensuring a responsive user experience.
 
-Example Usage
+# Example Usage
 Running a basic command
 ```bash
 $ echo "Hello, world!"
